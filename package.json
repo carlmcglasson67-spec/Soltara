@@ -1,0 +1,10 @@
+{
+  "name": "soltata",
+  "private": true,
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "assess:samples": "npm run samples -w @soltata/engine"
+  }
+}
