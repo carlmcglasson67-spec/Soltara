@@ -1,7 +1,7 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  transpilePackages: ['@soltata/engine'],
+  transpilePackages: ['@soltara/engine'],
   images: { formats: ['image/avif', 'image/webp'] },
 };
 

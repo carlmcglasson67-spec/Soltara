@@ -47,7 +47,7 @@ export default function QuoteRequest({ summary }: { summary: string }) {
       </div>
       <label className={s.consent}>
         <input type="checkbox" name="consent" required value="yes" />
-        <span>Share my assessment with up to three installers I pick. I understand Soltata never sells my details and nobody calls me until I choose.</span>
+        <span>Share my assessment with up to three installers I pick. I understand Soltara never sells my details and nobody calls me until I choose.</span>
       </label>
       <input type="text" name="company" tabIndex={-1} autoComplete="off" className="sr-only" aria-hidden="true" />
       <div className={s.submitRow}>

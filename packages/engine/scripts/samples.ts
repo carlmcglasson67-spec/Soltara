@@ -1,7 +1,7 @@
 /**
  * Phase 0 check: run three SAMPLE West Cumbria homes (made-up profiles, not real customers)
  * through the engine on both example tariffs and print the recommendation.
- * Usage: npm run samples -w @soltata/engine
+ * Usage: npm run samples -w @soltara/engine
  */
 import { assess, EXAMPLE_TARIFFS, type HomeProfile } from '../src';
 

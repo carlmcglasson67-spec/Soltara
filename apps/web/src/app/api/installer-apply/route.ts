@@ -19,7 +19,7 @@ export async function POST(req: Request) {
   const res = await fetch('https://api.web3forms.com/submit', {
     method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
     body: JSON.stringify({
-      access_key: key, subject: `Soltata installer application: ${body.company_name}`, from_name: 'Soltata Energy',
+      access_key: key, subject: `Soltara installer application: ${body.company_name}`, from_name: 'Soltara Energy',
       company: body.company_name, name: body.name, email: body.email, phone: body.phone,
       mcs_number: body.mcs, areas: body.areas, technologies: body.technologies,
     }),

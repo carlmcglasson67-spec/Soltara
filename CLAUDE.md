@@ -1,12 +1,12 @@
-# CLAUDE.md — Soltata Energy
+# CLAUDE.md — Soltara Energy
 
-Read before any work. The build spec is the doc "Soltata Energy — Build Spec"
+Read before any work. The build spec is the doc "Soltara Energy — Build Spec"
 (https://claude.ai/artifact/7h5kmez8onLZJH4aHdK5gi). If a request conflicts with it, say so first.
 
 ## What this is
 A UK Home Energy Marketplace: honest home assessment → recommended system → comparable quotes
 from vetted installers → installation → Home Energy Planner. Solar + batteries first, then EV,
-heat pumps, tariffs. Built and maintained by Pervonio; owned by Soltata Energy.
+heat pumps, tariffs. Built and maintained by Pervonio; owned by Soltara Energy.
 
 ## Standing rules
 - Plan/spec before code. Small, reviewable changes. Verify before saying done (tests, typecheck, build, screenshots).

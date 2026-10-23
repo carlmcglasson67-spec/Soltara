@@ -1,5 +1,5 @@
 /**
- * Soltata assessment engine — core types.
+ * Soltara assessment engine — core types.
  *
  * Conventions
  * - Energy in kWh, power in kW, money in pence unless a field says otherwise.

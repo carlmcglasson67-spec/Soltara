@@ -4,7 +4,7 @@ import '@fontsource-variable/archivo/wdth.css';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: { default: 'Soltata Energy — compare solar, batteries and trusted installers', template: '%s | Soltata Energy' },
+  title: { default: 'Soltara Energy — compare solar, batteries and trusted installers', template: '%s | Soltara Energy' },
   description:
     'Find the right energy system for your home. A free, independent assessment of what solar and batteries could save, then comparable quotes from vetted installers. Nobody calls until you choose.',
 };
@@ -26,7 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <header className="site-header">
           <Link href="/" className="brand">
             <Mark />
-            <span className="brand-name">Soltata</span>
+            <span className="brand-name">Soltara</span>
             <span className="brand-sub">Energy</span>
           </Link>
           <nav className="site-nav" aria-label="Main">
@@ -40,7 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <footer className="site-footer">
           <div className="footer-grid">
             <div>
-              <p style={{ fontSize: '1.35rem', fontWeight: 750, color: '#fff' }}>Soltata Energy</p>
+              <p style={{ fontSize: '1.35rem', fontWeight: 750, color: '#fff' }}>Soltara Energy</p>
               <p style={{ marginTop: '.6rem', maxWidth: '42ch' }}>
                 Independent home energy assessments and comparable installer quotes, starting in Cumbria and the North West.
               </p>
@@ -57,7 +57,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <p style={{ color: '#fff', fontWeight: 650 }}>Installers</p>
               <ul>
                 <li><Link href="/for-installers">Join as a founding installer</Link></li>
-                <li><Link href="/for-installers#verified">Soltata Verified</Link></li>
+                <li><Link href="/for-installers#verified">Soltara Verified</Link></li>
               </ul>
             </div>
           </div>

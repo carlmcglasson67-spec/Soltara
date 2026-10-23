@@ -1,4 +1,4 @@
-import { assess, OVERNIGHT_EXAMPLE, type HomeProfile } from '@soltata/engine';
+import { assess, OVERNIGHT_EXAMPLE, type HomeProfile } from '@soltara/engine';
 
 /** The example home shown on the homepage. Computed by the real engine at build time,
  *  so the hero never shows a number the product can't produce. */

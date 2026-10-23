@@ -104,7 +104,7 @@ export function assess(home: HomeProfile, tariff: Tariff): Assessment {
       'Solar output is an estimate from location, roof pitch, direction and shading; a site survey confirms it.',
       'Household use follows a typical UK pattern scaled to your annual kWh until smart meter data is connected.',
       `Tariff rates used: ${tariff.name}.`,
-      'Prices are indicative ranges from Soltata’s price book, not quotes.',
+      'Prices are indicative ranges from Soltara’s price book, not quotes.',
       `Savings range allows ±${GENERATION_SPREAD * 100}% on generation; panels assumed to lose ${DEGRADATION_PER_YEAR * 100}% output a year.`,
       'Generation is modelled on average days; real weather varies day to day, so battery benefits may be slightly lower than shown.',
     ],

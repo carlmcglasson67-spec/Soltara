@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 /**
- * Quote requests (Phase 1, run by hand): the request is emailed to Soltata, who matches installers manually.
+ * Quote requests (Phase 1, run by hand): the request is emailed to Soltara, who matches installers manually.
  * Delivery uses Web3Forms when WEB3FORMS_ACCESS_KEY is set. Without it the route refuses clearly rather than
  * pretending to send, so a request is never silently lost.
  */
@@ -25,8 +25,8 @@ export async function POST(req: Request) {
     method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
     body: JSON.stringify({
       access_key: key,
-      subject: `Soltata quote request: ${postcode}`,
-      from_name: 'Soltata Energy',
+      subject: `Soltara quote request: ${postcode}`,
+      from_name: 'Soltara Energy',
       name, email, postcode, assessment: summary,
       consent: 'Shared with up to three installers the homeowner picks; no calls before they choose',
     }),

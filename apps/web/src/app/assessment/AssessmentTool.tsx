@@ -4,7 +4,7 @@ import { useMemo, useRef, useState } from 'react';
 import {
   assess, FLAT_EXAMPLE, OVERNIGHT_EXAMPLE,
   type Assessment, type HomeProfile, type Occupancy, type Shading,
-} from '@soltata/engine';
+} from '@soltara/engine';
 import { gbp, gbpRange, kwh, pct, years } from '@/lib/format';
 import QuoteRequest from './QuoteRequest';
 import s from './assessment.module.css';

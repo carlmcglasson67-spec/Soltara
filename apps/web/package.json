@@ -1,5 +1,5 @@
 {
-  "name": "@soltata/web",
+  "name": "@soltara/web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@fontsource-variable/archivo": "^5.3.0",
-    "@soltata/engine": "*",
+    "@soltara/engine": "*",
     "next": "15.5.28",
     "react": "19.1.0",
     "react-dom": "19.1.0"

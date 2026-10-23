@@ -50,7 +50,7 @@ export default function ForInstallers() {
       </section>
 
       <section id="verified" className={s.verified}>
-        <h2 className={s.h2}>Soltata Verified</h2>
+        <h2 className={s.h2}>Soltara Verified</h2>
         <p className={s.lead}>What we check before a homeowner can choose you, and again every year.</p>
         <ul className={s.checks}>
           <li>MCS certification for each technology you install</li>
