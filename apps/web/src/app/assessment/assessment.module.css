@@ -52,14 +52,14 @@
 .table tbody th { font-weight: 600; }
 .table tbody th small { display: block; font-weight: 400; color: var(--slate-2); font-size: .85rem; margin-top: .2rem; }
 .table td { font-size: 1.15rem; white-space: nowrap; }
-.rowBest { background: #fdf0eb; }
+.rowBest { background: var(--card); }
 
 .assumptions { margin-top: 1.6rem; max-width: 80ch; }
 .assumptions summary { cursor: pointer; font-weight: 650; color: var(--navy); }
 .assumptions ul { margin: .8rem 0; padding-left: 1.2rem; color: var(--slate-2); display: grid; gap: .3rem; }
 .assumptions p { color: var(--slate-2); }
 
-.quoteBox { margin-top: clamp(48px, 7vh, 80px); background: var(--day); border-radius: var(--radius); padding: clamp(28px, 4vw, 56px); display: grid; gap: 1.2rem; }
+.quoteBox { margin-top: clamp(48px, 7vh, 80px); background: var(--card); border-radius: var(--radius); padding: clamp(28px, 4vw, 56px); display: grid; gap: 1.2rem; }
 .quoteBox > p { max-width: 64ch; color: var(--slate-2); font-size: 1.05rem; }
 .quoteTitle { font-size: var(--t-4); font-variation-settings: 'wdth' 88; letter-spacing: -0.02em; }
 .quoteFields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
@@ -85,7 +85,7 @@
 .progress li { display: flex; align-items: center; gap: .6rem; padding-top: .8rem; border-top: 4px solid var(--line); font-weight: 600; color: var(--slate-2); font-size: .95rem; }
 .progress .stepDone { border-top-color: var(--navy); color: var(--slate); }
 .progress .stepNow { border-top-color: var(--sun); color: var(--slate); }
-.stepNum { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--day); font-size: .8rem; flex: none; }
+.stepNum { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--card); border: 1px solid var(--line); font-size: .8rem; flex: none; }
 .stepDone .stepNum { background: var(--navy); color: var(--white); }
 .stepNow .stepNum { background: var(--sun); color: var(--white); }
 .stepLink { background: none; border: 0; padding: 0; font: inherit; color: var(--navy); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }

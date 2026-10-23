@@ -9,6 +9,8 @@
   --day: #f3efe6;        /* Soltara light neutral */
   --line: #ddd8cd;
   --white: #ffffff;
+  --card: #ffffff;       /* panels sitting on the cream page */
+  --blue-ink: #dbe3ff;   /* quiet text on blue bands */
   --ok: #2e7d4f;
 
   --font: 'Archivo Variable', system-ui, sans-serif;
@@ -25,7 +27,7 @@
 html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0; font-family: var(--font); font-size: 1.0625rem; line-height: 1.55;
-  color: var(--slate); background: var(--white);
+  color: var(--slate); background: var(--day);
   font-variation-settings: 'wdth' 100;
 }
 img { display: block; max-width: 100%; }
@@ -49,12 +51,12 @@ p { margin: 0; }
 .btn-primary { background: var(--navy); color: var(--white); }
 .btn-primary:hover { background: var(--navy-deep); border-color: var(--navy-deep); }
 .btn-quiet { background: transparent; color: var(--navy); }
-.btn-quiet:hover { background: var(--day); }
+.btn-quiet:hover { background: var(--card); }
 
 /* Header */
 .site-header {
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-  padding: 1.1rem var(--gut); border-bottom: 1px solid var(--line); background: var(--white);
+  padding: 1.1rem var(--gut); border-bottom: 1px solid var(--line); background: var(--day);
 }
 .brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; }
 .brand-emblem { height: 40px; width: auto; }
