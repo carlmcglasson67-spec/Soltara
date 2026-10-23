@@ -5,7 +5,7 @@ import s from './assessment.module.css';
 
 type State = 'idle' | 'sending' | 'sent' | 'error';
 
-export default function QuoteRequest({ summary }: { summary: string }) {
+export default function QuoteRequest({ summary, postcode = '' }: { summary: string; postcode?: string }) {
   const [state, setState] = useState<State>('idle');
   const [message, setMessage] = useState('');
 
@@ -43,7 +43,7 @@ export default function QuoteRequest({ summary }: { summary: string }) {
       <div className={s.quoteFields}>
         <label className={s.field}><span>Your name</span><input name="name" required autoComplete="name" /></label>
         <label className={s.field}><span>Email</span><input name="email" type="email" required autoComplete="email" /></label>
-        <label className={s.field}><span>Postcode</span><input name="postcode" required autoComplete="postal-code" /></label>
+        <label className={s.field}><span>Postcode</span><input name="postcode" required autoComplete="postal-code" defaultValue={postcode} /></label>
       </div>
       <label className={s.consent}>
         <input type="checkbox" name="consent" required value="yes" />

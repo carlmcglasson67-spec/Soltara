@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { sampleAssessment, SAMPLE_HOME } from '@/lib/sample';
 import { gbpRange, kwh, pct, years } from '@/lib/format';
+import QuoteExhibit from './QuoteExhibit';
 import s from './home.module.css';
 
 export default function Home() {
@@ -16,11 +17,14 @@ export default function Home() {
           <p className={s.heroLead}>
             Compare solar, batteries and trusted installers in one place. Free, independent, and nobody calls until you choose.
           </p>
-          <div className={s.heroActions}>
-            <Link className="btn btn-primary" href="/assessment">See what your home could save</Link>
-            <Link className="btn btn-quiet" href="/#how-it-works">How it works</Link>
-          </div>
-          <p className={s.heroSmall}>Starting in Cumbria and the North West. Installers are MCS-certified and checked by us.</p>
+          <form className={s.pcForm} action="/assessment" method="get">
+            <label htmlFor="hero-pc" className={s.pcLabel}>Your postcode</label>
+            <div className={s.pcRow}>
+              <input id="hero-pc" name="postcode" autoComplete="postal-code" placeholder="e.g. CA14 2XX" required className={s.pcInput} />
+              <button className="btn btn-primary" type="submit">See what you could save</button>
+            </div>
+            <p className={s.heroSmall}>Free and takes two minutes. No phone number, and your details are never sold.</p>
+          </form>
         </div>
 
         <div className={s.heroMedia}>
@@ -54,6 +58,17 @@ export default function Home() {
             <p className={s.cardNote}>Worked out with example tariff rates. Yours come from your own home.</p>
           </aside>
         </div>
+      </section>
+
+
+      {/* TRUST STRIP: our actual promises, no borrowed logos */}
+      <section className={s.trust} aria-label="Our promises">
+        <ul>
+          <li><strong>Independent</strong><span>We don’t sell or fit anything</span></li>
+          <li><strong>MCS-certified installers only</strong><span>Checked by us, every year</span></li>
+          <li><strong>Three installers at most</strong><span>Only the ones you choose</span></li>
+          <li><strong>Free for homeowners</strong><span><Link href="/how-we-make-money">How we make money</Link></span></li>
+        </ul>
       </section>
 
       {/* WHAT YOU GET: the whole comparison, including the options we don't recommend */}
@@ -98,6 +113,8 @@ export default function Home() {
           </p>
         </div>
       </section>
+
+      <QuoteExhibit />
 
       {/* HOW IT WORKS: a real sequence, so it's numbered */}
       <section id="how-it-works" className={s.steps}>

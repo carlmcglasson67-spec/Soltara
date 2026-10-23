@@ -1,0 +1,20 @@
+.figure { margin: 0; }
+.chart { display: grid; grid-template-columns: auto 1fr; gap: .6rem; height: clamp(200px, 32vw, 280px); }
+.axis { position: relative; font-size: .78rem; color: var(--slate-2); text-align: right; min-width: 2.2em; margin-bottom: 1.6rem; }
+.axis span { position: absolute; right: 0; transform: translateY(50%); line-height: 1; }
+.plot { position: relative; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: clamp(3px, 1vw, 12px); }
+.gridLayer { position: absolute; inset: 0 0 1.6rem 0; }
+.grid { position: absolute; left: 0; right: 0; height: 1px; background: var(--line); }
+.col { position: relative; display: grid; grid-template-rows: 1fr 1.6rem; }
+.bars { position: relative; }
+.use, .covered { position: absolute; left: 0; right: 0; bottom: 0; border-radius: 2px 2px 0 0; }
+.use { background: #d9dce3; }
+.covered { background: var(--navy); }
+.gen { position: absolute; left: -3px; right: -3px; height: 3px; border-radius: 2px; background: var(--sun); transform: translateY(50%); }
+.month { text-align: center; font-size: .8rem; color: var(--slate-2); align-self: end; }
+.legend { display: flex; flex-wrap: wrap; gap: .5rem 1.2rem; font-size: .88rem; color: var(--slate-2); margin-top: .8rem; }
+.legend i { display: inline-block; vertical-align: -1px; margin-right: 6px; border-radius: 2px; }
+.keyUse { width: 12px; height: 12px; background: #d9dce3; }
+.keyCovered { width: 12px; height: 12px; background: var(--navy); }
+.keyGen { width: 14px; height: 3px; background: var(--sun); vertical-align: 3px !important; }
+.unit { margin-left: auto; }

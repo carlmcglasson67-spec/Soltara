@@ -1,4 +1,5 @@
-import type { Battery, Tariff, YearResult } from './types';
+import { DAYS_IN_MONTH } from './solar';
+import type { Battery, MonthResult, Tariff, YearResult } from './types';
 
 export interface HourFlows {
   direct: number;         // solar used straight away
@@ -42,9 +43,13 @@ export function simulateYear(
   let socSolar = 0;
   const flows: HourFlows[] = [];
   let gen = 0, ld = 0, selfUse = 0, solarUsed = 0, imp = 0, exp = 0, cost = 0;
+  const monthOf: number[] = [];
+  DAYS_IN_MONTH.forEach((d, m) => { for (let i = 0; i < d * 24; i++) monthOf.push(m); });
+  const monthly: MonthResult[] = DAYS_IN_MONTH.map(() => ({ generationKwh: 0, loadKwh: 0, solarUsedKwh: 0, importKwh: 0 }));
 
   for (let i = 0; i < load.length; i++) {
     const hour = i % 24;
+    const solarUsedBefore = solarUsed;
     const g = generation[i]!;
     const l = load[i]!;
     const direct = Math.min(g, l);
@@ -83,6 +88,10 @@ export function simulateYear(
     selfUse += direct + batteryToLoad;
     imp += hourImport; exp += hourExport;
     cost += hourImport * tariff.importPence[hour]! - hourExport * tariff.exportPence[hour]!;
+
+    const mo = monthly[monthOf[i] ?? 11]!;
+    mo.generationKwh += g; mo.loadKwh += l; mo.importKwh += hourImport;
+    mo.solarUsedKwh += solarUsed - solarUsedBefore;
   }
 
   return {
@@ -94,6 +103,7 @@ export function simulateYear(
       exportKwh: exp,
       netCostPence: cost,
       selfSufficiency: ld > 0 ? solarUsed / ld : 0,
+      monthly,
     },
     flows,
   };

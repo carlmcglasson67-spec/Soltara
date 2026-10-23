@@ -4,12 +4,7 @@
 .lead { font-size: var(--t-2); color: var(--slate-2); line-height: 1.45; }
 @media (max-width: 900px) { .intro { grid-template-columns: 1fr; } }
 
-/* Form: three groups side by side on wide screens */
-.form { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 48px); border-top: 2px solid var(--slate); padding-top: 2rem; }
-@media (max-width: 1080px) { .form { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 700px) { .form { grid-template-columns: 1fr; } }
-.group { border: 0; padding: 0; margin: 0; display: grid; gap: 1.4rem; align-content: start; min-width: 0; }
-.group legend { font-size: var(--t-2); font-weight: 700; margin-bottom: 1.2rem; padding: 0; }
+/* Fields */
 .field { display: grid; gap: .45rem; font-weight: 600; min-width: 0; }
 .field small { font-weight: 400; color: var(--slate-2); font-size: var(--t-0); }
 .field input, .field select {
@@ -83,3 +78,27 @@
   .table tbody th { display: block; font-size: 1.1rem; padding-bottom: .5rem; }
   .table td::before { content: attr(data-label); font-family: var(--font); font-variation-settings: 'wdth' 100; font-weight: 450; color: var(--slate-2); font-size: .95rem; }
 }
+
+/* Wizard */
+.tool { border-top: 2px solid var(--slate); padding-top: 2rem; }
+.progress { list-style: none; padding: 0; margin: 0 0 2rem; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .8rem; }
+.progress li { display: flex; align-items: center; gap: .6rem; padding-top: .8rem; border-top: 4px solid var(--line); font-weight: 600; color: var(--slate-2); font-size: .95rem; }
+.progress .stepDone { border-top-color: var(--navy); color: var(--slate); }
+.progress .stepNow { border-top-color: var(--sun); color: var(--slate); }
+.stepNum { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--day); font-size: .8rem; flex: none; }
+.stepDone .stepNum { background: var(--navy); color: var(--white); }
+.stepNow .stepNum { background: var(--sun); color: var(--white); }
+.stepLink { background: none; border: 0; padding: 0; font: inherit; color: var(--navy); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+@media (max-width: 700px) { .progress li span:not(.stepNum), .progress .stepLink { display: none; } .progress li { justify-content: center; } }
+
+.panel { display: grid; gap: 2rem; max-width: 760px; }
+.panelInner { display: grid; gap: 1.6rem; outline: none; }
+.panelTitle { font-size: var(--t-4); font-variation-settings: 'wdth' 88; letter-spacing: -0.02em; }
+.field input.pcInput { font-size: 1.4rem; min-height: 60px; text-transform: uppercase; max-width: 320px; letter-spacing: .04em; }
+.nav { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; border-top: 1px solid var(--line); padding-top: 1.4rem; }
+.navNote { color: var(--slate-2); font-size: var(--t-0); margin-left: .4rem; }
+.big2 { font-size: clamp(2.8rem, 6vw, 5rem); line-height: .95; color: var(--sun); }
+.chartBlock { margin-top: 2.5rem; padding: clamp(20px, 3vw, 36px); border: 1px solid var(--line); border-radius: var(--radius); }
+.chartBlock .tableTitle { margin-top: 0; }
+.chartBlock .tableSub { margin-bottom: 1rem; }
+.again { margin-top: 1.4rem; }

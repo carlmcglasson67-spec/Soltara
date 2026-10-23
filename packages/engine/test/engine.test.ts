@@ -124,3 +124,18 @@ describe('loan repayment', () => {
     expect(monthlyRepayment(1200, 0, 1)).toBe(100);
   });
 });
+
+describe('monthly totals', () => {
+  it('sum to the annual figures and peak in summer', () => {
+    const gen = hourlyGeneration(4, 54.64, { pitchDeg: 35, azimuthDeg: 180, usableAreaM2: 24, shading: 'none' });
+    const load = hourlyLoad(3200, 'out_daytime');
+    const r = simulateYear(gen, load, FLAT_EXAMPLE, BATTERIES['5']).result;
+    const s = (k: 'generationKwh' | 'loadKwh' | 'solarUsedKwh' | 'importKwh') => r.monthly.reduce((a, m) => a + m[k], 0);
+    expect(r.monthly).toHaveLength(12);
+    expect(s('generationKwh')).toBeCloseTo(r.generationKwh, 4);
+    expect(s('loadKwh')).toBeCloseTo(r.loadKwh, 4);
+    expect(s('importKwh')).toBeCloseTo(r.importKwh, 4);
+    expect(s('solarUsedKwh')).toBeCloseTo(r.selfSufficiency * r.loadKwh, 4);
+    expect(r.monthly[5]!.generationKwh).toBeGreaterThan(r.monthly[11]!.generationKwh * 4);
+  });
+});

@@ -70,6 +70,16 @@ export interface YearResult {
   /** Share of household load met by the home's own solar (directly or via the battery), 0–1.
    *  Grid energy stored in the battery on a cheap rate does not count. */
   selfSufficiency: number;
+  /** Month-by-month totals, January first (12 entries). */
+  monthly: MonthResult[];
+}
+
+export interface MonthResult {
+  generationKwh: number;
+  loadKwh: number;
+  /** Household use met by the home's own solar, directly or via the battery. */
+  solarUsedKwh: number;
+  importKwh: number;
 }
 
 export interface Range { low: number; high: number }
