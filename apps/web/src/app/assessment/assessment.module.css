@@ -57,7 +57,7 @@
 .table tbody th { font-weight: 600; }
 .table tbody th small { display: block; font-weight: 400; color: var(--slate-2); font-size: .85rem; margin-top: .2rem; }
 .table td { font-size: 1.15rem; white-space: nowrap; }
-.rowBest { background: #fff8e0; }
+.rowBest { background: #fdf0eb; }
 
 .assumptions { margin-top: 1.6rem; max-width: 80ch; }
 .assumptions summary { cursor: pointer; font-weight: 650; color: var(--navy); }

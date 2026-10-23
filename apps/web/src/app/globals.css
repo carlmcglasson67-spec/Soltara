@@ -1,13 +1,13 @@
 /* Soltara — design tokens and base styles.
-   Palette from the subject: roof slate, panel navy, daylight, and sun yellow kept for data only. */
+   Palette from the Soltara brand board: primary blue, charcoal, amber accent (data only), light neutral. */
 :root {
-  --slate: #26323c;      /* text, roof slate */
-  --slate-2: #5f6b75;    /* quiet text */
-  --navy: #1c3f7a;       /* panel navy: actions, links */
-  --navy-deep: #13294f;
-  --sun: #f2b705;        /* data highlights only: generation, savings */
-  --day: #eef3f6;        /* daylight band */
-  --line: #d5dde3;
+  --slate: #1c1e25;      /* charcoal: text, dark bands */
+  --slate-2: #5d6370;    /* quiet text */
+  --navy: #2857ec;       /* Soltara primary blue: actions, links */
+  --navy-deep: #1c43c7;
+  --sun: #f06647;        /* Soltara amber: data highlights and accents only */
+  --day: #f3efe6;        /* Soltara light neutral */
+  --line: #ddd8cd;
   --white: #ffffff;
   --ok: #2e7d4f;
 
@@ -56,15 +56,17 @@ p { margin: 0; }
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
   padding: 1.1rem var(--gut); border-bottom: 1px solid var(--line); background: var(--white);
 }
-.brand { display: flex; align-items: baseline; gap: .55rem; text-decoration: none; color: var(--slate); }
-.brand-mark { width: 26px; height: 26px; align-self: center; }
-.brand-name { font-size: 1.35rem; font-weight: 750; letter-spacing: -0.02em; }
-.brand-sub { font-size: var(--t-0); color: var(--slate-2); font-weight: 450; }
+.brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; }
+.brand-emblem { height: 40px; width: auto; }
+.brand-word { height: 21px; width: auto; }
+.footer-brand { display: flex; align-items: center; gap: .7rem; }
+.footer-brand .brand-emblem { height: 46px; }
+.footer-brand .brand-word { height: 24px; }
 .site-nav { display: flex; align-items: center; gap: 1.6rem; }
 .site-nav a { color: var(--slate); text-decoration: none; font-weight: 550; font-size: .97rem; }
 .site-nav a:hover { color: var(--navy); text-decoration: underline; text-underline-offset: 4px; }
 .site-nav a.btn-primary, .site-nav a.btn-primary:hover { color: var(--white); text-decoration: none; }
-@media (max-width: 760px) { .site-nav .nav-link { display: none; } .brand-sub { display: none; } }
+@media (max-width: 760px) { .site-nav .nav-link { display: none; } .brand-emblem { height: 32px; } .brand-word { height: 17px; } }
 
 /* Footer */
 .site-footer { background: var(--slate); color: #d7dee4; padding: 4rem var(--gut) 3rem; }

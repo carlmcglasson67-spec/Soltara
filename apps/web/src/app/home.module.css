@@ -16,7 +16,7 @@
 .photo { position: absolute; inset: 0; }
 .heroImg { object-fit: cover; object-position: center; }
 .overlay { position: absolute; inset: 0; width: 100%; height: 100%; }
-.roofZone { fill: rgba(242, 183, 5, 0.16); stroke: var(--sun); stroke-width: 2.5; stroke-dasharray: 9 6; vector-effect: non-scaling-stroke; }
+.roofZone { fill: rgba(240, 102, 71, 0.18); stroke: var(--sun); stroke-width: 2.5; stroke-dasharray: 9 6; vector-effect: non-scaling-stroke; }
 .roofTick { stroke: var(--sun); stroke-width: 4; vector-effect: non-scaling-stroke; }
 .roofLabel {
   position: absolute; top: 8%; left: clamp(16px, 3vw, 40px);
@@ -66,9 +66,9 @@
 .table thead th { font-size: var(--t-0); font-weight: 600; color: var(--slate-2); border-bottom: 2px solid var(--slate); }
 .table tbody th { font-weight: 600; }
 .table td { font-size: 1.2rem; white-space: nowrap; }
-.rowBest { background: #fff8e0; }
+.rowBest { background: #fdf0eb; }
 .rowBest th, .rowBest td { border-bottom-color: var(--sun); }
-.bestTag { display: block; margin-top: .3rem; font-size: .82rem; font-weight: 600; color: #7a5a00; }
+.bestTag { display: block; margin-top: .3rem; font-size: .82rem; font-weight: 600; color: #a8391e; }
 .tableNote { margin-top: 1rem; font-size: var(--t-0); color: var(--slate-2); max-width: 70ch; }
 @media (max-width: 900px) { .compare { grid-template-columns: 1fr; } }
 

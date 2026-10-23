@@ -4,20 +4,11 @@ import '@fontsource-variable/archivo/wdth.css';
 import './globals.css';
 
 export const metadata: Metadata = {
+  icons: { icon: '/brand/soltara-emblem.png' },
   title: { default: 'Soltara Energy — compare solar, batteries and trusted installers', template: '%s | Soltara Energy' },
   description:
     'Find the right energy system for your home. A free, independent assessment of what solar and batteries could save, then comparable quotes from vetted installers. Nobody calls until you choose.',
 };
-
-function Mark() {
-  // A roof pitch over a sun line: the home, and the energy on it.
-  return (
-    <svg className="brand-mark" viewBox="0 0 26 26" aria-hidden="true">
-      <path d="M2 14 L13 4 L24 14" fill="none" stroke="var(--navy)" strokeWidth="3" strokeLinejoin="round" />
-      <path d="M6 20 H20" stroke="var(--sun)" strokeWidth="3" strokeLinecap="round" />
-    </svg>
-  );
-}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -25,9 +16,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <header className="site-header">
           <Link href="/" className="brand">
-            <Mark />
-            <span className="brand-name">Soltara</span>
-            <span className="brand-sub">Energy</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="brand-emblem" src="/brand/soltara-emblem.png" alt="" width={302} height={221} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="brand-word" src="/brand/soltara-wordmark.png" alt="Soltara Energy" width={560} height={80} />
           </Link>
           <nav className="site-nav" aria-label="Main">
             <Link className="nav-link" href="/#how-it-works">How it works</Link>
@@ -40,7 +32,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <footer className="site-footer">
           <div className="footer-grid">
             <div>
-              <p style={{ fontSize: '1.35rem', fontWeight: 750, color: '#fff' }}>Soltara Energy</p>
+              <p className="footer-brand">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img className="brand-emblem" src="/brand/soltara-emblem.png" alt="" width={302} height={221} />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img className="brand-word" src="/brand/soltara-wordmark-white.png" alt="Soltara Energy" width={560} height={80} />
+              </p>
               <p style={{ marginTop: '.6rem', maxWidth: '42ch' }}>
                 Independent home energy assessments and comparable installer quotes, starting in Cumbria and the North West.
               </p>
