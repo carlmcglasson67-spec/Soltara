@@ -1,0 +1,85 @@
+.page { padding: 0 var(--gut) clamp(80px, 12vh, 140px); }
+.intro { padding: clamp(56px, 9vh, 110px) 0 clamp(32px, 5vh, 56px); display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(24px, 4vw, 72px); align-items: end; }
+.title { font-size: var(--t-5); font-variation-settings: 'wdth' 88; letter-spacing: -0.025em; }
+.lead { font-size: var(--t-2); color: var(--slate-2); line-height: 1.45; }
+@media (max-width: 900px) { .intro { grid-template-columns: 1fr; } }
+
+/* Form: three groups side by side on wide screens */
+.form { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 48px); border-top: 2px solid var(--slate); padding-top: 2rem; }
+@media (max-width: 1080px) { .form { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 700px) { .form { grid-template-columns: 1fr; } }
+.group { border: 0; padding: 0; margin: 0; display: grid; gap: 1.4rem; align-content: start; min-width: 0; }
+.group legend { font-size: var(--t-2); font-weight: 700; margin-bottom: 1.2rem; padding: 0; }
+.field { display: grid; gap: .45rem; font-weight: 600; min-width: 0; }
+.field small { font-weight: 400; color: var(--slate-2); font-size: var(--t-0); }
+.field input, .field select {
+  font: inherit; font-weight: 500; min-height: 50px; padding: 0 .9rem; border: 1.5px solid #9aa7b1; border-radius: var(--radius); background: var(--white); color: var(--slate); width: 100%;
+}
+.field input:focus, .field select:focus { outline: 3px solid var(--sun); outline-offset: 1px; border-color: var(--navy); }
+
+.segmented { display: flex; flex-wrap: wrap; gap: .4rem; }
+.seg, .segOn {
+  font: inherit; font-weight: 550; min-height: 46px; padding: 0 1rem; border-radius: var(--radius); cursor: pointer;
+  border: 1.5px solid #9aa7b1; background: var(--white); color: var(--slate);
+}
+.segOn { background: var(--navy); border-color: var(--navy); color: var(--white); }
+
+.compass { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .4rem; max-width: 360px; }
+.compassBtn, .compassOn {
+  font: inherit; font-size: .9rem; font-weight: 550; min-height: 48px; padding: 0 .3rem; border-radius: var(--radius); cursor: pointer;
+  border: 1.5px solid #9aa7b1; background: var(--white); color: var(--slate);
+}
+.compassOn { background: var(--navy); border-color: var(--navy); color: var(--white); }
+.compassCentre { display: grid; place-items: center; font-size: .85rem; color: var(--slate-2); border: 1.5px dashed var(--line); border-radius: var(--radius); }
+
+.submitRow { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 1.2rem; padding-top: .5rem; }
+.submitRow p { color: var(--slate-2); font-size: var(--t-0); }
+
+/* Results */
+.results { margin-top: clamp(56px, 8vh, 96px); outline: none; }
+.verdict { background: var(--slate); color: var(--white); border-radius: var(--radius); padding: clamp(28px, 4vw, 56px); border-top: 6px solid var(--sun); }
+.verdictKicker { color: #c9d3db; font-size: var(--t-1); }
+.verdictSystem { margin-top: .5rem; font-size: var(--t-4); font-variation-settings: 'wdth' 88; letter-spacing: -0.02em; max-width: 26ch; }
+.verdictFigures { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 2rem; margin-top: 2rem; align-items: end; }
+.verdictFigures p:last-child { color: #c9d3db; font-size: var(--t-0); margin-top: .3rem; }
+.big { font-size: clamp(2.8rem, 6vw, 5rem); line-height: .95; color: var(--sun); }
+.mid { font-size: clamp(1.6rem, 2.6vw, 2.2rem); line-height: 1; }
+.note { margin-top: 1.4rem; color: #dbe2e8; max-width: 70ch; }
+@media (max-width: 760px) { .verdictFigures { grid-template-columns: 1fr; gap: 1.2rem; } }
+
+.tableTitle { margin-top: 2.5rem; font-size: var(--t-2); }
+.tableSub { color: var(--slate-2); font-size: var(--t-0); margin-top: .3rem; }
+.tableWrap { overflow-x: auto; margin-top: 1rem; }
+.table { width: 100%; border-collapse: collapse; min-width: 760px; }
+.table caption { text-align: left; font-weight: 700; font-size: var(--t-2); margin-bottom: 1rem; }
+.table th, .table td { text-align: left; padding: .95rem .8rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+.table thead th { font-size: var(--t-0); font-weight: 600; color: var(--slate-2); border-bottom: 2px solid var(--slate); }
+.table tbody th { font-weight: 600; }
+.table tbody th small { display: block; font-weight: 400; color: var(--slate-2); font-size: .85rem; margin-top: .2rem; }
+.table td { font-size: 1.15rem; white-space: nowrap; }
+.rowBest { background: #fff8e0; }
+
+.assumptions { margin-top: 1.6rem; max-width: 80ch; }
+.assumptions summary { cursor: pointer; font-weight: 650; color: var(--navy); }
+.assumptions ul { margin: .8rem 0; padding-left: 1.2rem; color: var(--slate-2); display: grid; gap: .3rem; }
+.assumptions p { color: var(--slate-2); }
+
+.quoteBox { margin-top: clamp(48px, 7vh, 80px); background: var(--day); border-radius: var(--radius); padding: clamp(28px, 4vw, 56px); display: grid; gap: 1.2rem; }
+.quoteBox > p { max-width: 64ch; color: var(--slate-2); font-size: 1.05rem; }
+.quoteTitle { font-size: var(--t-4); font-variation-settings: 'wdth' 88; letter-spacing: -0.02em; }
+.quoteFields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+@media (max-width: 760px) { .quoteFields { grid-template-columns: 1fr; } }
+.consent { display: flex; gap: .7rem; align-items: flex-start; max-width: 70ch; }
+.consent input { width: 22px; height: 22px; margin-top: .15rem; flex: none; }
+.error { color: #a12a1a; font-weight: 600; }
+
+/* Phones: each option becomes a stacked block with labelled figures */
+@media (max-width: 700px) {
+  .table { min-width: 0; }
+  .table thead { display: none; }
+  .table tr { display: block; padding: 1rem 0; border-bottom: 1px solid var(--line); }
+  .rowBest { padding-left: .8rem !important; padding-right: .8rem !important; }
+  .table th, .table td { display: flex; justify-content: space-between; gap: 1rem; padding: .3rem 0; border: 0; white-space: normal; }
+  .table tbody th { display: block; font-size: 1.1rem; padding-bottom: .5rem; }
+  .table td::before { content: attr(data-label); font-family: var(--font); font-variation-settings: 'wdth' 100; font-weight: 450; color: var(--slate-2); font-size: .95rem; }
+}

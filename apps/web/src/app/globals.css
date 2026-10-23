@@ -1,0 +1,78 @@
+/* Soltata — design tokens and base styles.
+   Palette from the subject: roof slate, panel navy, daylight, and sun yellow kept for data only. */
+:root {
+  --slate: #26323c;      /* text, roof slate */
+  --slate-2: #5f6b75;    /* quiet text */
+  --navy: #1c3f7a;       /* panel navy: actions, links */
+  --navy-deep: #13294f;
+  --sun: #f2b705;        /* data highlights only: generation, savings */
+  --day: #eef3f6;        /* daylight band */
+  --line: #d5dde3;
+  --white: #ffffff;
+  --ok: #2e7d4f;
+
+  --font: 'Archivo Variable', system-ui, sans-serif;
+  /* Type scale (perfect fourth) */
+  --t-0: 0.875rem; --t-1: 1rem; --t-2: 1.333rem; --t-3: 1.777rem; --t-4: 2.369rem;
+  --t-5: clamp(2.6rem, 5.2vw, 4.6rem);
+  --t-hero: clamp(2.9rem, 6.4vw, 6.2rem);
+
+  --gut: clamp(20px, 5vw, 88px);
+  --radius: 6px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; font-family: var(--font); font-size: 1.0625rem; line-height: 1.55;
+  color: var(--slate); background: var(--white);
+  font-variation-settings: 'wdth' 100;
+}
+img { display: block; max-width: 100%; }
+a { color: var(--navy); }
+h1, h2, h3 { margin: 0; line-height: 1.04; font-weight: 700; letter-spacing: -0.015em; }
+p { margin: 0; }
+
+/* Figures: condensed, tabular — the numbers carry the brand */
+.fig { font-variation-settings: 'wdth' 75; font-feature-settings: 'tnum' 1; font-weight: 700; letter-spacing: -0.01em; }
+
+:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; border-radius: 2px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  min-height: 52px; padding: 0 1.4rem; border-radius: var(--radius);
+  font: inherit; font-weight: 650; font-size: var(--t-1); text-decoration: none; cursor: pointer;
+  border: 2px solid var(--navy); transition: background .15s, color .15s;
+}
+.btn-primary { background: var(--navy); color: var(--white); }
+.btn-primary:hover { background: var(--navy-deep); border-color: var(--navy-deep); }
+.btn-quiet { background: transparent; color: var(--navy); }
+.btn-quiet:hover { background: var(--day); }
+
+/* Header */
+.site-header {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 1.1rem var(--gut); border-bottom: 1px solid var(--line); background: var(--white);
+}
+.brand { display: flex; align-items: baseline; gap: .55rem; text-decoration: none; color: var(--slate); }
+.brand-mark { width: 26px; height: 26px; align-self: center; }
+.brand-name { font-size: 1.35rem; font-weight: 750; letter-spacing: -0.02em; }
+.brand-sub { font-size: var(--t-0); color: var(--slate-2); font-weight: 450; }
+.site-nav { display: flex; align-items: center; gap: 1.6rem; }
+.site-nav a { color: var(--slate); text-decoration: none; font-weight: 550; font-size: .97rem; }
+.site-nav a:hover { color: var(--navy); text-decoration: underline; text-underline-offset: 4px; }
+.site-nav a.btn-primary, .site-nav a.btn-primary:hover { color: var(--white); text-decoration: none; }
+@media (max-width: 760px) { .site-nav .nav-link { display: none; } .brand-sub { display: none; } }
+
+/* Footer */
+.site-footer { background: var(--slate); color: #d7dee4; padding: 4rem var(--gut) 3rem; }
+.footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 3rem; }
+.site-footer a { color: var(--white); text-decoration: none; }
+.site-footer a:hover { text-decoration: underline; }
+.site-footer ul { list-style: none; padding: 0; margin: .8rem 0 0; display: grid; gap: .45rem; }
+.footer-small { margin-top: 3rem; font-size: var(--t-0); color: #a9b4bd; max-width: 70ch; }
+@media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr; gap: 2rem; } }
+
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }

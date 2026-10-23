@@ -1,0 +1,70 @@
+
+=== 3-bed semi, Workington — south roof, out in the day (sample)
+
+  Tariff: Single rate (example: 25p import, 15p export)
+  Current bill (energy only): £800/yr
+  - Solar only                                  5.01kWp  gen  4307kWh  self-suff 38%  save £702–£836/yr  price £6,649–£8,462  payback 8.0–12.1y  20yr net £7,118  ← recommended
+      note: At 5.01kWp this system is likely to need approval from your local network operator (a G99 application) before it connects; your installer handles this, but it can add a few weeks.
+  - Solar + 5kWh battery                        5.01kWp  gen  4307kWh  self-suff 76%  save £799–£937/yr  price £9,421–£11,990  payback 10.1–15.0y  20yr net £5,861
+      note: At 5.01kWp this system is likely to need approval from your local network operator (a G99 application) before it connects; your installer handles this, but it can add a few weeks.
+  - Solar + 10kWh battery                       5.01kWp  gen  4307kWh  self-suff 78%  save £803–£942/yr  price £11,401–£14,510  payback 12.1–18.1y  20yr net £3,706
+      note: At 5.01kWp this system is likely to need approval from your local network operator (a G99 application) before it connects; your installer handles this, but it can add a few weeks.
+  - Solar + 13.5kWh battery                     5.01kWp  gen  4307kWh  self-suff 78%  save £803–£943/yr  price £12,787–£16,274  payback 13.6–20.3y  20yr net £2,136
+      note: At 5.01kWp this system is likely to need approval from your local network operator (a G99 application) before it connects; your installer handles this, but it can add a few weeks.
+
+  Tariff: Overnight cheap rate (example: 8p 00:00–05:00, 28p otherwise, 15p export)
+  Current bill (energy only): £827/yr
+  - Solar only                                  5.01kWp  gen  4307kWh  self-suff 38%  save £736–£870/yr  price £6,649–£8,462  payback 7.6–11.5y  20yr net £7,764
+      note: At 5.01kWp this system is likely to need approval from your local network operator (a G99 application) before it connects; your installer handles this, but it can add a few weeks.
+  - Solar + 5kWh battery                        5.01kWp  gen  4307kWh  self-suff 45%  save £1,017–£1,149/yr  price £9,421–£11,990  payback 8.2–11.8y  20yr net £9,955  ← recommended
+      note: At 5.01kWp this system is likely to need approval from your local network operator (a G99 application) before it connects; your installer handles this, but it can add a few weeks.
+  - Solar + 10kWh battery                       5.01kWp  gen  4307kWh  self-suff 45%  save £1,038–£1,163/yr  price £11,401–£14,510  payback 9.8–14.0y  20yr net £8,038
+      note: At 5.01kWp this system is likely to need approval from your local network operator (a G99 application) before it connects; your installer handles this, but it can add a few weeks.
+  - Solar + 13.5kWh battery                     5.01kWp  gen  4307kWh  self-suff 45%  save £1,038–£1,163/yr  price £12,787–£16,274  payback 11.0–15.7y  20yr net £6,457
+      note: At 5.01kWp this system is likely to need approval from your local network operator (a G99 application) before it connects; your installer handles this, but it can add a few weeks.
+  - Battery only (10kWh, cheap-rate charging)      0kWp  gen     0kWh  self-suff 0%  save £546–£546/yr  price £5,280–£6,720  payback 9.7–12.3y  20yr net £4,408
+      note: Saves money by charging on the cheap overnight rate; it does not make your own electricity.
+
+=== 2-bed terrace, Whitehaven — east roof, home in the day (sample)
+
+  Tariff: Single rate (example: 25p import, 15p export)
+  Current bill (energy only): £650/yr
+  - Solar only                                  3.19kWp  gen  2181kWh  self-suff 39%  save £394–£463/yr  price £4,807–£6,118  payback 10.4–15.6y  20yr net £2,713  ← recommended
+  - Solar + 5kWh battery                        3.19kWp  gen  2181kWh  self-suff 66%  save £449–£527/yr  price £7,579–£9,646  payback 14.4–21.5y  20yr net £699
+  - Solar + 10kWh battery                       3.19kWp  gen  2181kWh  self-suff 67%  save £449–£527/yr  price £9,559–£12,166  payback 18.1–27.1y  20yr net −£1,543
+  - Solar + 13.5kWh battery                     3.19kWp  gen  2181kWh  self-suff 67%  save £449–£527/yr  price £10,945–£13,930  payback 20.8–31.0y  20yr net −£3,113
+
+  Tariff: Overnight cheap rate (example: 8p 00:00–05:00, 28p otherwise, 15p export)
+  Current bill (energy only): £677/yr
+  - Solar only                                  3.19kWp  gen  2181kWh  self-suff 39%  save £411–£482/yr  price £4,807–£6,118  payback 10.0–14.9y  20yr net £3,053
+  - Solar + 5kWh battery                        3.19kWp  gen  2181kWh  self-suff 39%  save £665–£734/yr  price £7,579–£9,646  payback 10.3–14.5y  20yr net £4,732  ← recommended
+  - Solar + 10kWh battery                       3.19kWp  gen  2181kWh  self-suff 39%  save £681–£743/yr  price £9,559–£12,166  payback 12.9–17.9y  20yr net £2,725
+  - Solar + 13.5kWh battery                     3.19kWp  gen  2181kWh  self-suff 39%  save £681–£743/yr  price £10,945–£13,930  payback 14.7–20.5y  20yr net £1,144
+  - Battery only (10kWh, cheap-rate charging)      0kWp  gen     0kWh  self-suff 0%  save £448–£448/yr  price £5,280–£6,720  payback 11.8–15.0y  20yr net £2,545
+      note: Saves money by charging on the cheap overnight rate; it does not make your own electricity.
+
+=== 4-bed detached, Cockermouth — south-west roof, EV 8,000 miles (sample)
+
+  Tariff: Single rate (example: 25p import, 15p export)
+  Current bill (energy only): £1,725/yr
+  - Solar only                                  7.74kWp  gen  6085kWh  self-suff 28%  save £1,008–£1,197/yr  price £9,412–£11,979  payback 7.9–11.9y  20yr net £10,347  ← recommended
+      note: At 7.74kWp this system is likely to need approval from your local network operator (a G99 application) before it connects; your installer handles this, but it can add a few weeks.
+  - Solar + 5kWh battery                        7.74kWp  gen  6085kWh  self-suff 50%  save £1,134–£1,329/yr  price £12,184–£15,507  payback 9.2–13.7y  20yr net £9,657
+      note: At 7.74kWp this system is likely to need approval from your local network operator (a G99 application) before it connects; your installer handles this, but it can add a few weeks.
+  - Solar + 10kWh battery                       7.74kWp  gen  6085kWh  self-suff 67%  save £1,224–£1,431/yr  price £14,164–£18,027  payback 9.9–14.7y  20yr net £9,264
+      note: At 7.74kWp this system is likely to need approval from your local network operator (a G99 application) before it connects; your installer handles this, but it can add a few weeks.
+  - Solar + 13.5kWh battery                     7.74kWp  gen  6085kWh  self-suff 69%  save £1,232–£1,448/yr  price £15,550–£19,791  payback 10.7–16.1y  20yr net £7,910
+      note: At 7.74kWp this system is likely to need approval from your local network operator (a G99 application) before it connects; your installer handles this, but it can add a few weeks.
+
+  Tariff: Overnight cheap rate (example: 8p 00:00–05:00, 28p otherwise, 15p export)
+  Current bill (energy only): £1,355/yr
+  - Solar only                                  7.74kWp  gen  6085kWh  self-suff 28%  save £1,064–£1,255/yr  price £9,412–£11,979  payback 7.5–11.3y  20yr net £11,435
+      note: At 7.74kWp this system is likely to need approval from your local network operator (a G99 application) before it connects; your installer handles this, but it can add a few weeks.
+  - Solar + 5kWh battery                        7.74kWp  gen  6085kWh  self-suff 34%  save £1,369–£1,559/yr  price £12,184–£15,507  payback 7.8–11.3y  20yr net £14,098  ← recommended
+      note: At 7.74kWp this system is likely to need approval from your local network operator (a G99 application) before it connects; your installer handles this, but it can add a few weeks.
+  - Solar + 10kWh battery                       7.74kWp  gen  6085kWh  self-suff 34%  save £1,442–£1,617/yr  price £14,164–£18,027  payback 8.8–12.5y  20yr net £13,071
+      note: At 7.74kWp this system is likely to need approval from your local network operator (a G99 application) before it connects; your installer handles this, but it can add a few weeks.
+  - Solar + 13.5kWh battery                     7.74kWp  gen  6085kWh  self-suff 34%  save £1,442–£1,616/yr  price £15,550–£19,791  payback 9.6–13.7y  20yr net £11,490
+      note: At 7.74kWp this system is likely to need approval from your local network operator (a G99 application) before it connects; your installer handles this, but it can add a few weeks.
+  - Battery only (10kWh, cheap-rate charging)      0kWp  gen     0kWh  self-suff 0%  save £681–£681/yr  price £5,280–£6,720  payback 7.8–9.9y  20yr net £6,995
+      note: Saves money by charging on the cheap overnight rate; it does not make your own electricity.
