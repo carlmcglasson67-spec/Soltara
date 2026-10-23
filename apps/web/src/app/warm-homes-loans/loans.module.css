@@ -1,0 +1,27 @@
+.page { padding: 0 var(--gut) clamp(80px, 12vh, 140px); }
+.head { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(24px, 4vw, 72px); align-items: end; padding: clamp(56px, 9vh, 110px) 0 clamp(40px, 6vh, 64px); border-bottom: 2px solid var(--slate); }
+.title { font-size: var(--t-5); font-variation-settings: 'wdth' 88; letter-spacing: -0.025em; max-width: 18ch; }
+.lead { font-size: var(--t-2); color: var(--slate-2); line-height: 1.45; }
+.updated { margin-top: 1rem; font-size: var(--t-0); font-weight: 600; }
+@media (max-width: 900px) { .head { grid-template-columns: 1fr; } }
+
+.timeline ol { list-style: none; padding: 0; margin: clamp(40px, 6vh, 64px) 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); }
+.timeline li { border-top: 4px solid var(--line); padding-top: 1rem; }
+.timeline li.next { border-top-color: var(--sun); }
+.when { font-weight: 750; font-size: var(--t-2); font-variation-settings: 'wdth' 80; margin-bottom: .4rem; }
+.timeline li p:last-child { color: var(--slate-2); }
+@media (max-width: 900px) { .timeline ol { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .timeline ol { grid-template-columns: 1fr; } }
+
+.h2 { font-size: var(--t-4); font-variation-settings: 'wdth' 88; letter-spacing: -0.02em; }
+.example { margin-top: clamp(64px, 10vh, 110px); background: var(--day); border-radius: var(--radius); padding: clamp(28px, 4vw, 56px); display: grid; gap: 1rem; }
+.example p { max-width: 68ch; font-size: 1.1rem; }
+
+.faq { margin-top: clamp(64px, 10vh, 110px); display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(32px, 5vw, 96px); }
+.faq dl { margin: 0; display: grid; gap: 1.8rem; }
+.faq dt { font-weight: 700; font-size: var(--t-2); }
+.faq dd { margin: .5rem 0 0; color: var(--slate-2); max-width: 70ch; }
+@media (max-width: 900px) { .faq { grid-template-columns: 1fr; } }
+
+.foot { margin-top: clamp(64px, 10vh, 110px); border-top: 1px solid var(--line); padding-top: 1.6rem; display: grid; gap: 1rem; max-width: 90ch; }
+.sources { font-size: var(--t-0); color: var(--slate-2); }

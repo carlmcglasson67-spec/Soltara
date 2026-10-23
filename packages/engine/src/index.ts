@@ -5,3 +5,4 @@ export * from './tariffs';
 export * from './simulate';
 export * from './pricing';
 export * from './recommend';
+export * from './finance';

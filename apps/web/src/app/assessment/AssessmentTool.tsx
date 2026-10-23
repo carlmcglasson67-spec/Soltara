@@ -234,6 +234,7 @@ export default function AssessmentTool() {
           <details className={s.assumptions}>
             <summary>How we worked this out</summary>
             <ul>{result.assumptions.map((a) => <li key={a}>{a}</li>)}</ul>
+            <p>Thinking about borrowing? <a href="/warm-homes-loans">What we know about the Warm Homes Loan Scheme</a>.</p>
             <p>Your electricity today costs about {gbp(result.baseline.netCostPence / 100)} a year on these rates, before standing charges.</p>
           </details>
 

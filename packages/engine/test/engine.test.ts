@@ -115,3 +115,12 @@ describe('assessment', () => {
     expect(solar.notes.join(' ')).toMatch(/G99/);
   });
 });
+
+import { monthlyRepayment } from '../src';
+describe('loan repayment', () => {
+  it('matches the standard amortisation formula', () => {
+    expect(monthlyRepayment(10000, 4.9, 15)).toBeCloseTo(78.56, 1);
+    expect(monthlyRepayment(10000, 9.9, 15)).toBeCloseTo(106.85, 1);
+    expect(monthlyRepayment(1200, 0, 1)).toBe(100);
+  });
+});
