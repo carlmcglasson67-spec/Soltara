@@ -1,12 +1,12 @@
-import type { RoofPlane, Shading } from './types';
+import type { RoofPlane, Shading, SolarYield } from './types';
 
 /**
  * Hourly solar generation model.
  *
- * Phase 0 fallback: an annual specific yield (kWh per kWp) from latitude, pitch, orientation
- * and shading, spread over months and daylight hours. Phase 1 replaces the annual and hourly
- * shape with PVGIS hourly data for the exact location — this module keeps the same output
- * (8,760 hourly kWh values) so nothing downstream changes.
+ * Monthly energy comes from a SolarYield: PVGIS data for the exact location when the caller
+ * has it, otherwise the built-in latitude model (modelYield). Shading is applied on top
+ * (PVGIS covers the terrain horizon, not nearby trees or buildings). Each month's energy is
+ * then spread over days and daylight hours, giving 8,760 hourly kWh values.
  */
 
 /** Typical UK monthly share of annual PV output (sums to 1). Approximate, northern England. */
@@ -45,6 +45,17 @@ export function specificYield(latitude: number, roof: RoofPlane): number {
   );
 }
 
+/** Built-in fallback: monthly kWh per kWp from latitude, pitch and direction (no shading). */
+export function modelYield(latitude: number, roof: RoofPlane): SolarYield {
+  const annual = baseSpecificYield(latitude) * orientationFactor(roof.azimuthDeg) * pitchFactor(roof.pitchDeg);
+  return { source: 'model', monthlyKwhPerKwp: MONTH_SHARE.map((s) => annual * s) };
+}
+
+/** kWh per kWp per year after shading. */
+export function annualYield(y: SolarYield, shading: Shading): number {
+  return y.monthlyKwhPerKwp.reduce((a, b) => a + b, 0) * SHADING_FACTOR[shading];
+}
+
 /** Approximate daylight hours for a day of the year at a latitude. */
 export function dayLength(dayOfYear: number, latitude: number): number {
   const decl = 23.44 * Math.sin(((2 * Math.PI) / 365) * (dayOfYear - 81));
@@ -58,15 +69,17 @@ export function dayLength(dayOfYear: number, latitude: number): number {
  * half-sine between sunrise and sunset centred on solar noon (12:00, ignoring clock change),
  * shifted earlier for east-facing roofs and later for west-facing ones.
  */
-export function hourlyGeneration(kWp: number, latitude: number, roof: RoofPlane): number[] {
-  const annual = kWp * specificYield(latitude, roof);
+export function hourlyGeneration(
+  kWp: number, latitude: number, roof: RoofPlane, solarYield: SolarYield = modelYield(latitude, roof),
+): number[] {
+  const shade = SHADING_FACTOR[roof.shading];
   const out = new Array<number>(8760).fill(0);
   // East roofs peak earlier, west roofs later: up to ±2.5 h.
   const shift = Math.sin(((roof.azimuthDeg - 180) * Math.PI) / 180) * 2.5;
   let day = 0;
   for (let m = 0; m < 12; m++) {
     const days = DAYS_IN_MONTH[m]!;
-    const perDay = (annual * MONTH_SHARE[m]!) / days;
+    const perDay = (kWp * solarYield.monthlyKwhPerKwp[m]! * shade) / days;
     for (let d = 0; d < days; d++, day++) {
       const len = dayLength(day + 1, latitude);
       const rise = 12 + shift - len / 2;

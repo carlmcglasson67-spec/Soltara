@@ -139,3 +139,34 @@ describe('monthly totals', () => {
     expect(r.monthly[5]!.generationKwh).toBeGreaterThan(r.monthly[11]!.generationKwh * 4);
   });
 });
+
+import { modelYield, type SolarYield } from '../src';
+/** PVGIS v5.3 PVcalc, 54.64 N -3.55 E, 35° pitch, due south, 14% loss (fetched 24 Oct 2026). */
+const PVGIS_WORKINGTON: SolarYield = {
+  source: 'pvgis',
+  monthlyKwhPerKwp: [26.03, 46.56, 79.63, 115.56, 129.59, 122.64, 118.32, 103.65, 80.53, 51.77, 34.0, 21.64],
+};
+
+describe('location solar data', () => {
+  it('uses PVGIS monthly figures when supplied, with shading on top', () => {
+    const gen = hourlyGeneration(4, 54.64, south, PVGIS_WORKINGTON);
+    expect(sum(gen)).toBeCloseTo(4 * 929.92, 0);
+    const shaded = hourlyGeneration(4, 54.64, { ...south, shading: 'moderate' }, PVGIS_WORKINGTON);
+    expect(sum(shaded)).toBeCloseTo(4 * 929.92 * 0.85, 0);
+  });
+
+  it('falls back to the built-in model, unchanged, when no data is supplied', () => {
+    expect(sum(hourlyGeneration(4, 54.64, south))).toBeCloseTo(4 * specificYield(54.64, south), 4);
+    expect(sum(modelYield(54.64, south).monthlyKwhPerKwp)).toBeCloseTo(specificYield(54.64, south), 4);
+  });
+
+  it('reports which source the assessment used', () => {
+    const live = assess({ ...home, solarYield: PVGIS_WORKINGTON }, FLAT_EXAMPLE);
+    expect(live.solarSource).toBe('pvgis');
+    expect(live.specificYieldKwhPerKwp).toBe(930);
+    expect(live.assumptions[0]).toMatch(/PVGIS/);
+    const fallback = assess(home, FLAT_EXAMPLE);
+    expect(fallback.solarSource).toBe('model');
+    expect(fallback.assumptions[0]).toMatch(/built-in model/);
+  });
+});

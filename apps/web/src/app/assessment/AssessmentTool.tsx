@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   assess, FLAT_EXAMPLE, OVERNIGHT_EXAMPLE,
-  type Assessment, type HomeProfile, type Occupancy, type Shading,
+  type Assessment, type HomeProfile, type Occupancy, type Shading, type SolarYield,
 } from '@soltara/engine';
 import { gbp, gbpRange, kwh, pct, years } from '@/lib/format';
 import { lookupPostcode, tidyPostcode, type Place } from '@/lib/postcode';
@@ -53,6 +53,20 @@ function Choice<T extends string | number>({ label, value, options, onChange, hi
   );
 }
 
+/** Ask our server for PVGIS data for this roof. Any failure → undefined, and the engine uses its built-in model. */
+async function fetchSolarYield(home: HomeProfile): Promise<SolarYield | undefined> {
+  const q = new URLSearchParams({
+    lat: String(home.latitude), lon: String(home.longitude),
+    azimuth: String(home.roof.azimuthDeg), pitch: String(home.roof.pitchDeg),
+  });
+  try {
+    const res = await fetch(`/api/solar?${q}`, { signal: AbortSignal.timeout(10000) });
+    if (!res.ok) return undefined;
+    const data = (await res.json()) as { yield: SolarYield | null };
+    return data.yield ?? undefined;
+  } catch { return undefined; }
+}
+
 export default function AssessmentTool() {
   const [step, setStep] = useState(0);
   const [postcode, setPostcode] = useState('');
@@ -70,6 +84,7 @@ export default function AssessmentTool() {
   const [ev, setEv] = useState(0);
   const [tariff, setTariff] = useState<'flat' | 'overnight'>('flat');
   const [result, setResult] = useState<Assessment | null>(null);
+  const [working, setWorking] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const resultsRef = useRef<HTMLElement>(null);
 
@@ -107,7 +122,10 @@ export default function AssessmentTool() {
     }
     if (step < STEPS.length - 1) { go(step + 1); return; }
     if (!home) { go(0); return; }
-    setResult(assess(home, tariff === 'overnight' ? OVERNIGHT_EXAMPLE : FLAT_EXAMPLE));
+    setWorking(true);
+    const solarYield = await fetchSolarYield(home);
+    setWorking(false);
+    setResult(assess({ ...home, solarYield }, tariff === 'overnight' ? OVERNIGHT_EXAMPLE : FLAT_EXAMPLE));
     setStep(STEPS.length);
     requestAnimationFrame(() => resultsRef.current?.focus());
   }
@@ -208,8 +226,8 @@ export default function AssessmentTool() {
 
           <div className={s.nav}>
             {step > 0 && <button type="button" className="btn btn-quiet" onClick={() => go(step - 1)}>Back</button>}
-            <button className="btn btn-primary" type="submit" disabled={looking}>
-              {step === 0 ? (looking ? 'Finding your home' : 'Continue') : step < STEPS.length - 1 ? 'Continue' : 'Show my options'}
+            <button className="btn btn-primary" type="submit" disabled={looking || working}>
+              {step === 0 ? (looking ? 'Finding your home' : 'Continue') : step < STEPS.length - 1 ? 'Continue' : working ? 'Working it out' : 'Show my options'}
             </button>
             <p className={s.navNote}>Step {step + 1} of {STEPS.length}. Nothing is saved or shared.</p>
           </div>
@@ -246,6 +264,11 @@ export default function AssessmentTool() {
                 {rec.label}: about {kwh(rec.year.generationKwh)} of solar a year, covering {pct(rec.year.selfSufficiency)} of what you use.
               </p>
               <MonthlyChart months={rec.year.monthly} />
+              <p className={s.source}>
+                {result.solarSource === 'pvgis'
+                  ? <>Solar figures: PVGIS satellite data for your location, roof pitch and direction (about {result.specificYieldKwhPerKwp} kWh per kWp a year after shading).</>
+                  : <>Solar figures: Soltara’s built-in estimate, because live satellite data wasn’t available just now. Run it again later for location-specific figures.</>}
+              </p>
             </div>
           )}
 

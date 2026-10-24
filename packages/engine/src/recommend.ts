@@ -1,7 +1,7 @@
 import { hourlyEvLoad, hourlyLoad } from './load';
 import { batteryPriceGbp, priceRange, solarPriceGbp } from './pricing';
 import { simulateYear } from './simulate';
-import { hourlyGeneration } from './solar';
+import { annualYield, hourlyGeneration, modelYield } from './solar';
 import type { Assessment, Battery, HomeProfile, OptionResult, SystemDesign, Tariff } from './types';
 
 export const PANEL_WATTS = 455;
@@ -38,6 +38,7 @@ export function assess(home: HomeProfile, tariff: Tariff): Assessment {
   const load = totalLoad(home);
   const zero = new Array<number>(load.length).fill(0);
   const baseline = simulateYear(zero, load, tariff).result;
+  const solarYield = home.solarYield ?? modelYield(home.latitude, home.roof);
 
   const panels = panelsThatFit(home.roof.usableAreaM2);
   const designs: { id: string; label: string; design: SystemDesign }[] = [];
@@ -57,7 +58,7 @@ export function assess(home: HomeProfile, tariff: Tariff): Assessment {
 
   const options: OptionResult[] = designs.map(({ id, label, design }) => {
     const kWp = (design.panelCount * design.panelWatts) / 1000;
-    const gen = kWp > 0 ? hourlyGeneration(kWp, home.latitude, home.roof) : zero;
+    const gen = kWp > 0 ? hourlyGeneration(kWp, home.latitude, home.roof, solarYield) : zero;
     const run = (scale: number) =>
       simulateYear(gen.map((g) => g * scale), load, tariff, design.battery).result;
     const central = run(1);
@@ -100,8 +101,12 @@ export function assess(home: HomeProfile, tariff: Tariff): Assessment {
 
   return {
     home, tariff, baseline, options, recommendedId,
+    solarSource: solarYield.source,
+    specificYieldKwhPerKwp: Math.round(annualYield(solarYield, home.roof.shading)),
     assumptions: [
-      'Solar output is an estimate from location, roof pitch, direction and shading; a site survey confirms it.',
+      solarYield.source === 'pvgis'
+        ? 'Solar output uses PVGIS (EU Joint Research Centre) satellite data for your location, roof pitch and direction, averaged over 2005–2023, with an allowance for the shading you told us about. A site survey confirms it.'
+        : 'Solar output is estimated from your location, roof pitch, direction and shading using Soltara’s built-in model (live satellite data was unavailable). A site survey confirms it.',
       'Household use follows a typical UK pattern scaled to your annual kWh until smart meter data is connected.',
       `Tariff rates used: ${tariff.name}.`,
       'Prices are indicative ranges from Soltara’s price book, not quotes.',

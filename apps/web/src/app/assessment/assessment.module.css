@@ -102,3 +102,4 @@
 .chartBlock .tableTitle { margin-top: 0; }
 .chartBlock .tableSub { margin-bottom: 1rem; }
 .again { margin-top: 1.4rem; }
+.source { margin-top: 1rem; font-size: var(--t-0); color: var(--slate-2); max-width: 75ch; }

@@ -20,6 +20,15 @@ export interface RoofPlane {
   shading: Shading;
 }
 
+/** Expected output per kWp for one roof plane, before Soltara's shading allowance. */
+export interface SolarYield {
+  /** kWh per kWp for each month, January first (12 values). */
+  monthlyKwhPerKwp: number[];
+  /** 'pvgis' = EU JRC satellite data for this exact spot (includes terrain horizon);
+   *  'model' = Soltara's built-in latitude model, used when PVGIS is unavailable. */
+  source: 'pvgis' | 'model';
+}
+
 export interface HomeProfile {
   /** Free-text label for reports, e.g. "3-bed semi, Workington (sample)". */
   label: string;
@@ -31,6 +40,8 @@ export interface HomeProfile {
   occupancy: Occupancy;
   /** Annual EV miles if the household has or plans an EV. */
   evAnnualMiles?: number;
+  /** Location-specific solar data for this roof. Omitted → the built-in model is used. */
+  solarYield?: SolarYield;
 }
 
 export interface Tariff {
@@ -108,5 +119,9 @@ export interface Assessment {
   baseline: YearResult;
   options: OptionResult[];
   recommendedId: string;
+  /** Where the solar figures came from. */
+  solarSource: SolarYield['source'];
+  /** kWh per kWp per year this roof is expected to make, after shading. */
+  specificYieldKwhPerKwp: number;
   assumptions: string[];
 }
