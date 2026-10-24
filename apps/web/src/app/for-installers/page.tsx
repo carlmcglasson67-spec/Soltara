@@ -39,7 +39,7 @@ export default function ForInstallers() {
       <section className={s.terms}>
         <div>
           <h2 className={s.h2}>Founding installer terms</h2>
-          <p className={s.lead}>We are signing a small group of installers across Cumbria and the North West before we launch to homeowners.</p>
+          <p className={s.lead}>We’re signing founding installers region by region, and each region opens to homeowners once it has enough vetted firms to give them a real choice.</p>
         </div>
         <ul className={s.termList}>
           <li><strong>Free to join.</strong> No sign-up fee and no monthly membership.</li>

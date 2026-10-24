@@ -39,7 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <img className="brand-word" src="/brand/soltara-wordmark-white.png" alt="Soltara Energy" width={560} height={80} />
               </p>
               <p style={{ marginTop: '.6rem', maxWidth: '42ch' }}>
-                Independent home energy assessments and comparable installer quotes, starting in Cumbria and the North West.
+                Independent home energy assessments for homes across Great Britain, and comparable quotes from vetted, MCS-certified installers.
               </p>
             </div>
             <div>

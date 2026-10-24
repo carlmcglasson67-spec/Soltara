@@ -31,7 +31,7 @@ export default function QuoteRequest({ summary, postcode = '' }: { summary: stri
     return (
       <div className={s.quoteBox} role="status">
         <h2 className={s.quoteTitle}>Request received.</h2>
-        <p>We’ll check your details and email you within one working day with the installers who cover your area. Nobody will call you before you choose.</p>
+        <p>We’ll check your details and email you within one working day with the installers who cover your area. If we don’t have vetted installers near you yet, we’ll tell you straight away rather than pass you to anyone we haven’t checked. Nobody will call you before you choose.</p>
       </div>
     );
   }
