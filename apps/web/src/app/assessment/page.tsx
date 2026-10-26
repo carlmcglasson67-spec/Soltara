@@ -12,11 +12,21 @@ export default function AssessmentPage() {
   return (
     <div className={s.page}>
       <header className={s.intro}>
-        <h1 className={s.title}>See what your home could save.</h1>
-        <p className={s.lead}>
-          Answer a few questions about your home. You get every option that suits your roof, with savings, price and payback as
-          ranges. No phone number, and nothing is shared unless you ask for quotes.
-        </p>
+        <div>
+          <p className="kicker">Free home energy assessment</p>
+          <h1 className={s.title}>See what your home could save.</h1>
+        </div>
+        <div>
+          <p className={s.lead}>
+            Answer a few questions about your home. You get every option that suits your roof, with savings, price and payback as
+            ranges. No phone number, and nothing is shared unless you ask for quotes.
+          </p>
+          <ul className={`pills ${s.pills}`} aria-label="What to expect">
+            <li className="pill pill-day">Two minutes</li>
+            <li className="pill pill-day">Real satellite sun data</li>
+            <li className="pill pill-day">Nothing saved or shared</li>
+          </ul>
+        </div>
       </header>
       <AssessmentTool />
     </div>

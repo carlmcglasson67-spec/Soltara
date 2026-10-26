@@ -1,0 +1,24 @@
+.page { padding: 0 var(--gut) clamp(80px, 12vh, 140px); }
+.head { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(24px, 4vw, 72px); align-items: end; padding: clamp(56px, 9vh, 110px) 0 clamp(32px, 5vh, 56px); border-bottom: 2px solid var(--slate); }
+.title { font-size: var(--t-5); font-variation-settings: 'wdth' 88; letter-spacing: -0.025em; max-width: 16ch; }
+.lead { font-size: var(--t-2); color: var(--slate-2); line-height: 1.45; }
+.updated { margin-top: 1rem; font-size: var(--t-0); font-weight: 600; }
+@media (max-width: 900px) { .head { grid-template-columns: 1fr; } }
+
+.body { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 9fr); gap: clamp(32px, 5vw, 96px); margin-top: clamp(40px, 6vh, 64px); }
+.toc { position: sticky; top: calc(var(--header-h) + 24px); align-self: start; display: grid; gap: .4rem; list-style: none; padding: 0; margin: 0; font-size: .95rem; }
+.toc a { color: var(--slate-2); text-decoration: none; font-weight: 600; padding: .3rem 0 .3rem .9rem; border-left: 3px solid var(--line); display: block; }
+.toc a:hover { color: var(--navy); border-left-color: var(--sun); }
+.sections { display: grid; gap: clamp(32px, 5vh, 48px); max-width: 76ch; }
+.sections h2 { font-size: var(--t-3); font-variation-settings: 'wdth' 88; letter-spacing: -0.02em; margin-bottom: .8rem; scroll-margin-top: calc(var(--header-h) + 24px); }
+.sections p, .sections li { color: #3a3f4b; }
+.sections p + p { margin-top: .8rem; }
+.sections ul { margin: .8rem 0 0; padding-left: 1.2rem; display: grid; gap: .4rem; }
+.callout { margin-top: 1rem; background: var(--card); border-left: 5px solid var(--sun); border-radius: 0 var(--radius-lg) var(--radius-lg) 0; padding: 1.2rem 1.4rem; box-shadow: var(--shadow); }
+.callout strong { display: block; margin-bottom: .3rem; }
+@media (max-width: 900px) { .body { grid-template-columns: 1fr; } .toc { position: static; } }
+
+/* 404 */
+.lost { min-height: 70vh; display: grid; align-content: center; gap: 1.4rem; padding: clamp(72px, 11vh, 140px) var(--gut); }
+.lostTitle { font-size: var(--t-hero); font-variation-settings: 'wdth' 88; letter-spacing: -0.03em; line-height: .98; max-width: 14ch; }
+.lostActions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: .6rem; }

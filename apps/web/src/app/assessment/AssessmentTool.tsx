@@ -226,7 +226,7 @@ export default function AssessmentTool() {
 
           <div className={s.nav}>
             {step > 0 && <button type="button" className="btn btn-quiet" onClick={() => go(step - 1)}>Back</button>}
-            <button className="btn btn-primary" type="submit" disabled={looking || working}>
+            <button className="btn btn-primary btn-arrow" type="submit" disabled={looking || working}>
               {step === 0 ? (looking ? 'Finding your home' : 'Continue') : step < STEPS.length - 1 ? 'Continue' : working ? 'Working it out' : 'Show my options'}
             </button>
             <p className={s.navNote}>Step {step + 1} of {STEPS.length}. Nothing is saved or shared.</p>

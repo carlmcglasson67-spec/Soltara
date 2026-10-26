@@ -52,7 +52,7 @@ export default function InstallerApply() {
       </fieldset>
       <input type="text" name="website_url" tabIndex={-1} autoComplete="off" className="sr-only" aria-hidden="true" />
       <div className={s.submitRow}>
-        <button className="btn btn-primary" type="submit" disabled={state === 'sending'}>
+        <button className="btn btn-primary btn-arrow" type="submit" disabled={state === 'sending'}>
           {state === 'sending' ? 'Sending application' : 'Send application'}
         </button>
         {state === 'error' && <p className={s.error} role="alert">{message}</p>}

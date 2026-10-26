@@ -2,28 +2,32 @@
 .intro { padding: clamp(56px, 9vh, 110px) 0 clamp(32px, 5vh, 56px); display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(24px, 4vw, 72px); align-items: end; }
 .title { font-size: var(--t-5); font-variation-settings: 'wdth' 88; letter-spacing: -0.025em; }
 .lead { font-size: var(--t-2); color: var(--slate-2); line-height: 1.45; }
+.pills { margin-top: 1.2rem; }
 @media (max-width: 900px) { .intro { grid-template-columns: 1fr; } }
 
 /* Fields */
 .field { display: grid; gap: .45rem; font-weight: 600; min-width: 0; }
 .field small { font-weight: 400; color: var(--slate-2); font-size: var(--t-0); }
 .field input, .field select {
-  font: inherit; font-weight: 500; min-height: 50px; padding: 0 .9rem; border: 1.5px solid #9aa7b1; border-radius: var(--radius); background: var(--white); color: var(--slate); width: 100%;
+  font: inherit; font-weight: 500; min-height: 52px; padding: 0 .9rem; border: 1.5px solid #c5cbd3; border-radius: var(--radius); background: var(--day); color: var(--slate); width: 100%;
 }
+.field input:focus, .field select:focus { background: var(--white); }
 .field input:focus, .field select:focus { outline: 3px solid var(--sun); outline-offset: 1px; border-color: var(--navy); }
 
 .segmented { display: flex; flex-wrap: wrap; gap: .4rem; }
 .seg, .segOn {
-  font: inherit; font-weight: 550; min-height: 46px; padding: 0 1rem; border-radius: var(--radius); cursor: pointer;
-  border: 1.5px solid #9aa7b1; background: var(--white); color: var(--slate);
+  font: inherit; font-weight: 600; min-height: 46px; padding: 0 1rem; border-radius: var(--radius); cursor: pointer;
+  border: 1.5px solid #c5cbd3; background: var(--day); color: var(--slate); transition: background .15s, border-color .15s;
 }
+.seg:hover { border-color: var(--navy); background: var(--white); }
 .segOn { background: var(--navy); border-color: var(--navy); color: var(--white); }
 
 .compass { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .4rem; max-width: 360px; }
 .compassBtn, .compassOn {
   font: inherit; font-size: .9rem; font-weight: 550; min-height: 48px; padding: 0 .3rem; border-radius: var(--radius); cursor: pointer;
-  border: 1.5px solid #9aa7b1; background: var(--white); color: var(--slate);
+  border: 1.5px solid #c5cbd3; background: var(--day); color: var(--slate);
 }
+.compassBtn:hover { border-color: var(--navy); background: var(--white); }
 .compassOn { background: var(--navy); border-color: var(--navy); color: var(--white); }
 .compassCentre { display: grid; place-items: center; font-size: .85rem; color: var(--slate-2); border: 1.5px dashed var(--line); border-radius: var(--radius); }
 
@@ -80,14 +84,15 @@
 }
 
 /* Wizard */
-.tool { border-top: 2px solid var(--slate); padding-top: 2rem; }
-.progress { list-style: none; padding: 0; margin: 0 0 2rem; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .8rem; }
-.progress li { display: flex; align-items: center; gap: .6rem; padding-top: .8rem; border-top: 4px solid var(--line); font-weight: 600; color: var(--slate-2); font-size: .95rem; }
-.progress .stepDone { border-top-color: var(--navy); color: var(--slate); }
-.progress .stepNow { border-top-color: var(--sun); color: var(--slate); }
-.stepNum { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--card); border: 1px solid var(--line); font-size: .8rem; flex: none; }
-.stepDone .stepNum { background: var(--navy); color: var(--white); }
-.stepNow .stepNum { background: var(--sun); color: var(--white); }
+.tool { background: var(--card); border-radius: var(--radius-lg); box-shadow: var(--shadow); padding: clamp(20px, 3vw, 40px); }
+.progress { list-style: none; padding: 0; margin: 0 0 2.2rem; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .5rem; }
+.progress li { display: flex; align-items: center; gap: .7rem; padding: .8rem 1rem; border-radius: var(--radius); background: var(--day); font-weight: 650; color: var(--slate-2); font-size: .95rem; border-bottom: 3px solid var(--line); }
+.progress .stepDone { color: var(--slate); border-bottom-color: var(--navy); }
+.progress .stepNow { background: var(--slate); color: var(--white); border-bottom-color: var(--sun); }
+.stepNum { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--card); border: 1px solid var(--line); font-size: .82rem; font-weight: 800; flex: none; color: var(--slate); }
+.stepDone .stepNum { background: var(--navy); border-color: var(--navy); color: var(--white); }
+.stepNow .stepNum { background: var(--sun); border-color: var(--sun); color: var(--white); }
+.stepNow .stepLink { color: var(--white); }
 .stepLink { background: none; border: 0; padding: 0; font: inherit; color: var(--navy); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 @media (max-width: 700px) { .progress li span:not(.stepNum), .progress .stepLink { display: none; } .progress li { justify-content: center; } }
 

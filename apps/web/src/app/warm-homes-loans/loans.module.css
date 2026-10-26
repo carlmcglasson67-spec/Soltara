@@ -6,21 +6,28 @@
 @media (max-width: 900px) { .head { grid-template-columns: 1fr; } }
 
 .timeline ol { list-style: none; padding: 0; margin: clamp(40px, 6vh, 64px) 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); }
-.timeline li { border-top: 4px solid var(--line); padding-top: 1rem; }
+.timeline li { position: relative; border-top: 4px solid var(--line); padding: 1.2rem 1.2rem 1.4rem; background: var(--card); border-radius: 0 0 var(--radius-lg) var(--radius-lg); box-shadow: var(--shadow); }
+.timeline li::before { content: ''; position: absolute; top: -10px; left: 1.2rem; width: 16px; height: 16px; border-radius: 50%; background: var(--line); border: 3px solid var(--day); }
 .timeline li.next { border-top-color: var(--sun); }
+.timeline li.next::before { background: var(--sun); }
 .when { font-weight: 750; font-size: var(--t-2); font-variation-settings: 'wdth' 80; margin-bottom: .4rem; }
 .timeline li p:last-child { color: var(--slate-2); }
 @media (max-width: 900px) { .timeline ol { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .timeline ol { grid-template-columns: 1fr; } }
 
 .h2 { font-size: var(--t-4); font-variation-settings: 'wdth' 88; letter-spacing: -0.02em; }
-.example { margin-top: clamp(64px, 10vh, 110px); background: var(--card); border-radius: var(--radius); padding: clamp(28px, 4vw, 56px); display: grid; gap: 1rem; }
+.example { margin-top: clamp(64px, 10vh, 110px); background: var(--slate); color: var(--white); border-radius: var(--radius-lg); padding: clamp(28px, 4vw, 56px); display: grid; gap: 1rem; border-left: 6px solid var(--sun); }
+.example :global(.kicker) { color: #c3c7d0; margin-bottom: 0; }
+.example .h2 { max-width: 22ch; }
+.example a { color: var(--white); text-decoration-color: var(--sun); text-underline-offset: 4px; }
 .example p { max-width: 68ch; font-size: 1.1rem; }
 
 .faq { margin-top: clamp(64px, 10vh, 110px); display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(32px, 5vw, 96px); }
 .faq dl { margin: 0; display: grid; gap: 1.8rem; }
-.faq dt { font-weight: 700; font-size: var(--t-2); }
-.faq dd { margin: .5rem 0 0; color: var(--slate-2); max-width: 70ch; }
+.faq dl { gap: .8rem; }
+.faq dl div { background: var(--card); border-radius: var(--radius-lg); padding: 1.4rem 1.5rem; box-shadow: var(--shadow); }
+.faq dt { font-weight: 700; font-size: var(--t-2); line-height: 1.2; }
+.faq dd { margin: .6rem 0 0; color: var(--slate-2); max-width: 70ch; }
 @media (max-width: 900px) { .faq { grid-template-columns: 1fr; } }
 
 .foot { margin-top: clamp(64px, 10vh, 110px); border-top: 1px solid var(--line); padding-top: 1.6rem; display: grid; gap: 1rem; max-width: 90ch; }

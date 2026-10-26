@@ -51,7 +51,7 @@ export default function QuoteRequest({ summary, postcode = '' }: { summary: stri
       </label>
       <input type="text" name="company" tabIndex={-1} autoComplete="off" className="sr-only" aria-hidden="true" />
       <div className={s.submitRow}>
-        <button className="btn btn-primary" type="submit" disabled={state === 'sending'}>
+        <button className="btn btn-primary btn-arrow" type="submit" disabled={state === 'sending'}>
           {state === 'sending' ? 'Sending request' : 'Request my quotes'}
         </button>
         {state === 'error' && <p className={s.error} role="alert">{message}</p>}

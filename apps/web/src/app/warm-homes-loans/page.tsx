@@ -57,7 +57,10 @@ export default function WarmHomesLoans() {
     <article className={s.page}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <header className={s.head}>
-        <h1 className={s.title}>Warm Homes Loan Scheme: what we know so far.</h1>
+        <div>
+          <p className="kicker">Guide</p>
+          <h1 className={s.title}>Warm Homes Loan Scheme: what we know so far.</h1>
+        </div>
         <div className={s.headSide}>
           <p className={s.lead}>
             Lower-interest loans for solar, batteries and heat pumps are on the way, but they are not open to homeowners yet.
@@ -77,7 +80,8 @@ export default function WarmHomesLoans() {
       </section>
 
       <section className={s.example}>
-        <h2 className={s.h2}>Why it matters</h2>
+        <p className="kicker">Why it matters</p>
+        <h2 className={s.h2}>Cheaper borrowing can bring the repayment close to the saving.</h2>
         <p>
           Cheaper borrowing can make the monthly repayment on panels and a battery close to the monthly saving. For example, on a
           £10,000 system over 15 years, a loan at 9.9% costs about {normal} a month; at 4.9% it is about {cheap}. These rates are
@@ -89,7 +93,10 @@ export default function WarmHomesLoans() {
       </section>
 
       <section className={s.faq}>
-        <h2 className={s.h2}>Questions people ask</h2>
+        <div>
+          <p className="kicker">FAQ</p>
+          <h2 className={s.h2}>Questions people ask</h2>
+        </div>
         <dl>
           {faq.map((f) => (
             <div key={f.q}><dt>{f.q}</dt><dd>{f.a}</dd></div>
