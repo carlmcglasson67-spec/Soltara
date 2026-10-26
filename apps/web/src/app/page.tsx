@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { sampleAssessment, SAMPLE_HOME } from '@/lib/sample';
 import { gbpRange, kwh, pct, years } from '@/lib/format';
 import QuoteExhibit from './QuoteExhibit';
+import Icon from './Icon';
 import s from './home.module.css';
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
       {/* HERO: the headline beside a real roof, with the assessment drawn onto it */}
       <section className={s.hero}>
         <div className={s.heroText}>
+          <p className="kicker kicker-light">The UK Home Energy Marketplace</p>
           <h1 className={s.heroTitle}>Find the right energy system for your home.</h1>
           <p className={s.heroLead}>
             Compare solar, batteries and trusted installers in one place. Free, independent, and nobody calls until you choose.
@@ -21,9 +23,14 @@ export default function Home() {
             <label htmlFor="hero-pc" className={s.pcLabel}>Your postcode</label>
             <div className={s.pcRow}>
               <input id="hero-pc" name="postcode" autoComplete="postal-code" placeholder="e.g. CA14 2XX" required className={s.pcInput} />
-              <button className="btn btn-primary" type="submit">See what you could save</button>
+              <button className="btn btn-sun btn-arrow" type="submit">See what you could save</button>
             </div>
-            <p className={s.heroSmall}>Free and takes two minutes. No phone number, and your details are never sold.</p>
+            <ul className={`pills ${s.heroPills}`} aria-label="What to expect">
+              <li className="pill">Free</li>
+              <li className="pill">Two minutes</li>
+              <li className="pill">No phone number</li>
+              <li className="pill">Never sold on</li>
+            </ul>
           </form>
         </div>
 
@@ -64,16 +71,29 @@ export default function Home() {
       {/* TRUST STRIP: our actual promises, no borrowed logos */}
       <section className={s.trust} aria-label="Our promises">
         <ul>
-          <li><strong>Independent</strong><span>We don’t sell or fit anything</span></li>
-          <li><strong>MCS-certified installers only</strong><span>Checked by us, every year</span></li>
-          <li><strong>Three installers at most</strong><span>Only the ones you choose</span></li>
-          <li><strong>Free for homeowners</strong><span><Link href="/how-we-make-money">How we make money</Link></span></li>
+          <li>
+            <Icon name="scales" />
+            <div><strong>Independent</strong><span>We don’t sell or fit anything</span></div>
+          </li>
+          <li>
+            <Icon name="shield" />
+            <div><strong>MCS-certified installers only</strong><span>Checked by us, every year</span></div>
+          </li>
+          <li>
+            <Icon name="three" />
+            <div><strong>Three installers at most</strong><span>Only the ones you choose</span></div>
+          </li>
+          <li>
+            <Icon name="free" />
+            <div><strong>Free for homeowners</strong><span><Link href="/how-we-make-money">How we make money</Link></span></div>
+          </li>
         </ul>
       </section>
 
       {/* WHAT YOU GET: the whole comparison, including the options we don't recommend */}
       <section className={s.compare}>
         <div className={s.compareIntro}>
+          <p className="kicker">Every option, side by side</p>
           <h2 className={s.h2}>You see every option, not just the one someone wants to sell you.</h2>
           <p className={s.lead}>
             Here is the full result for the example home. We compare solar on its own, solar with different batteries and,
@@ -118,7 +138,13 @@ export default function Home() {
 
       {/* HOW IT WORKS: a real sequence, so it's numbered */}
       <section id="how-it-works" className={s.steps}>
-        <h2 className={s.h2}>How it works</h2>
+        <div className={s.stepsHead}>
+          <div>
+            <p className="kicker kicker-blue">Four steps</p>
+            <h2 className={s.h2}>How it works</h2>
+          </div>
+          <Link className="btn btn-ghost btn-arrow" href="/assessment">Start with your postcode</Link>
+        </div>
         <ol className={s.stepList}>
           <li>
             <h3>Tell us about your home</h3>
@@ -154,18 +180,27 @@ export default function Home() {
           <Image src="/img/installer-ladder-1600.webp" alt="An installer in a hard hat fitting solar panels" fill sizes="(max-width: 900px) 100vw, 45vw" className={s.cover} />
         </div>
         <div className={s.installersText}>
+          <p className="kicker">For installers</p>
           <h2 className={s.h2}>Installers: quote for homeowners who are ready.</h2>
           <p className={s.lead}>
             Every homeowner has already had their roof, usage and tariff assessed, and chose you. No shared leads, no cold lists.
             Founding installers join free and pay nothing until we start booking surveys for them.
           </p>
-          <Link className="btn btn-primary" href="/for-installers">Join as a founding installer</Link>
+          <ul className="pills" aria-label="Founding installer terms">
+            <li className="pill pill-day">Free to join</li>
+            <li className="pill pill-day">No lead charges at launch</li>
+            <li className="pill pill-day">No contract term</li>
+          </ul>
+          <Link className="btn btn-primary btn-arrow" href="/for-installers">Join as a founding installer</Link>
         </div>
       </section>
 
-      <section className={s.final}>
-        <h2 className={s.finalTitle}>Find out what your roof could do.</h2>
-        <Link className="btn btn-primary" href="/assessment">See what your home could save</Link>
+      <section className={`${s.final} band-blue glow`}>
+        <div>
+          <p className="kicker kicker-blue">Free, two minutes, no phone number</p>
+          <h2 className={s.finalTitle}>Find out what your roof could do.</h2>
+        </div>
+        <Link className="btn btn-sun btn-lg btn-arrow" href="/assessment">See what your home could save</Link>
       </section>
     </>
   );
