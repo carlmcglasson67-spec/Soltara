@@ -6,6 +6,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const pages: Array<[string, number, MetadataRoute.Sitemap[number]['changeFrequency']]> = [
     ['/', 1, 'weekly'],
     ['/assessment', 0.9, 'monthly'],
+    ['/solar-panels', 0.9, 'monthly'],
+    ['/home-batteries', 0.9, 'monthly'],
     ['/for-installers', 0.8, 'monthly'],
     ['/how-we-make-money', 0.6, 'yearly'],
     ['/warm-homes-loans', 0.7, 'monthly'],

@@ -13,14 +13,14 @@
 .points ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.2rem; }
 .points li {
   position: relative; display: grid; gap: .8rem; align-content: start; padding: 1.8rem 1.5rem;
-  background: var(--card); border-radius: var(--radius-lg); box-shadow: var(--shadow); border-top: 4px solid var(--navy);
-  transition: transform .2s, box-shadow .2s;
+  background: var(--card); border-radius: var(--radius-lg); border: 1px solid var(--line);
+  transition: transform .5s var(--ease-spring), box-shadow .4s;
 }
 .points li:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); }
 .points li :global(.icon) { color: var(--navy); }
 .points li :global(.icon .accent) { stroke: var(--sun); }
-.num { position: absolute; top: 1.3rem; right: 1.4rem; font-size: 1.6rem; font-weight: 800; font-variation-settings: 'wdth' 75; color: var(--line); letter-spacing: -0.03em; }
-.points h2 { font-size: var(--t-2); font-weight: 700; line-height: 1.15; }
+.num { position: absolute; top: 1.3rem; right: 1.4rem; font-family: var(--f-display); font-size: 2.4rem; font-weight: 600; font-variation-settings: 'opsz' 96, 'wdth' 80; color: var(--day-2); letter-spacing: -0.05em; line-height: 1; }
+.points h2 { font-size: var(--t-3); line-height: 1.1; letter-spacing: -0.025em; font-variation-settings: 'opsz' 32, 'wdth' 100; }
 .points p { color: var(--slate-2); }
 @media (max-width: 1100px) { .points ul { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 600px) { .points ul { grid-template-columns: 1fr; } }
