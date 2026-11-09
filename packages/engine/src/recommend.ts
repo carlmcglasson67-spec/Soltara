@@ -71,8 +71,11 @@ export function assess(home: HomeProfile, tariff: Tariff): Assessment {
     const price = priceRange(priceCentral);
     const sLow = saving(low), sHigh = saving(high), sMid = saving(central);
 
-    let net20 = -priceCentral;
-    for (let y = 0; y < 20; y++) net20 += sMid * (1 - DEGRADATION_PER_YEAR) ** y;
+    // 20 years of savings with degradation, minus the price: central case, plus a low/high range
+    // (low saving with high price, high saving with low price).
+    let years20 = 0;
+    for (let y = 0; y < 20; y++) years20 += (1 - DEGRADATION_PER_YEAR) ** y;
+    const net20 = sMid * years20 - priceCentral;
 
     const notes: string[] = [];
     if (kWp > G98_LIMIT_KW) {
@@ -93,6 +96,7 @@ export function assess(home: HomeProfile, tariff: Tariff): Assessment {
         high: sLow > 0 ? r2(price.high / sLow) : Infinity,
       },
       net20yrGbp: Math.round(net20),
+      net20yrRangeGbp: { low: Math.round(sLow * years20 - price.high), high: Math.round(sHigh * years20 - price.low) },
     };
   });
 
@@ -101,6 +105,8 @@ export function assess(home: HomeProfile, tariff: Tariff): Assessment {
 
   return {
     home, tariff, baseline, options, recommendedId,
+    // One baseline year plus low, central and high years for every option, 8,760 hours each.
+    simulatedHours: (1 + options.length * 3) * 8760,
     solarSource: solarYield.source,
     specificYieldKwhPerKwp: Math.round(annualYield(solarYield, home.roof.shading)),
     assumptions: [

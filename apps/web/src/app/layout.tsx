@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import '@fontsource-variable/archivo/wdth.css';
+import { display, mono, sans } from './fonts';
 import './globals.css';
 import Nav from './Nav';
+import Motion from './Motion';
 import { SITE } from '@/lib/site';
 
 export const metadata: Metadata = {
@@ -22,8 +23,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const year = new Date().getFullYear();
   return (
-    <html lang="en-GB">
+    <html lang="en-GB" className={`${display.variable} ${sans.variable} ${mono.variable}`} suppressHydrationWarning>
       <body>
+        <a className="skip" href="#main">Skip to content</a>
         <header className="site-header">
           <Link href="/" className="brand" aria-label="Soltara Energy home">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -33,8 +35,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </Link>
           <Nav />
         </header>
-        <main>{children}</main>
-        <footer className="site-footer">
+        <main id="main">{children}</main>
+        <Motion />
+        <footer className="site-footer grain">
+          <p className="footer-mark" aria-hidden="true">Soltara</p>
           <div className="footer-grid">
             <div>
               <p className="footer-brand">
@@ -45,7 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </p>
               <p className="footer-tag">
                 The UK Home Energy Marketplace. Independent assessments for homes across Great Britain, and comparable quotes
-                from vetted, MCS-certified installers.
+                from vetted, MCS‑certified installers.
               </p>
               <p className="footer-cta"><Link className="btn btn-sun btn-arrow" href="/assessment">Check my home</Link></p>
             </div>
@@ -77,7 +81,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
           <p className="footer-small">
             Savings and prices on this site are estimates shown as ranges, based on the assumptions listed with each result.
-            A site survey by an MCS-certified installer confirms the design and price before you commit to anything. Soltara
+            A site survey by an MCS‑certified installer confirms the design and price before you commit to anything. Soltara
             does not lend money or arrange finance.
           </p>
           <div className="footer-bottom">

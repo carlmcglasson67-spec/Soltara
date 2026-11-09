@@ -109,6 +109,8 @@ export interface OptionResult {
   paybackYears: Range;
   /** Saving minus price over 20 years with panel degradation, pounds (central case). */
   net20yrGbp: number;
+  /** Same, as a range: low saving with high price, high saving with low price. */
+  net20yrRangeGbp: Range;
   /** Plain-English points the customer should know about this option. */
   notes: string[];
 }
@@ -119,6 +121,8 @@ export interface Assessment {
   baseline: YearResult;
   options: OptionResult[];
   recommendedId: string;
+  /** Hourly steps actually simulated for this assessment (baseline plus low/central/high per option). */
+  simulatedHours: number;
   /** Where the solar figures came from. */
   solarSource: SolarYield['source'];
   /** kWh per kWp per year this roof is expected to make, after shading. */
