@@ -27,15 +27,21 @@ const perKwp = (p: number) => Math.round(p / kWp);
 export default function QuoteExhibit() {
   return (
     <section className={s.quotes} aria-labelledby="quotes-title">
-      <div className={s.quotesIntro}>
-        <h2 id="quotes-title" className={s.h2}>Three quotes, one format. Differences you can actually see.</h2>
-        <p className={s.lead}>
-          Every installer quotes on the same form: the same lines, the same units. So a bigger battery or a longer warranty is
-          obvious, and so is a price that’s out of line.
-        </p>
-        <p className={s.exhibitNote}>Example only: installers and prices are illustrative.</p>
-      </div>
-      <div className={s.quoteGrid} role="table" aria-label="Example quote comparison">
+      <header className={s.sectionHead}>
+        <div>
+          <p className="kicker" data-reveal>Three quotes, one format</p>
+          <h2 id="quotes-title" className={s.h2} data-reveal style={{ ['--i' as string]: 1 }}>Differences you can <em>actually see.</em></h2>
+        </div>
+        <div data-reveal style={{ ['--i' as string]: 2 }}>
+          <p className={s.lead}>
+            Every installer quotes on the same form, with the same lines and the same units. A bigger battery or a longer
+            warranty is obvious, and so is a price that’s out of line.
+          </p>
+          <p className={s.exhibitNote}>Example only: installers and prices are illustrative.</p>
+        </div>
+      </header>
+      <p className={s.swipe} aria-hidden="true">Swipe to compare all three</p>
+      <div className={s.quoteGrid} data-reveal role="table" aria-label="Example quote comparison">
         <div className={s.qRow} role="row">
           <span role="columnheader" className={s.qHead} />
           {quotes.map((q) => <span key={q.name} role="columnheader" className={s.qHead}>{q.name}<small>MCS · RECC</small></span>)}

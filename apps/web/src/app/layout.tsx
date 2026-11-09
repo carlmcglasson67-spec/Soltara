@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import '@fontsource-variable/archivo/wdth.css';
+import { display, mono, sans } from './fonts';
 import './globals.css';
 import Nav from './Nav';
+import Motion from './Motion';
 import { SITE } from '@/lib/site';
 
 export const metadata: Metadata = {
@@ -22,8 +23,13 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const year = new Date().getFullYear();
   return (
-    <html lang="en-GB">
+    <html lang="en-GB" className={`${display.variable} ${sans.variable} ${mono.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Marks JS as available before first paint, so reveal-on-scroll never hides content without it */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
       <body>
+        <a className="skip" href="#main">Skip to content</a>
         <header className="site-header">
           <Link href="/" className="brand" aria-label="Soltara Energy home">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -33,8 +39,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </Link>
           <Nav />
         </header>
-        <main>{children}</main>
-        <footer className="site-footer">
+        <main id="main">{children}</main>
+        <Motion />
+        <footer className="site-footer grain">
+          <p className="footer-mark" aria-hidden="true">Soltara</p>
           <div className="footer-grid">
             <div>
               <p className="footer-brand">
