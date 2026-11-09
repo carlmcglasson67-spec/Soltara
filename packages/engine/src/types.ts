@@ -109,6 +109,8 @@ export interface OptionResult {
   paybackYears: Range;
   /** Saving minus price over 20 years with panel degradation, pounds (central case). */
   net20yrGbp: number;
+  /** The same 20-year figure as a range: low saving with high price, to high saving with low price. */
+  net20yrRangeGbp: Range;
   /** Plain-English points the customer should know about this option. */
   notes: string[];
 }

@@ -64,6 +64,86 @@ const PATHS: Record<string, React.ReactNode> = {
     </>
   ),
   check: <path d="M5 12.5l4.5 4.5L19 7.5" className="accent" />,
+  cross: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M9 9l6 6M15 9l-6 6" className="accent" />
+    </>
+  ),
+  compass: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 3v2M12 19v2M3 12h2M19 12h2" />
+      <path d="M14.8 9.2l-1.6 4-4 1.6 1.6-4z" className="accent" />
+    </>
+  ),
+  pitch: (
+    <>
+      <path d="M3 18L13 6l8 12z" />
+      <path d="M17 18a4 4 0 0 0-1.6-3.2" className="accent" />
+    </>
+  ),
+  pin: (
+    <>
+      <path d="M12 21s-6.5-6.2-6.5-11a6.5 6.5 0 0 1 13 0c0 4.8-6.5 11-6.5 11z" />
+      <circle cx="12" cy="10" r="2.3" className="accent" />
+    </>
+  ),
+  shade: (
+    <>
+      <circle cx="8" cy="8" r="3" className="accent" />
+      <path d="M8 2v1.2M2 8h1.2M3.8 3.8l.8.8" className="accent" />
+      <path d="M8 18.5h10a3.5 3.5 0 0 0 0-7 5 5 0 0 0-9.6 1.2A3 3 0 0 0 8 18.5z" />
+    </>
+  ),
+  panel: (
+    <>
+      <path d="M4.5 6h15l-2 10h-15z" />
+      <path d="M9.5 6l-2 10M14.5 6l-2 10M3.6 11h15" />
+      <path d="M10 16v4M7 20h6" className="accent" />
+    </>
+  ),
+  battery: (
+    <>
+      <rect x="6" y="4" width="12" height="17" rx="2" />
+      <path d="M10 2.5h4" />
+      <path d="M12.8 8l-2.6 4.5h3.6L11.2 17" className="accent" />
+    </>
+  ),
+  ev: (
+    <>
+      <path d="M4 20V6a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v14M2.5 20h13" />
+      <path d="M14 10h2.5a1.5 1.5 0 0 1 1.5 1.5V16a1.5 1.5 0 0 0 3 0V8l-2-2" />
+      <path d="M9.6 7.5L7.8 11h2.6l-1.8 3.5" className="accent" />
+    </>
+  ),
+  fan: (
+    <>
+      <rect x="3" y="4" width="18" height="16" rx="2" />
+      <circle cx="12" cy="12" r="5" />
+      <path d="M12 12c0-3 1.5-4 3-4M12 12c-3 0-4 1.5-4 3M12 12c0 3-1.5 4-3 4M12 12c3 0 4-1.5 4-3" className="accent" />
+    </>
+  ),
+  sun: (
+    <>
+      <circle cx="12" cy="12" r="4" className="accent" />
+      <path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" />
+    </>
+  ),
+  book: (
+    <>
+      <path d="M4 5a2 2 0 0 1 2-2h13v15H6a2 2 0 0 0-2 2V5z" />
+      <path d="M4 20a2 2 0 0 0 2 2h13v-4" />
+      <path d="M9 8h6" className="accent" />
+    </>
+  ),
+  satellite: (
+    <>
+      <path d="M13 7l4 4-6 6-4-4z" />
+      <path d="M9 5l-3 3 2 2M19 15l-3 3-2-2" />
+      <path d="M4 20a5 5 0 0 1 5-5" className="accent" />
+    </>
+  ),
   badge: (
     <>
       <path d="M12 2.5l2.3 2 3-.3.9 2.9 2.6 1.5-1.3 2.7 1.3 2.7-2.6 1.5-.9 2.9-3-.3-2.3 2-2.3-2-3 .3-.9-2.9-2.6-1.5 1.3-2.7-1.3-2.7 2.6-1.5.9-2.9 3 .3z" />

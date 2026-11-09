@@ -1,8 +1,13 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import '@fontsource-variable/archivo/wdth.css';
+import '@fontsource-variable/familjen-grotesk';
+import '@fontsource-variable/geist';
+import '@fontsource-variable/geist-mono';
+import '@fontsource/instrument-serif/400-italic.css';
 import './globals.css';
 import Nav from './Nav';
+import Motion from './Motion';
+import SunArc from './SunArc';
 import { SITE } from '@/lib/site';
 
 export const metadata: Metadata = {
@@ -22,19 +27,28 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const year = new Date().getFullYear();
   return (
-    <html lang="en-GB">
+    <html lang="en-GB" suppressHydrationWarning>
+      <head>
+        {/* Marks JS as running before paint, so reveal animations only hide content when they can also show it. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
       <body>
         <header className="site-header">
           <Link href="/" className="brand" aria-label="Soltara Energy home">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className="brand-emblem" src="/brand/soltara-emblem.png" alt="" width={302} height={221} />
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className="brand-word" src="/brand/soltara-wordmark.png" alt="Soltara Energy" width={560} height={80} />
+            <img className="brand-word brand-word-dark" src="/brand/soltara-wordmark.png" alt="Soltara Energy" width={560} height={80} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="brand-word brand-word-light" src="/brand/soltara-wordmark-white.png" alt="" width={560} height={80} />
           </Link>
           <Nav />
         </header>
         <main>{children}</main>
+        <Motion />
         <footer className="site-footer">
+          <SunArc className="footer-arc" />
+          <p className="footer-statement">Your roof, your numbers, <span className="em">your choice.</span></p>
           <div className="footer-grid">
             <div>
               <p className="footer-brand">
@@ -45,9 +59,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </p>
               <p className="footer-tag">
                 The UK Home Energy Marketplace. Independent assessments for homes across Great Britain, and comparable quotes
-                from vetted, MCS-certified installers.
+                from installers we have vetted and who are MCS-certified.
               </p>
               <p className="footer-cta"><Link className="btn btn-sun btn-arrow" href="/assessment">Check my home</Link></p>
+            </div>
+            <div>
+              <p className="footer-head">Systems</p>
+              <ul>
+                <li><Link href="/solar-panels">Solar panels</Link></li>
+                <li><Link href="/home-batteries">Home batteries</Link></li>
+                <li><Link href="/solar-panels#with-battery">Solar with a battery</Link></li>
+              </ul>
             </div>
             <div>
               <p className="footer-head">Homeowners</p>
@@ -56,6 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <li><Link href="/#how-it-works">How it works</Link></li>
                 <li><Link href="/how-we-make-money">How we make money</Link></li>
                 <li><Link href="/warm-homes-loans">Warm Homes Loan Scheme</Link></li>
+                <li><Link href="/#faq">Questions answered</Link></li>
               </ul>
             </div>
             <div>

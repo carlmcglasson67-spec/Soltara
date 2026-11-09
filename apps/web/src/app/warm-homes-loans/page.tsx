@@ -36,7 +36,7 @@ const faq = [
   },
   {
     q: 'Does it matter which installer I use?',
-    a: 'Yes. The work must be done by an installer that is MCS-certified for that technology, and lenders check this before and after the installation. Every installer on Soltara is MCS-certified.',
+    a: 'Yes. The work must be done by an installer that is MCS-certified for that technology, and lenders check this before and after the installation. Every installer listed on Soltara has to be MCS-certified.',
   },
   {
     q: 'What will a lender need from my quote?',

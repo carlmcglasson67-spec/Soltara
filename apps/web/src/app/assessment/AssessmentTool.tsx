@@ -155,7 +155,7 @@ export default function AssessmentTool() {
                 <label className={s.field}>
                   <span>Postcode</span>
                   <input value={postcode} onChange={(e) => setPostcode(e.target.value)} autoComplete="postal-code"
-                    placeholder="e.g. CA14 2XX" className={s.pcInput} aria-invalid={!!lookupError} aria-describedby="pc-help" required />
+                    placeholder="CA14 2XX" className={s.pcInput} aria-invalid={!!lookupError} aria-describedby="pc-help" required />
                   <small id="pc-help">We use it only to work out how much sun your roof gets. It isn’t saved or shared.</small>
                   {lookupError && <p className={s.error} role="alert">{lookupError}</p>}
                 </label>
@@ -229,7 +229,7 @@ export default function AssessmentTool() {
             <button className="btn btn-primary btn-arrow" type="submit" disabled={looking || working}>
               {step === 0 ? (looking ? 'Finding your home' : 'Continue') : step < STEPS.length - 1 ? 'Continue' : working ? 'Working it out' : 'Show my options'}
             </button>
-            <p className={s.navNote}>Step {step + 1} of {STEPS.length}. Nothing is saved or shared.</p>
+            <p className={s.navNote}>Step {step + 1} of {STEPS.length}, then your results. Nothing is saved or shared.</p>
           </div>
         </form>
       )}

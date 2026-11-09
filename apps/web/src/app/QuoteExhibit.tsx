@@ -18,7 +18,7 @@ const quotes = [
     workmanship: '10 years', start: '5 weeks', price: Math.round((base + batteryPriceGbp(9.5, true)) / 10) * 10,
   },
   {
-    name: 'Installer C', panels: '10 × 455W', battery: '5 kWh', inverter: 'Hybrid, 3.6 kW', panelWarranty: '12 years',
+    name: 'Installer C', panels: '10 × 455W', battery: '5 kWh', inverter: 'Hybrid, 5 kW', panelWarranty: '12 years',
     workmanship: '2 years', start: '2 weeks', price: Math.round((base + batteryPriceGbp(5, true)) * 1.14 / 10) * 10,
   },
 ];
@@ -34,6 +34,7 @@ export default function QuoteExhibit() {
           obvious, and so is a price that’s out of line.
         </p>
         <p className={s.exhibitNote}>Example only: installers and prices are illustrative.</p>
+        <p className={s.swipe} aria-hidden="true">Swipe to compare all three</p>
       </div>
       <div className={s.quoteGrid} role="table" aria-label="Example quote comparison">
         <div className={s.qRow} role="row">
@@ -53,7 +54,7 @@ export default function QuoteExhibit() {
           <div key={label} className={s.qRow} role="row">
             <span role="rowheader" className={s.qLabel}>{label}</span>
             {quotes.map((q) => {
-              const sameKitCheaper = quotes.some((o) => o !== q && o.battery === q.battery && o.panels === q.panels && o.price < q.price * 0.9);
+              const sameKitCheaper = quotes.some((o) => o !== q && o.battery === q.battery && o.panels === q.panels && o.inverter === q.inverter && o.price < q.price * 0.9);
               const flagged = (label === 'Price' && sameKitCheaper) || (label === 'Workmanship warranty' && q.workmanship === '2 years') || (label === 'Panel warranty' && q.panelWarranty === '12 years');
               const better = label === 'Battery' && q.battery === '9.5 kWh';
               return (

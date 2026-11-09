@@ -63,7 +63,7 @@ export default function HowWeMakeMoney() {
         </div>
         <ul className={s.neverList}>
           {NEVER.map((n) => (
-            <li key={n}><Icon name="phoneOff" size={22} />{n}</li>
+            <li key={n}><Icon name="cross" size={22} />{n}</li>
           ))}
         </ul>
       </section>

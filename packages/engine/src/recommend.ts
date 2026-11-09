@@ -71,8 +71,12 @@ export function assess(home: HomeProfile, tariff: Tariff): Assessment {
     const price = priceRange(priceCentral);
     const sLow = saving(low), sHigh = saving(high), sMid = saving(central);
 
-    let net20 = -priceCentral;
-    for (let y = 0; y < 20; y++) net20 += sMid * (1 - DEGRADATION_PER_YEAR) ** y;
+    let degradedYears = 0;
+    for (let y = 0; y < 20; y++) degradedYears += (1 - DEGRADATION_PER_YEAR) ** y;
+    const net20 = sMid * degradedYears - priceCentral;
+    // Range: worst case pairs the low saving with the high price, best case the reverse.
+    const net20Low = sLow * degradedYears - price.high;
+    const net20High = sHigh * degradedYears - price.low;
 
     const notes: string[] = [];
     if (kWp > G98_LIMIT_KW) {
@@ -93,6 +97,7 @@ export function assess(home: HomeProfile, tariff: Tariff): Assessment {
         high: sLow > 0 ? r2(price.high / sLow) : Infinity,
       },
       net20yrGbp: Math.round(net20),
+      net20yrRangeGbp: { low: Math.round(net20Low), high: Math.round(net20High) },
     };
   });
 

@@ -14,7 +14,7 @@ const POINTS = [
   { icon: 'home', title: 'Assessed homeowners', body: 'You see the home before you visit: roof direction and pitch, shading, annual usage, tariff, EV plans, and the system our assessment recommended.' },
   { icon: 'three', title: 'Three installers at most', body: 'A homeowner shares their assessment with no more than three firms, and only ones they chose. You are never one of ten.' },
   { icon: 'form', title: 'One standard quote form', body: 'Quote line by line on the same form as everyone else, so a better system is seen as better, not just more expensive.' },
-  { icon: 'chart', title: 'Numbers you can check', body: 'We publish how many assessments turn into surveys and installs. You can work out your cost per job won before you spend anything.' },
+  { icon: 'chart', title: 'Numbers you can check', body: 'From launch we will publish how many assessments turn into surveys and installs, so you can work out your cost per job won before you spend anything.' },
 ];
 
 const CHECKS = [
@@ -25,7 +25,7 @@ const CHECKS = [
   'Trading history in the area you cover',
   'Written workmanship and product warranties',
   'A complaints procedure customers can use',
-  'Verified reviews from homeowners after each installation',
+  'Then, once you are live: verified homeowner reviews after every installation',
 ];
 
 export default function ForInstallers() {
@@ -91,7 +91,7 @@ export default function ForInstallers() {
           <div>
             <p className="kicker">Soltara Verified</p>
             <h2 className={s.h2}>What we check before a homeowner can choose you.</h2>
-            <p className={s.lead}>Every check again, every year. The badge appears beside your name on every quote.</p>
+            <p className={s.lead}>We repeat every check every year. The badge appears beside your name on every quote.</p>
           </div>
           <div className={s.badge} aria-hidden="true">
             <Icon name="badge" size={44} />
