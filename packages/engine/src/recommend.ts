@@ -80,7 +80,7 @@ export function assess(home: HomeProfile, tariff: Tariff): Assessment {
     const notes: string[] = [];
     if (kWp > G98_LIMIT_KW) {
       notes.push(
-        `At ${r2(kWp)}kWp this system is likely to need approval from your local network operator (a G99 application) before it connects; your installer handles this, but it can add a few weeks.`,
+        `At ${r2(kWp)} kWp this system is likely to need approval from your local network operator (a G99 application) before it connects; your installer handles this, but it can add a few weeks.`,
       );
     }
     if (!kWp && design.battery) {

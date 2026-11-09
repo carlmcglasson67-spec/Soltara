@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SITE } from '@/lib/site';
+import LegalToc from '../LegalToc';
 import s from '../legal.module.css';
 
 const UPDATED = '26 October 2026';
@@ -8,6 +9,7 @@ const UPDATED = '26 October 2026';
 export const metadata: Metadata = {
   title: 'Privacy notice',
   description: 'What Soltara Energy collects, why, who sees it, and your rights. Your assessment goes to at most three installers you choose, and your details are never sold.',
+  alternates: { canonical: '/privacy' },
 };
 
 const SECTIONS = [
@@ -25,9 +27,9 @@ const SECTIONS = [
 export default function Privacy() {
   return (
     <article className={s.page}>
-      <header className={s.head}>
+      <header className={`${s.head} grain`} data-surface="dark">
         <div>
-          <p className="kicker">Privacy notice</p>
+          <p className="kicker kicker-light">Privacy notice</p>
           <h1 className={s.title}>Your details go to three installers at most, and only the ones you pick.</h1>
         </div>
         <div>
@@ -37,9 +39,7 @@ export default function Privacy() {
       </header>
 
       <div className={s.body}>
-        <ul className={s.toc} aria-label="On this page">
-          {SECTIONS.map((x) => <li key={x.id}><a href={`#${x.id}`}>{x.title}</a></li>)}
-        </ul>
+        <LegalToc sections={SECTIONS} />
 
         <div className={s.sections}>
           <section id="who">
@@ -51,7 +51,7 @@ export default function Privacy() {
           <section id="assessment">
             <h2>The home assessment</h2>
             <p>The assessment on this site runs in your browser. The answers you give (postcode, house type, roof details, electricity use and tariff) are used to work out your options and are not saved by us.</p>
-            <p>Your postcode is sent to two services to do the sums: <strong>postcodes.io</strong> turns it into a map location, and the European Commission’s <strong>PVGIS</strong> service returns typical solar output for that location. Neither receives your name or any other detail, and a postcode on its own does not identify a person.</p>
+            <p>Two services help with the sums. <strong>postcodes.io</strong> receives your postcode and turns it into a map location. The European Commission’s <strong>PVGIS</strong> service then receives that map location (not your postcode) with your roof’s pitch and direction, and returns typical solar output. Neither receives your name or any other detail.</p>
             <div className={s.callout}>
               <strong>Nothing is stored unless you ask for quotes.</strong>
               You can run the assessment as many times as you like without giving us an email address or a phone number.
@@ -77,7 +77,7 @@ export default function Privacy() {
               <li><strong>Installers you choose.</strong> At most three per request, and only after you have picked them.</li>
               <li><strong>Web3Forms.</strong> Delivers form submissions to our mailbox. It processes the submission in order to send it and does not use it for anything else.</li>
               <li><strong>Vercel.</strong> Hosts the website and processes requests to it, which includes your IP address in standard server logs.</li>
-              <li><strong>postcodes.io and PVGIS.</strong> Receive your postcode only, as described above.</li>
+              <li><strong>postcodes.io and PVGIS.</strong> postcodes.io receives your postcode; PVGIS receives the map location and roof details, as described above.</li>
             </ul>
             <p>We never sell personal data, and we never pass it to installers you have not chosen, to marketing lists or to lead brokers.</p>
           </section>

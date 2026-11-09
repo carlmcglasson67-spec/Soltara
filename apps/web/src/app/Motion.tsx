@@ -15,6 +15,10 @@ export default function Motion() {
 
   useEffect(() => {
     // Reveal styles only apply once this has run, so a failed script or print never leaves content hidden.
+    // Anything already on screen is marked revealed first, so enabling reveal never makes painted content blink.
+    document.querySelectorAll<HTMLElement>('[data-reveal]').forEach((el) => {
+      if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('is-in');
+    });
     document.documentElement.classList.add('js');
     const frames = new Set<number>();
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

@@ -1,20 +1,25 @@
+/* Month-by-month chart: use (warm grey), covered by own solar (Soltara blue), total generation (coral tick). */
 .figure { margin: 0; }
-.chart { display: grid; grid-template-columns: auto 1fr; gap: .6rem; height: clamp(200px, 32vw, 280px); }
-.axis { position: relative; font-size: .78rem; color: var(--slate-2); text-align: right; min-width: 2.2em; margin-bottom: 1.6rem; }
+.chart { display: grid; grid-template-columns: auto 1fr; gap: .7rem; height: clamp(220px, 28vw, 320px); }
+.axis { position: relative; font-family: var(--mono); font-size: .8125rem; color: var(--slate-2); text-align: right; min-width: 2.6em; margin-bottom: 1.8rem; }
 .axis span { position: absolute; right: 0; transform: translateY(50%); line-height: 1; }
-.plot { position: relative; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: clamp(3px, 1vw, 12px); }
-.gridLayer { position: absolute; inset: 0 0 1.6rem 0; }
+.plot { position: relative; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: clamp(4px, 1vw, 14px); }
+.gridLayer { position: absolute; inset: 0 0 1.8rem 0; }
 .grid { position: absolute; left: 0; right: 0; height: 1px; background: var(--line); }
-.col { position: relative; display: grid; grid-template-rows: 1fr 1.6rem; }
+.col { position: relative; display: grid; grid-template-rows: 1fr 1.8rem; }
 .bars { position: relative; }
-.use, .covered { position: absolute; left: 0; right: 0; bottom: 0; border-radius: 2px 2px 0 0; }
-.use { background: #d9dce3; }
-.covered { background: var(--navy); }
-.gen { position: absolute; left: -3px; right: -3px; height: 3px; border-radius: 2px; background: var(--sun); transform: translateY(50%); }
-.month { text-align: center; font-size: .8rem; color: var(--slate-2); align-self: end; }
-.legend { display: flex; flex-wrap: wrap; gap: .5rem 1.2rem; font-size: .88rem; color: var(--slate-2); margin-top: .8rem; }
-.legend i { display: inline-block; vertical-align: -1px; margin-right: 6px; border-radius: 2px; }
-.keyUse { width: 12px; height: 12px; background: #d9dce3; }
+.use, .covered { position: absolute; left: 0; right: 0; bottom: 0; border-radius: 3px 3px 0 0; transform-origin: bottom; animation: rise 1s var(--ease) both; }
+.use { background: var(--day-2); box-shadow: inset 0 0 0 1px #ddd5c6; }
+.covered { background: linear-gradient(180deg, #4a74f5, var(--navy)); animation-delay: .15s; }
+.gen { position: absolute; left: -3px; right: -3px; height: 3px; border-radius: 2px; background: var(--sun); transform: translateY(50%); box-shadow: 0 0 8px rgba(240,102,71,.5); }
+@keyframes rise { from { transform: scaleY(0); } }
+.month { text-align: center; font-family: var(--mono); font-size: .8125rem; color: var(--slate-2); align-self: end; }
+.legend { display: flex; flex-wrap: wrap; gap: .6rem 1.4rem; font-size: .9375rem; color: var(--slate-2); margin-top: var(--s-3); }
+.legend i { display: inline-block; vertical-align: -1px; margin-right: 8px; border-radius: 3px; }
+.keyUse { width: 12px; height: 12px; background: var(--day-2); box-shadow: inset 0 0 0 1px #ddd5c6; }
 .keyCovered { width: 12px; height: 12px; background: var(--navy); }
-.keyGen { width: 14px; height: 3px; background: var(--sun); vertical-align: 3px !important; }
-.unit { margin-left: auto; }
+.keyGen { width: 16px; height: 3px; background: var(--sun); vertical-align: 3px !important; }
+.unit { margin-left: auto; font-family: var(--mono); font-size: .8125rem; }
+@media (prefers-reduced-motion: reduce) { .use, .covered { animation: none; } }
+.col:first-child .gen { left: 0; }
+.col:last-child .gen { right: 0; }
