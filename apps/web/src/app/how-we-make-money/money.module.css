@@ -15,7 +15,7 @@
 }
 .nodeMid { background: var(--ink); color: var(--white); box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 0 0 6px rgba(240,102,71,.14), 0 20px 40px -16px rgba(17,18,23,.6); }
 .nodeNote { color: var(--slate-2); max-width: 30ch; margin-top: var(--s-1); }
-.pay { justify-self: start; padding: .45rem .8rem; border-radius: 8px; font-size: .875rem !important; background: var(--day-2); box-shadow: inset 0 0 0 1px var(--line); }
+.pay { white-space: nowrap; justify-self: start; padding: .45rem .8rem; border-radius: 8px; font-size: .875rem !important; background: var(--day-2); box-shadow: inset 0 0 0 1px var(--line); }
 .payOut { background: var(--ink); color: var(--white); box-shadow: none; }
 .neverLead { margin-top: var(--s-4); }
 .x { color: var(--sun) !important; line-height: 0; }
@@ -28,3 +28,4 @@
   .flow li > :not(.node) { grid-column: 2; }
   .node { grid-row: span 2; }
 }
+@media print { .flow::before { transform: none !important; } }

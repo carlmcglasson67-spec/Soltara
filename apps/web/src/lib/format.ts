@@ -13,3 +13,6 @@ export const years = (r: { low: number; high: number }) => {
 
 export const kwh = (n: number) => `${(Math.round(n / 10) * 10).toLocaleString('en-GB')} kWh`;
 export const pct = (n: number) => `${Math.round(n * 100)}%`;
+
+/** System size to two decimals at most, never rounded so it disagrees with the engine's own notes: "4.55 kWp", "5 kWp". */
+export const kwp = (n: number) => `${Number(n.toFixed(2)).toLocaleString('en-GB')} kWp`;

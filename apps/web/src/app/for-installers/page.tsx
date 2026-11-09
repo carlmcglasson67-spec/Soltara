@@ -24,7 +24,7 @@ const POINTS = [
   { icon: 'home', title: 'Assessed homeowners', body: 'You see the home before you visit: roof direction and pitch, shading, annual usage, tariff, EV plans, and the system our assessment recommended.' },
   { icon: 'three', title: 'Three installers at most', body: 'A homeowner shares their assessment with no more than three firms, and only ones they chose. You are never one of ten.' },
   { icon: 'form', title: 'One standard quote form', body: 'Quote line by line on the same form as everyone else, so a better system is seen as better, not just more expensive.' },
-  { icon: 'chart', title: 'Numbers you can check', body: 'We publish how many assessments turn into surveys and installs. You can work out your cost per job won before you spend anything.' },
+  { icon: 'chart', title: 'Numbers you can check', body: 'From launch we will publish how many assessments turn into surveys and installs, so you can work out your cost per job won before you spend anything.' },
 ];
 
 const CHECKS = [
@@ -59,7 +59,8 @@ export default function ForInstallers() {
             </div>
           </div>
         </div>
-        <dl className={i.ledger} aria-label="Founding installer headline terms">
+        <h2 className="sr-only">Founding installer terms at a glance</h2>
+        <dl className={i.ledger}>
           <div data-reveal><dt>To join</dt><dd>£0</dd></div>
           <div data-reveal style={{ ['--i' as string]: 1 }}><dt>Installers per job</dt><dd>3 <em>max</em></dd></div>
           <div data-reveal style={{ ['--i' as string]: 2 }}><dt>Lead charges at launch</dt><dd>None</dd></div>

@@ -50,7 +50,7 @@ export default function InstallerApply() {
           <label key={t}><input type="checkbox" name="technologies" value={t} defaultChecked={t === 'Solar PV'} /> {t}</label>
         ))}
       </fieldset>
-      <input type="text" name="website_url" tabIndex={-1} autoComplete="off" className="sr-only" aria-hidden="true" />
+      <div aria-hidden="true" style={{ display: 'none' }}><input type="text" name="website_url" tabIndex={-1} autoComplete="off" /></div>
       <div className={s.submitRow}>
         <button className="btn btn-primary btn-arrow btn-lg" type="submit" disabled={state === 'sending'}>
           {state === 'sending' ? 'Sending application' : 'Send application'}

@@ -12,14 +12,14 @@ export const metadata: Metadata = {
 
 const POINTS = [
   { icon: 'pound', title: 'Free for homeowners', body: 'You never pay Soltara anything, whether or not you go ahead. No fees, no subscription, nothing hidden in the installer’s price.' },
-  { icon: 'form', title: 'Installers pay per booked survey', body: 'An installer pays us when we book a site survey for them. Founding installers pay nothing until we are booking surveys regularly.' },
-  { icon: 'scales', title: 'Payment never buys a better position', body: 'Quotes are shown on the same form, in an order you control. No installer can pay to be recommended, promoted or shown first.' },
+  { icon: 'form', title: 'Installers pay per booked survey', body: 'An installer pays us when we book a site survey for them. Founding installers pay nothing until we are booking surveys for them.' },
+  { icon: 'scales', title: 'Payment never buys a better position', body: 'Quotes are shown on the same standard form. No installer can pay to be recommended, promoted or shown first.' },
   { icon: 'lock', title: 'Your details are never sold', body: 'Your assessment goes to at most three installers, and only the ones you choose. Nobody calls until you ask them to.' },
 ];
 
 const NEVER = [
   'Sell your details to anyone',
-  'Take a commission that changes the recommendation',
+  'Take any commission on the system you buy',
   'Let an installer pay for a higher ranking',
   'Show a “guaranteed saving”: every figure is a range with its assumptions',
   'Arrange finance or promise grant eligibility',
@@ -33,7 +33,7 @@ export default function HowWeMakeMoney() {
   return (
     <>
       <section className={`${i.hero} ${i.heroGlow} grain`} data-surface="dark">
-        <div className={i.heroGrid}>
+        <div className={`${i.heroGrid} ${i.heroCompact}`}>
           <div>
             <p className="kicker kicker-light" data-rise>How we make money</p>
             <h1 className={i.heroTitle} data-rise style={{ ['--i' as string]: 1 }}>Free for you. Installers pay <em>when we book them real work.</em></h1>

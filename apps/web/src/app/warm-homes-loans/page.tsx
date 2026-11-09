@@ -19,40 +19,40 @@ const LENDERS = ['Homeserve (with E.ON)', 'Hometree Finance', 'Propensio', 'Secu
 
 const CAPS: [string, number][] = [
   ['Solar panels', 15000], ['Home battery', 15000], ['Air-to-water heat pump', 20000], ['Ground source heat pump', 35000],
-  ['Air-to-air heat pump', 10000], ['Other micro-renewables', 20000],
+  ['Other micro‑renewables', 20000],
 ];
 
 const TIMELINE = [
   { when: '24 June 2026', what: 'Government opens applications for lenders to join.' },
   { when: 'July 2026', what: 'First round of lender applications closes.' },
-  { when: '27 October 2026', what: 'Scheme opens to households across the UK, with ten lenders taking part.', now: true },
+  { when: 'Late October 2026', what: 'Scheme opens to households across the UK, with ten lenders taking part.', now: true },
   { when: 'Late 2026 to early 2027', what: 'A second round of lenders is expected to apply, joining in early 2027.' },
 ];
 
 const faq = [
   {
     q: 'What is the Warm Homes Loan Scheme?',
-    a: 'A government scheme that pays approved lenders to lower the interest rate on loans for home energy upgrades, by up to about 5 percentage points. The government doesn’t lend the money itself; you borrow from a lender taking part.',
+    a: 'A government-backed scheme that lowers the interest rate on loans for home energy upgrades from approved lenders, by up to 5% compared with a regular loan. The government doesn’t lend the money itself; you borrow from a lender taking part.',
   },
   {
     q: 'Can I apply now?',
-    a: 'Yes. The scheme opened to households across the UK on 27 October 2026. You apply to a participating lender, either directly or, where the lender allows it, through your installer. The lender runs its usual affordability and credit checks.',
+    a: 'Yes. The scheme opened to households across the UK in late October 2026. You apply to a participating lender. Some lenders also take applications through the installers they work with; that is the lender’s arrangement, not Soltara’s. The lender runs its usual affordability and credit checks.',
   },
   {
     q: 'What can it pay for, and how much can I borrow?',
-    a: 'Solar panels and home batteries up to £15,000 each, air-to-water heat pumps up to £20,000, ground source heat pumps up to £35,000, and other micro-renewables up to £20,000. Each lender sets its own rules within those limits and decides what it will actually lend you.',
+    a: 'Solar panels and home batteries up to £15,000 each, air-to-water heat pumps up to £20,000, ground source heat pumps up to £35,000, and other micro-renewables up to £20,000. Air-to-air heat pumps up to £10,000 will be included once MCS certification is available for them. Each lender decides what it will actually lend you.',
   },
   {
     q: 'How cheap are the loans?',
-    a: 'The scheme can bring a lender’s rate down by up to about 5 percentage points, and some lenders offer interest-free loans. Your rate depends on the lender, the loan term and your circumstances, so compare lenders before you apply.',
+    a: 'The government says the scheme can cut interest rates by up to 5% compared with a regular loan, and some lenders offer interest-free loans. Your rate depends on the lender, the loan term and your circumstances, so compare lenders before you apply.',
   },
   {
     q: 'Does it matter which installer I use?',
     a: 'Yes. Except for heat network connections, the work must be done by an installer that is MCS-certified for that technology. Some lenders work only with their own installers; others accept any MCS-certified firm. Every installer on Soltara is MCS-certified.',
   },
   {
-    q: 'What will a lender need from my quote?',
-    a: 'Expect to show a quote dated within the last six months, addressed to you, with the installer’s MCS number, your full address, itemised costs and the system size in kW, then keep the invoice and MCS certificate after the work. Quotes through Soltara include all of these.',
+    q: 'What paperwork should I keep?',
+    a: 'The government advises keeping your quote, the finance agreement, the invoice, proof of purchase and the installer’s MCS certificate. Your lender will tell you exactly what it needs before it pays out.',
   },
 ];
 
@@ -70,7 +70,7 @@ export default function WarmHomesLoans() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }} />
       <section className={`${i.hero} ${i.heroGlow} grain`} data-surface="dark">
-        <div className={i.heroGrid}>
+        <div className={`${i.heroGrid} ${i.heroCompact}`}>
           <div>
             <p className="kicker kicker-light" data-rise>Guide · Last checked {UPDATED}</p>
             <h1 className={i.heroTitle} data-rise style={{ ['--i' as string]: 1 }}>The Warm Homes Loan Scheme <em>is open.</em></h1>
@@ -80,9 +80,9 @@ export default function WarmHomesLoans() {
             </p>
           </div>
           <dl className={`${i.readouts} ${i.heroAside}`} data-rise style={{ ['--i' as string]: 3 }}>
-            <div><dt>Opened to households</dt><dd>27 Oct</dd></div>
+            <div><dt>Opened to households</dt><dd>Oct 2026</dd></div>
             <div><dt>Lenders at launch</dt><dd>10</dd></div>
-            <div><dt>Interest rate cut</dt><dd>up to 5pp</dd></div>
+            <div><dt>Lower interest, up to</dt><dd>5%</dd></div>
           </dl>
         </div>
       </section>
@@ -110,7 +110,7 @@ export default function WarmHomesLoans() {
           <div className={i.sticky}>
             <p className="kicker" data-reveal>What it covers</p>
             <h2 className={i.h2} data-reveal style={{ ['--i' as string]: 1 }}>The most you can borrow, by technology.</h2>
-            <p className={`${i.lead} ${s.gap}`} data-reveal style={{ ['--i' as string]: 2 }}>Published limits. Each lender decides what it will actually lend you.</p>
+            <p className={`${i.lead} ${s.gap}`} data-reveal style={{ ['--i' as string]: 2 }}>Published limits. Air-to-air heat pumps (up to £10,000) join once MCS certification is available. Each lender decides what it will actually lend you.</p>
           </div>
           <ul className={s.caps} data-reveal>
             {CAPS.map(([label, v]) => (
@@ -159,6 +159,7 @@ export default function WarmHomesLoans() {
           <div className={i.sticky}>
             <p className="kicker" data-reveal>Questions</p>
             <h2 className={i.h2} data-reveal style={{ ['--i' as string]: 1 }}>What people ask.</h2>
+            <p className={`${i.lead} ${s.gap}`} data-reveal style={{ ['--i' as string]: 2 }}>Want to know what a loan would be set against? <Link href="/assessment">Check what your home could save</Link>.</p>
           </div>
           <div className={s.faq}>
             {faq.map((f, n) => (
@@ -173,13 +174,13 @@ export default function WarmHomesLoans() {
 
       <section className={`${i.section} ${s.foot}`}>
         <p className={s.disclaimer}>
-          <strong>Soltara doesn’t lend money, arrange loans or give financial advice.</strong> We explain the scheme and make sure
-          installer quotes have what lenders ask for. Apply to lenders directly. This page is general information, last checked {UPDATED}.
+          <strong>Soltara doesn’t lend money, arrange loans, introduce you to lenders or give financial advice.</strong> This page
+          explains a public scheme in plain English. Apply to lenders directly. General information only, last checked {UPDATED}.
         </p>
         <p className={s.sources}>
           Sources: <a href="https://www.gov.uk/government/news/warm-homes-loan-scheme-factsheet">GOV.UK: Warm Homes Loan Scheme factsheet</a>
-          {' · '}<a href="https://www.gov.uk/government/publications/warm-homes-loan-scheme-apply-to-participate-as-a-lender-phase-1">GOV.UK: lender applications and scheme rules</a>
-          {' · '}<a href="https://energysavingtrust.org.uk/advice/warm-homes-loan-scheme/">Energy Saving Trust: Warm Homes Loan Scheme</a>
+          {' · '}<a href="https://www.gov.uk/government/publications/warm-homes-loan-scheme-apply-to-participate-as-a-lender-phase-1">GOV.UK: lender applications (timeline)</a>
+          {' · '}<a href="https://assets.publishing.service.gov.uk/media/6aabe96a2f29b3888481865c/warm-homes-loan-scheme-scheme-rules-sept-2026.pdf">GOV.UK: Scheme Rules, September 2026 (second lender round)</a>
         </p>
       </section>
     </>

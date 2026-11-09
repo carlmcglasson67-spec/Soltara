@@ -21,3 +21,5 @@
 .keyGen { width: 16px; height: 3px; background: var(--sun); vertical-align: 3px !important; }
 .unit { margin-left: auto; font-family: var(--mono); font-size: .8125rem; }
 @media (prefers-reduced-motion: reduce) { .use, .covered { animation: none; } }
+.col:first-child .gen { left: 0; }
+.col:last-child .gen { right: 0; }
