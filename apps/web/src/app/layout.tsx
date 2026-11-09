@@ -24,10 +24,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const year = new Date().getFullYear();
   return (
     <html lang="en-GB" className={`${display.variable} ${sans.variable} ${mono.variable}`} suppressHydrationWarning>
-      <head>
-        {/* Marks JS as available before first paint, so reveal-on-scroll never hides content without it */}
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
-      </head>
       <body>
         <a className="skip" href="#main">Skip to content</a>
         <header className="site-header">
@@ -53,7 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </p>
               <p className="footer-tag">
                 The UK Home Energy Marketplace. Independent assessments for homes across Great Britain, and comparable quotes
-                from vetted, MCS-certified installers.
+                from vetted, MCS‑certified installers.
               </p>
               <p className="footer-cta"><Link className="btn btn-sun btn-arrow" href="/assessment">Check my home</Link></p>
             </div>
@@ -85,7 +81,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
           <p className="footer-small">
             Savings and prices on this site are estimates shown as ranges, based on the assumptions listed with each result.
-            A site survey by an MCS-certified installer confirms the design and price before you commit to anything. Soltara
+            A site survey by an MCS‑certified installer confirms the design and price before you commit to anything. Soltara
             does not lend money or arrange finance.
           </p>
           <div className="footer-bottom">

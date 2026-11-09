@@ -170,3 +170,15 @@ describe('location solar data', () => {
     expect(fallback.assumptions[0]).toMatch(/built-in model/);
   });
 });
+
+describe('20-year range and simulated hours', () => {
+  it('brackets the central 20-year figure and counts every simulated year', async () => {
+    const { assess, OVERNIGHT_EXAMPLE } = await import('../src/index');
+    const a = assess({ label: 't', latitude: 54.6, longitude: -3.5, roof: { pitchDeg: 35, azimuthDeg: 180, usableAreaM2: 22, shading: 'none' }, annualKwh: 3200, occupancy: 'out_daytime' }, OVERNIGHT_EXAMPLE);
+    for (const o of a.options) {
+      expect(o.net20yrRangeGbp.low).toBeLessThanOrEqual(o.net20yrGbp);
+      expect(o.net20yrRangeGbp.high).toBeGreaterThanOrEqual(o.net20yrGbp);
+    }
+    expect(a.simulatedHours).toBe((1 + a.options.length * 3) * 8760);
+  });
+});

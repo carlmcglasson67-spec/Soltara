@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { sampleAssessment, SAMPLE_HOME } from '@/lib/sample';
@@ -6,11 +7,13 @@ import Engine from './Engine';
 import QuoteExhibit from './QuoteExhibit';
 import s from './home.module.css';
 
+export const metadata: Metadata = { alternates: { canonical: '/' } };
+
 const PROMISES = [
   { title: 'Independent', body: 'We don’t sell, fit or finance anything.' },
   { title: 'MCS-certified only', body: 'Every installer checked by us, every year.' },
   { title: 'Three installers at most', body: 'Only the ones you choose see your details.' },
-  { title: 'Free for homeowners', body: 'Installers pay us. You never do.', href: '/how-we-make-money' },
+  { title: 'Free for homeowners', body: 'Installers pay us. You never do.', href: '/how-we-make-money', link: 'How we make money' },
 ];
 
 const STEPS = [
@@ -59,7 +62,7 @@ export default function Home() {
   return (
     <>
       {/* HERO — graphite, the headline at full scale beside the live engine */}
-      <section className={`${s.hero} grain`}>
+      <section className={`${s.hero} grain`} data-surface="dark">
         <div className={s.heroBackdrop} aria-hidden="true">
           <Image src="/img/brick-gable-panels-2400.webp" alt="" fill loading="lazy" quality={45} sizes="(max-width: 1100px) 100vw, 70vw" className={s.heroBackdropImg} />
         </div>
@@ -75,10 +78,10 @@ export default function Home() {
             <form className={s.pcForm} action="/assessment" method="get" data-rise style={{ ['--i' as string]: 3 }}>
               <label htmlFor="hero-pc" className="sr-only">Your postcode</label>
               <div className={s.pcRow}>
-                <input id="hero-pc" name="postcode" autoComplete="postal-code" placeholder="Your postcode" required className={s.pcInput} />
+                <input id="hero-pc" name="postcode" autoComplete="postal-code" placeholder="Postcode" required className={s.pcInput} />
                 <button className="btn btn-sun btn-arrow" type="submit">See what you could save</button>
               </div>
-              <p className={s.pcNote}>Free · Two minutes · No phone number · Never sold on</p>
+              <ul className={s.pcNote} aria-label="What to expect"><li>Free</li><li>Two minutes</li><li>No phone number</li><li>Never sold on</li></ul>
             </form>
           </div>
           <div className={s.heroEngine} data-rise style={{ ['--i' as string]: 2 }}>
@@ -91,7 +94,8 @@ export default function Home() {
             <li key={p.title} data-reveal style={{ ['--i' as string]: i }}>
               <span className={`fig ${s.index}`}>0{i + 1}</span>
               <strong>{p.title}</strong>
-              <span>{p.href ? <Link href={p.href}>{p.body}</Link> : p.body}</span>
+              <span>{p.body}</span>
+              {p.href && <Link className={s.promiseLink} href={p.href}>{p.link}</Link>}
             </li>
           ))}
         </ul>
@@ -105,8 +109,8 @@ export default function Home() {
           <svg className={s.overlay} viewBox="0 0 1000 666" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
             <polygon className={s.roofZone} points="302,238 800,140 681,297 161,380" />
           </svg>
-          <p className={s.tag} style={{ top: '18%', left: '6%' }}><span className="fig">{recommended.design.panelCount} panels · {recommended.kWp.toFixed(1)} kWp</span> fit this roof</p>
-          <p className={s.tag} style={{ bottom: '10%', right: '6%' }}><span className="fig">{SAMPLE_HOME.roof.pitchDeg}° · south</span> pitch and direction</p>
+          <p className={s.tag} style={{ top: '18%', left: '6%' }}><span className="fig">{recommended.design.panelCount} panels · {recommended.kWp.toFixed(1)} kWp</span> on the example home</p>
+          <p className={s.tag} style={{ bottom: '10%', right: '6%' }}><span className="fig">{SAMPLE_HOME.roof.pitchDeg}° · south</span> example pitch and direction</p>
         </div>
         <div className={s.measuredText}>
           <p className="kicker" data-reveal>Measured, not guessed</p>
@@ -118,7 +122,7 @@ export default function Home() {
           <dl className={s.stats} data-reveal style={{ ['--i' as string]: 3 }}>
             <div><dt>Hours simulated per system</dt><dd className="fig" data-count="8760">8,760</dd></div>
             <div><dt>Systems compared</dt><dd className="fig" data-count={assessment.options.length}>{assessment.options.length}</dd></div>
-            <div><dt>Installers who see you</dt><dd className="fig">≤3</dd></div>
+            <div><dt>Installers who see your details</dt><dd className="fig">≤3</dd></div>
           </dl>
         </div>
       </section>
@@ -132,7 +136,7 @@ export default function Home() {
           </div>
           <p className={s.lead} data-reveal style={{ ['--i' as string]: 2 }}>
             The full result for the example home. Solar alone, solar with three battery sizes, and a battery on a cheap
-            overnight rate. The bar shows what each gives back over 20 years.
+            overnight rate. The bar shows the central case for what each gives back over 20 years; the figure beside it is the range.
           </p>
         </header>
         <div className={s.tableWrap} data-reveal>
@@ -144,7 +148,7 @@ export default function Home() {
                 <th scope="col">Saving a year</th>
                 <th scope="col">Installed price</th>
                 <th scope="col">Pays back in</th>
-                <th scope="col">Own solar used</th>
+                <th scope="col">Use covered by solar</th>
                 <th scope="col">Back over 20 years</th>
               </tr>
             </thead>
@@ -160,11 +164,11 @@ export default function Home() {
                     <td data-label="Saving a year" className="fig">{gbpRange(o.annualSavingGbp)}</td>
                     <td data-label="Installed price" className="fig">{gbpRange(o.installedPriceGbp)}</td>
                     <td data-label="Pays back in" className="fig">{years(o.paybackYears)}</td>
-                    <td data-label="Own solar used" className="fig">{o.kWp > 0 ? pct(o.year.selfSufficiency) : 'None'}</td>
+                    <td data-label="Use covered by solar" className="fig">{o.kWp > 0 ? pct(o.year.selfSufficiency) : 'None'}</td>
                     <td data-label="Back over 20 years" className={s.barCell}>
                       <span className={s.bar}>
                         <i style={{ ['--w' as string]: `${Math.max(0, o.net20yrGbp / best) * 100}%` }} />
-                        <b className="fig">{gbp(o.net20yrGbp)}</b>
+                        <b className="fig" title={`Central case ${gbp(o.net20yrGbp)}`}>{gbpRange(o.net20yrRangeGbp)}</b>
                       </span>
                     </td>
                   </tr>
@@ -182,11 +186,11 @@ export default function Home() {
       <QuoteExhibit />
 
       {/* HOW IT WORKS — four steps along one drawn line */}
-      <section id="how-it-works" className={`${s.steps} grain`}>
+      <section id="how-it-works" className={`${s.steps} grain`} data-surface="dark">
         <header className={s.sectionHead}>
           <div>
             <p className="kicker kicker-light" data-reveal>How it works</p>
-            <h2 className={s.h2} data-reveal style={{ ['--i' as string]: 1 }}>Four steps. <em>You</em> decide every one.</h2>
+            <h2 className={s.h2} data-reveal style={{ ['--i' as string]: 1 }}>Four steps. You decide every one.</h2>
           </div>
           <div className={s.stepsAction} data-reveal style={{ ['--i' as string]: 2 }}>
             <Link className="btn btn-ghost btn-arrow" href="/assessment">Start with your postcode</Link>
@@ -204,12 +208,12 @@ export default function Home() {
       </section>
 
       {/* PROMISE — the privacy line, over open sky */}
-      <section className={s.promise}>
+      <section className={s.promise} data-surface="dark">
         <Image src="/img/dormer-roof-sky-2400.webp" alt="" fill sizes="100vw" className={s.promiseImg} />
         <div className={s.promiseText}>
           <p className="kicker kicker-light" data-reveal>Our privacy promise</p>
           <blockquote className={s.promiseTitle} data-reveal style={{ ['--i' as string]: 1 }}>
-            Your number goes to three installers at most, <em>and only the ones you pick.</em>
+            Your details go to three installers at most, <em>and only the ones you pick.</em>
           </blockquote>
           <p className={s.promiseSub} data-reveal style={{ ['--i' as string]: 2 }}>We never sell your details. Nobody calls until you ask them to.</p>
         </div>
@@ -219,7 +223,7 @@ export default function Home() {
       <section className={s.installers}>
         <div className={s.installersText}>
           <p className="kicker" data-reveal>For installers</p>
-          <h2 className={s.h2} data-reveal style={{ ['--i' as string]: 1 }}>Quote for homeowners <em>who are ready.</em></h2>
+          <h2 className={s.h2} data-reveal style={{ ['--i' as string]: 1 }}>Quote for homeowners who are ready.</h2>
           <p className={s.lead} data-reveal style={{ ['--i' as string]: 2 }}>
             Every homeowner has already had their roof, usage and tariff assessed, and chose you. No shared leads, no cold
             lists. Founding installers join free and pay nothing until we are booking surveys for them.
@@ -240,7 +244,12 @@ export default function Home() {
       <section className={s.faq}>
         <div className={s.faqHead}>
           <p className="kicker" data-reveal>Questions</p>
-          <h2 className={s.h2} data-reveal style={{ ['--i' as string]: 1 }}>What people ask <em>before they start.</em></h2>
+          <h2 className={s.h2} data-reveal style={{ ['--i' as string]: 1 }}>What people ask before they start.</h2>
+          <aside className={s.faqCard} data-reveal style={{ ['--i' as string]: 2 }}>
+            <p className="fig">£0 · ≤3 · No paid placement</p>
+            <p>Still weighing it up? Here is exactly how Soltara is paid, in plain English.</p>
+            <Link className="btn btn-quiet btn-arrow" href="/how-we-make-money">How we make money</Link>
+          </aside>
         </div>
         <div className={s.faqList}>
           {FAQ.map((f, i) => (
@@ -250,14 +259,21 @@ export default function Home() {
             </details>
           ))}
         </div>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd).replace(/</g, '\\u003c') }} />
       </section>
 
       {/* FINAL CTA */}
       <section className={`${s.final} band-blue grain`}>
-        <p className="kicker kicker-blue" data-reveal>Free, two minutes, no phone number</p>
-        <h2 className={s.finalTitle} data-reveal style={{ ['--i' as string]: 1 }}>Find out what <em>your roof</em> could do.</h2>
-        <p data-reveal style={{ ['--i' as string]: 2 }}><Link className="btn btn-sun btn-lg btn-arrow" href="/assessment">See what your home could save</Link></p>
+        <div className={s.finalMain}>
+          <p className="kicker kicker-blue" data-reveal>Your turn</p>
+          <h2 className={s.finalTitle} data-reveal style={{ ['--i' as string]: 1 }}>Find out what <em>your roof</em> could do.</h2>
+          <p data-reveal style={{ ['--i' as string]: 2 }}><Link className="btn btn-sun btn-lg btn-arrow" href="/assessment">See what your home could save</Link></p>
+        </div>
+        <dl className={s.finalProof} data-reveal style={{ ['--i' as string]: 3 }}>
+          <div><dt>To check your home</dt><dd className="fig">2 min</dd></div>
+          <div><dt>Cost to you</dt><dd className="fig">£0</dd></div>
+          <div><dt>Phone number needed</dt><dd className="fig">None</dd></div>
+        </dl>
       </section>
     </>
   );

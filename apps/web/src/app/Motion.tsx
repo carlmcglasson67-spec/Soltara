@@ -14,6 +14,9 @@ export default function Motion() {
   const pathname = usePathname();
 
   useEffect(() => {
+    // Reveal styles only apply once this has run, so a failed script or print never leaves content hidden.
+    document.documentElement.classList.add('js');
+    const frames = new Set<number>();
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const count = (el: HTMLElement) => {
       const to = Number(el.dataset.count); const dp = Number(el.dataset.dp ?? 0);
@@ -23,9 +26,9 @@ export default function Motion() {
       const step = (t: number) => {
         const k = Math.min(1, (t - t0) / dur); const e = 1 - Math.pow(1 - k, 4);
         el.textContent = fmt(to * e);
-        if (k < 1) requestAnimationFrame(step);
+        if (k < 1) frames.add(requestAnimationFrame(step));
       };
-      requestAnimationFrame(step);
+      frames.add(requestAnimationFrame(step));
     };
     const io = new IntersectionObserver((entries) => {
       for (const e of entries) {
@@ -36,7 +39,7 @@ export default function Motion() {
         if (el.dataset.count) count(el);
         io.unobserve(el);
       }
-    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
     document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
 
     const onMove = (ev: PointerEvent) => {
@@ -47,7 +50,7 @@ export default function Motion() {
       b.style.setProperty('--my', `${ev.clientY - r.top}px`);
     };
     document.addEventListener('pointermove', onMove, { passive: true });
-    return () => { io.disconnect(); document.removeEventListener('pointermove', onMove); };
+    return () => { io.disconnect(); frames.forEach(cancelAnimationFrame); document.removeEventListener('pointermove', onMove); };
   }, [pathname]);
 
   return null;
