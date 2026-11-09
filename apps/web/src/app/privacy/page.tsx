@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SITE } from '@/lib/site';
+import LegalToc from '../LegalToc';
 import s from '../legal.module.css';
 
 const UPDATED = '26 October 2026';
@@ -8,6 +9,7 @@ const UPDATED = '26 October 2026';
 export const metadata: Metadata = {
   title: 'Privacy notice',
   description: 'What Soltara Energy collects, why, who sees it, and your rights. Your assessment goes to at most three installers you choose, and your details are never sold.',
+  alternates: { canonical: '/privacy' },
 };
 
 const SECTIONS = [
@@ -25,9 +27,9 @@ const SECTIONS = [
 export default function Privacy() {
   return (
     <article className={s.page}>
-      <header className={s.head}>
+      <header className={`${s.head} grain`} data-surface="dark">
         <div>
-          <p className="kicker">Privacy notice</p>
+          <p className="kicker kicker-light">Privacy notice</p>
           <h1 className={s.title}>Your details go to three installers at most, and only the ones you pick.</h1>
         </div>
         <div>
@@ -37,9 +39,7 @@ export default function Privacy() {
       </header>
 
       <div className={s.body}>
-        <ul className={s.toc} aria-label="On this page">
-          {SECTIONS.map((x) => <li key={x.id}><a href={`#${x.id}`}>{x.title}</a></li>)}
-        </ul>
+        <LegalToc sections={SECTIONS} />
 
         <div className={s.sections}>
           <section id="who">

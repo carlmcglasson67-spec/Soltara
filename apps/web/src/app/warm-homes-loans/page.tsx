@@ -2,51 +2,64 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { monthlyRepayment } from '@soltara/engine';
 import { gbp } from '@/lib/format';
+import i from '../inner.module.css';
 import s from './loans.module.css';
 
-const UPDATED = '23 October 2026';
+const UPDATED = '9 November 2026';
 
 export const metadata: Metadata = {
   title: 'Warm Homes Loan Scheme: what we know',
   description:
-    'The Warm Homes Loan Scheme offers lower-interest loans for solar panels, batteries and heat pumps. What is confirmed, what isn’t yet, and how to be ready. Updated ' +
+    'The Warm Homes Loan Scheme is open: lower-interest loans for solar panels, batteries and heat pumps from ten approved lenders. How it works, what it covers and what a lender needs from your quote. Updated ' +
     UPDATED + '.',
+  alternates: { canonical: '/warm-homes-loans' },
 };
+
+const LENDERS = ['Homeserve (with E.ON)', 'Hometree Finance', 'Propensio', 'Secure Trust Bank', 'Selina Finance', 'South Manchester Credit Union', 'Sunsave', 'Tandem Bank', 'The Money Co-op', 'thisbank'];
+
+const CAPS: [string, number][] = [
+  ['Solar panels', 15000], ['Home battery', 15000], ['Air-to-water heat pump', 20000], ['Ground source heat pump', 35000],
+  ['Air-to-air heat pump', 10000], ['Other micro-renewables', 20000],
+];
+
+const TIMELINE = [
+  { when: '24 June 2026', what: 'Government opens applications for lenders to join.' },
+  { when: 'July 2026', what: 'First round of lender applications closes.' },
+  { when: '27 October 2026', what: 'Scheme opens to households across the UK, with ten lenders taking part.', now: true },
+  { when: 'Late 2026 to early 2027', what: 'A second round of lenders is expected to apply, joining in early 2027.' },
+];
 
 const faq = [
   {
     q: 'What is the Warm Homes Loan Scheme?',
-    a: 'A government scheme that pays approved, FCA-regulated lenders to lower the interest rate on loans for home energy upgrades. The government doesn’t lend the money itself; you borrow from a lender taking part.',
+    a: 'A government scheme that pays approved lenders to lower the interest rate on loans for home energy upgrades, by up to about 5 percentage points. The government doesn’t lend the money itself; you borrow from a lender taking part.',
   },
   {
     q: 'Can I apply now?',
-    a: `Not yet, as far as we can find (${UPDATED}). The first round of lenders was chosen over the summer, but no lender had announced a loan product by early October. Expect the first products between late 2026 and early 2027.`,
+    a: 'Yes. The scheme opened to households across the UK on 27 October 2026. You apply to a participating lender, either directly or, where the lender allows it, through your installer. The lender runs its usual affordability and credit checks.',
   },
   {
-    q: 'What can it pay for?',
-    a: 'Solar panels, home batteries (on their own or with solar), heat pumps and some other renewables. EV chargers only count alongside solar or a battery. Insulation, windows and doors are not included.',
+    q: 'What can it pay for, and how much can I borrow?',
+    a: 'Solar panels and home batteries up to £15,000 each, air-to-water heat pumps up to £20,000, ground source heat pumps up to £35,000, and other micro-renewables up to £20,000. Each lender sets its own rules within those limits and decides what it will actually lend you.',
   },
   {
-    q: 'How much can I borrow?',
-    a: 'The published caps are up to £20,000 for solar and other micro-renewables, £15,000 for a battery, £20,000 for an air-to-water heat pump and £35,000 for a ground source heat pump. The lender decides what it will actually lend you.',
-  },
-  {
-    q: 'How cheap will the loans be?',
-    a: 'The subsidy can bring a lender’s rate down by up to about 5 percentage points. The final rate depends on the lender, the loan term and your circumstances, so nobody can tell you your rate until lenders publish their products.',
+    q: 'How cheap are the loans?',
+    a: 'The scheme can bring a lender’s rate down by up to about 5 percentage points, and some lenders offer interest-free loans. Your rate depends on the lender, the loan term and your circumstances, so compare lenders before you apply.',
   },
   {
     q: 'Does it matter which installer I use?',
-    a: 'Yes. The work must be done by an installer that is MCS-certified for that technology, and lenders check this before and after the installation. Every installer on Soltara is MCS-certified.',
+    a: 'Yes. Except for heat network connections, the work must be done by an installer that is MCS-certified for that technology. Some lenders work only with their own installers; others accept any MCS-certified firm. Every installer on Soltara is MCS-certified.',
   },
   {
     q: 'What will a lender need from my quote?',
-    a: 'Based on the scheme rules: dated within the last six months, addressed to you, on the company’s headed paper, with the installer’s MCS number, your full address, itemised costs and the system size in kW. Quotes through Soltara include all of these.',
+    a: 'Expect to show a quote dated within the last six months, addressed to you, with the installer’s MCS number, your full address, itemised costs and the system size in kW, then keep the invoice and MCS certificate after the work. Quotes through Soltara include all of these.',
   },
 ];
 
 export default function WarmHomesLoans() {
   const normal = gbp(monthlyRepayment(10000, 9.9, 15));
   const cheap = gbp(monthlyRepayment(10000, 4.9, 15));
+  const maxCap = Math.max(...CAPS.map(([, v]) => v));
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -54,67 +67,121 @@ export default function WarmHomesLoans() {
   };
 
   return (
-    <article className={s.page}>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <header className={s.head}>
-        <div>
-          <p className="kicker">Guide</p>
-          <h1 className={s.title}>Warm Homes Loan Scheme: what we know so far.</h1>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }} />
+      <section className={`${i.hero} ${i.heroGlow} grain`} data-surface="dark">
+        <div className={i.heroGrid}>
+          <div>
+            <p className="kicker kicker-light" data-rise>Guide · Last checked {UPDATED}</p>
+            <h1 className={i.heroTitle} data-rise style={{ ['--i' as string]: 1 }}>The Warm Homes Loan Scheme <em>is open.</em></h1>
+            <p className={i.heroLead} data-rise style={{ ['--i' as string]: 2 }}>
+              Lower-interest loans for solar panels, batteries and heat pumps, from lenders approved by the government. Here is how
+              it works, what it covers and what a lender will want to see.
+            </p>
+          </div>
+          <dl className={`${i.readouts} ${i.heroAside}`} data-rise style={{ ['--i' as string]: 3 }}>
+            <div><dt>Opened to households</dt><dd>27 Oct</dd></div>
+            <div><dt>Lenders at launch</dt><dd>10</dd></div>
+            <div><dt>Interest rate cut</dt><dd>up to 5pp</dd></div>
+          </dl>
         </div>
-        <div className={s.headSide}>
-          <p className={s.lead}>
-            Lower-interest loans for solar, batteries and heat pumps are on the way, but they are not open to homeowners yet.
-            Here is what is confirmed and what isn’t.
-          </p>
-          <p className={s.updated}>Last checked {UPDATED}</p>
-        </div>
-      </header>
+      </section>
 
-      <section className={s.timeline} aria-label="Timeline">
-        <ol>
-          <li><p className={s.when}>24 June 2026</p><p>Government opens applications for lenders to join.</p></li>
-          <li><p className={s.when}>29 July 2026</p><p>First round of lender applications closes.</p></li>
-          <li><p className={s.when}>September 2026</p><p>Scheme rules pointed to loans for homeowners from this month. None had been announced by early October.</p></li>
-          <li className={s.next}><p className={s.when}>Late 2026 to early 2027</p><p>First loan products expected, each launched by its own lender. A second round of lenders joins in early 2027.</p></li>
+      <section className={i.section}>
+        <header className={i.head}>
+          <div>
+            <p className="kicker" data-reveal>Timeline</p>
+            <h2 className={i.h2} data-reveal style={{ ['--i' as string]: 1 }}>From announcement <em>to open.</em></h2>
+          </div>
+          <p className={i.lead} data-reveal style={{ ['--i' as string]: 2 }}>More lenders are expected to join in early 2027, so the choice of loans should widen over the next few months.</p>
+        </header>
+        <ol className={s.timeline} data-reveal>
+          {TIMELINE.map((t, n) => (
+            <li key={t.when} className={t.now ? s.now : undefined} style={{ ['--i' as string]: n }}>
+              <p className={`fig ${s.when}`}>{t.when}</p>
+              <p>{t.what}</p>
+            </li>
+          ))}
         </ol>
       </section>
 
-      <section className={s.example}>
-        <p className="kicker">Why it matters</p>
-        <h2 className={s.h2}>Cheaper borrowing can bring the repayment close to the saving.</h2>
-        <p>
-          Cheaper borrowing can make the monthly repayment on panels and a battery close to the monthly saving. For example, on a
-          £10,000 system over 15 years, a loan at 9.9% costs about {normal} a month; at 4.9% it is about {cheap}. These rates are
-          illustrative only, not offers.
-        </p>
-        <p>
-          <Link href="/assessment">Check what your home could save</Link> to see how your own saving compares.
-        </p>
-      </section>
-
-      <section className={s.faq}>
-        <div>
-          <p className="kicker">FAQ</p>
-          <h2 className={s.h2}>Questions people ask</h2>
+      <section className={`${i.section} ${i.paper2}`}>
+        <div className={i.split}>
+          <div className={i.sticky}>
+            <p className="kicker" data-reveal>What it covers</p>
+            <h2 className={i.h2} data-reveal style={{ ['--i' as string]: 1 }}>The most you can borrow, by technology.</h2>
+            <p className={`${i.lead} ${s.gap}`} data-reveal style={{ ['--i' as string]: 2 }}>Published limits. Each lender decides what it will actually lend you.</p>
+          </div>
+          <ul className={s.caps} data-reveal>
+            {CAPS.map(([label, v]) => (
+              <li key={label}>
+                <span>{label}</span>
+                <span className={s.capBar}><i style={{ ['--w' as string]: `${(v / maxCap) * 100}%` }} /></span>
+                <b className="fig">up to {gbp(v)}</b>
+              </li>
+            ))}
+          </ul>
         </div>
-        <dl>
-          {faq.map((f) => (
-            <div key={f.q}><dt>{f.q}</dt><dd>{f.a}</dd></div>
-          ))}
-        </dl>
       </section>
 
-      <footer className={s.foot}>
-        <p>
-          <strong>Soltara doesn’t lend money or arrange loans.</strong> We explain the scheme and make sure installer quotes have
-          what lenders ask for. When lenders launch, apply to them directly. This page is general information, not financial advice.
+      <section className={`${i.section} ${i.ink} grain`} data-surface="dark">
+        <div className={i.split}>
+          <div>
+            <p className="kicker kicker-blue" data-reveal>Why it matters</p>
+            <h2 className={i.h2} data-reveal style={{ ['--i' as string]: 1 }}>Cheaper borrowing can bring the repayment <em>close to the saving.</em></h2>
+          </div>
+          <div className={s.example} data-reveal style={{ ['--i' as string]: 2 }}>
+            <p className={s.exampleIntro}>£10,000 borrowed over 15 years</p>
+            <dl className={s.compare}>
+              <div><dt>At 9.9%</dt><dd>{normal}<span>a month</span></dd></div>
+              <div><dt>At 4.9%</dt><dd>{cheap}<span>a month</span></dd></div>
+            </dl>
+            <p className={s.exampleNote}>Illustrative rates only, not offers. <Link href="/assessment">Check what your home could save</Link> to compare with your own monthly saving.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className={i.section}>
+        <div className={i.split}>
+          <div className={i.sticky}>
+            <p className="kicker" data-reveal>Lenders at launch</p>
+            <h2 className={i.h2} data-reveal style={{ ['--i' as string]: 1 }}>Ten lenders, listed by the government.</h2>
+            <p className={`${i.lead} ${s.gap}`} data-reveal style={{ ['--i' as string]: 2 }}>We don’t recommend a lender or earn anything from one. Compare their rates and terms yourself.</p>
+          </div>
+          <ul className={s.lenders} data-reveal>
+            {LENDERS.map((l) => <li key={l}>{l}</li>)}
+          </ul>
+        </div>
+      </section>
+
+      <section className={`${i.section} ${i.paper2}`}>
+        <div className={i.split}>
+          <div className={i.sticky}>
+            <p className="kicker" data-reveal>Questions</p>
+            <h2 className={i.h2} data-reveal style={{ ['--i' as string]: 1 }}>What people ask.</h2>
+          </div>
+          <div className={s.faq}>
+            {faq.map((f, n) => (
+              <details key={f.q} className={s.faqItem} data-reveal style={{ ['--i' as string]: n }}>
+                <summary>{f.q}<span aria-hidden="true" /></summary>
+                <p>{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className={`${i.section} ${s.foot}`}>
+        <p className={s.disclaimer}>
+          <strong>Soltara doesn’t lend money, arrange loans or give financial advice.</strong> We explain the scheme and make sure
+          installer quotes have what lenders ask for. Apply to lenders directly. This page is general information, last checked {UPDATED}.
         </p>
         <p className={s.sources}>
-          Sources: <a href="https://www.gov.uk/government/publications/warm-homes-loan-scheme-apply-to-participate-as-a-lender-phase-1">GOV.UK: Warm Homes Loan Scheme lender applications</a>
-          {' · '}<a href="https://www.backedbyample.com/installers/news/warm-homes-loan-scheme-for-installers">Ample: what installers need to know</a>
-          {' · '}<a href="https://www.signix.co.uk/news/warm-homes-loan-scheme-2026">Signix: Warm Homes Loan Scheme 2026</a>
+          Sources: <a href="https://www.gov.uk/government/news/warm-homes-loan-scheme-factsheet">GOV.UK: Warm Homes Loan Scheme factsheet</a>
+          {' · '}<a href="https://www.gov.uk/government/publications/warm-homes-loan-scheme-apply-to-participate-as-a-lender-phase-1">GOV.UK: lender applications and scheme rules</a>
+          {' · '}<a href="https://energysavingtrust.org.uk/advice/warm-homes-loan-scheme/">Energy Saving Trust: Warm Homes Loan Scheme</a>
         </p>
-      </footer>
-    </article>
+      </section>
+    </>
   );
 }
