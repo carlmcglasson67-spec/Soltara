@@ -52,11 +52,11 @@ export const FAQ: { q: string; a: ReactNode; text: string }[] = [
   },
   {
     q: 'What does MCS-certified mean?',
-    text: 'MCS is the UK certification scheme for small-scale renewable installations. An MCS-certified installation is normally needed to get paid for exported electricity under the Smart Export Guarantee. We only work with MCS-certified installers.',
+    text: 'MCS is the UK certification scheme for small-scale renewable installations. An MCS-certified installation is normally needed to get paid for exported electricity under the Smart Export Guarantee. We only list MCS-certified installers.',
     a: (
       <p>
         MCS is the UK certification scheme for small-scale renewable installations. An MCS-certified installation is normally
-        needed to get paid for the electricity you export under the Smart Export Guarantee. We only work with MCS-certified installers.
+        needed to get paid for the electricity you export under the Smart Export Guarantee. We only list MCS-certified installers.
       </p>
     ),
   },

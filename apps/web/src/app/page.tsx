@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { sampleAssessment, SAMPLE_HOME } from '@/lib/sample';
-import { gbp, gbpRange, kwh, pct, years } from '@/lib/format';
+import { sampleAssessment, SAMPLE_ASSUMPTIONS, SAMPLE_HOME } from '@/lib/sample';
+import { gbpRange, kwh, pct, years } from '@/lib/format';
 import QuoteExhibit from './QuoteExhibit';
 import Icon from './Icon';
 import SunArc from './SunArc';
@@ -15,7 +15,7 @@ const PROMISES = [
   'MCS-certified installers only',
   'Three installers at most',
   'Free for homeowners',
-  'Satellite sun data for your exact roof',
+  'Satellite sun data for your area and roof',
   'Nobody calls until you choose',
   'Every number shown as an honest range',
 ];
@@ -93,6 +93,7 @@ export default function Home() {
                 <div><dt>Payback</dt><dd className="fig">{years(recommended.paybackYears)}</dd></div>
                 <div><dt>Makes</dt><dd className="fig">{kwh(recommended.year.generationKwh)}</dd></div>
               </dl>
+              <p className={s.assume}>{SAMPLE_ASSUMPTIONS}</p>
             </aside>
           </div>
         </div>
@@ -133,7 +134,7 @@ export default function Home() {
         <div className={s.statsHead}>
           <p className="kicker" data-reveal>Built for trust, not for selling</p>
           <h2 className={s.h2} data-reveal style={{ ['--d' as string]: '80ms' }}>
-            The comparison site that <span className="em">works for you,</span> not the installer.
+            The comparison site that works for you, not the installer.
           </h2>
         </div>
         <ul className={s.statGrid}>
@@ -176,8 +177,8 @@ export default function Home() {
 
         <ol className={s.pipeline}>
           {[
-            { icon: 'home', tag: 'Input', t: 'Your postcode', d: 'Located precisely, so the sun data is for your street, not your region.' },
-            { icon: 'satellite', tag: 'PVGIS · EU JRC', t: 'Satellite sun data', d: 'Years of measured sunlight for your roof’s pitch and direction.' },
+            { icon: 'home', tag: 'Input', t: 'Your postcode', d: 'Located on the map, so the sun data is for your area, not a national average.' },
+            { icon: 'satellite', tag: 'PVGIS · EU JRC', t: 'Satellite sun data', d: 'Nearly two decades of satellite sunlight records, worked out for your roof’s pitch and direction.' },
             { icon: 'chart', tag: '8,760 steps', t: 'Your year, hour by hour', d: 'Solar, battery, what you use and your tariff, simulated together.' },
             { icon: 'scales', tag: 'Output', t: 'Ranges, not promises', d: 'Every saving, price and payback as a range with its assumptions shown.' },
           ].map((n, i) => (
@@ -206,7 +207,7 @@ export default function Home() {
           </div>
           <dl className={s.traceFacts}>
             <div><dt>Generated a year</dt><dd className="fig">{kwh(recommended.year.generationKwh)}</dd></div>
-            <div><dt>Own solar used</dt><dd className="fig">{pct(recommended.year.selfSufficiency)}</dd></div>
+            <div><dt>Home’s use met by solar</dt><dd className="fig">{pct(recommended.year.selfSufficiency)}</dd></div>
             <div><dt>Roof yield</dt><dd className="fig">{Math.round(assessment.specificYieldKwhPerKwp)} kWh/kWp</dd></div>
           </dl>
         </figure>
@@ -217,13 +218,13 @@ export default function Home() {
         <div className={s.compareIntro}>
           <p className="kicker" data-reveal>Every option, side by side</p>
           <h2 className={s.h2} data-reveal style={{ ['--d' as string]: '80ms' }}>
-            You see every option, <span className="em">not just the one</span> someone wants to sell you.
+            You see every option, not just the one someone wants to sell you.
           </h2>
           <p className={s.lead} data-reveal style={{ ['--d' as string]: '160ms' }}>
             Solar on its own, solar with different batteries and, where your tariff allows it, a battery on its own. Then we tell
             you which gives the most back over 20 years.
           </p>
-          <p className={s.note}>Example home: {SAMPLE_HOME.label}. Ranges allow for weather and price differences.</p>
+          <p className={s.note}>Example home: {SAMPLE_HOME.label}. {SAMPLE_ASSUMPTIONS} Ranges allow ±10% on sunshine and the spread of installer prices; 20-year figures allow for panels losing 0.5% a year.</p>
         </div>
         <ul className={s.options}>
           {assessment.options.map((o, i) => {
@@ -241,8 +242,9 @@ export default function Home() {
                   <div><dt>Saving a year</dt><dd className="fig">{gbpRange(o.annualSavingGbp)}</dd></div>
                   <div><dt>Installed</dt><dd className="fig">{gbpRange(o.installedPriceGbp)}</dd></div>
                   <div><dt>Payback</dt><dd className="fig">{years(o.paybackYears)}</dd></div>
-                  <div><dt>Back over 20 yrs</dt><dd className="fig">{gbp(o.net20yrGbp)}</dd></div>
+                  <div><dt>Back over 20 yrs</dt><dd className="fig">{gbpRange(o.net20yrRangeGbp)}</dd></div>
                 </dl>
+                {o.kWp === 0 && <p className={s.optNote}>No panels, so the yearly saving doesn’t change with the weather. It comes from charging on the cheap overnight rate, none of it from solar.</p>}
               </li>
             );
           })}
@@ -256,7 +258,7 @@ export default function Home() {
         <div className={s.howHead}>
           <p className="kicker" data-reveal>How it works</p>
           <h2 className={s.h2} data-reveal style={{ ['--d' as string]: '80ms' }}>
-            Buying solar used to mean <span className="em">a stranger on your sofa.</span>
+            Buying solar used to mean a stranger on your sofa.
           </h2>
         </div>
 
@@ -285,7 +287,7 @@ export default function Home() {
           {[
             { img: '/img/terrace-roofs-900.webp', t: 'Tell us about your home', d: 'Your postcode, roof, what you use and your tariff. About two minutes. No phone number.' },
             { img: '/img/brick-gable-panels-900.webp', t: 'See every option', d: 'Every system that suits your roof, with savings, price and payback as honest ranges.' },
-            { img: '/img/installer-ladder-900.webp', t: 'Choose up to three installers', d: 'Vetted, MCS-certified firms that cover your area, quoting on one standard form.' },
+            { img: '/img/installer-ladder-900.webp', t: 'Choose up to three installers', d: 'Only vetted, MCS-certified firms, quoting on one standard form. If none cover you yet, we say so.' },
             { img: '/img/new-build-row-900.webp', t: 'Pick the quote that suits you', d: 'They survey, confirm the design and fit it. Your review helps the next household.' },
           ].map((st, i) => (
             <li key={st.t} data-reveal style={{ ['--d' as string]: `${i * 100}ms` }}>
@@ -303,7 +305,7 @@ export default function Home() {
         <div className={s.systemsHead}>
           <div>
             <p className="kicker" data-reveal>What we compare</p>
-            <h2 className={s.h2} data-reveal style={{ ['--d' as string]: '80ms' }}>One home. <span className="em">Every system</span> it could run on.</h2>
+            <h2 className={s.h2} data-reveal style={{ ['--d' as string]: '80ms' }}>One home. Every system it could run on.</h2>
           </div>
           <Link className="btn btn-quiet btn-arrow" href="/assessment">Start with your postcode</Link>
         </div>
@@ -348,7 +350,7 @@ export default function Home() {
         <div className={s.promiseText}>
           <Icon name="lock" size={34} />
           <h2 className={s.promiseTitle} data-reveal>
-            Your number goes to three installers at most, <span className="em">and only the ones you pick.</span>
+            Your number goes to three installers at most, and only the ones you pick.
           </h2>
           <p data-reveal style={{ ['--d' as string]: '120ms' }}>We never sell your details. Nobody calls until you ask them to.</p>
         </div>
@@ -363,7 +365,7 @@ export default function Home() {
         <div className={s.installersText}>
           <p className="kicker" data-reveal>For installers</p>
           <h2 className={s.h2} data-reveal style={{ ['--d' as string]: '80ms' }}>
-            Quote for homeowners <span className="em">who are ready.</span>
+            Quote for homeowners who are ready.
           </h2>
           <p className={s.lead} data-reveal style={{ ['--d' as string]: '160ms' }}>
             Every homeowner has already had their roof, usage and tariff assessed, and chose you. No shared leads, no cold lists.
@@ -382,7 +384,7 @@ export default function Home() {
       <section id="faq" className={s.faq}>
         <div className={s.faqHead}>
           <p className="kicker" data-reveal>Questions answered</p>
-          <h2 className={s.h2} data-reveal style={{ ['--d' as string]: '80ms' }}>Straight answers, <span className="em">before you ask.</span></h2>
+          <h2 className={s.h2} data-reveal style={{ ['--d' as string]: '80ms' }}>Straight answers, before you ask.</h2>
           <p className={s.lead}>Anything else, the assessment shows its working on every number.</p>
         </div>
         <div className={s.faqList}>
@@ -408,6 +410,11 @@ export default function Home() {
             <button className="btn btn-sun btn-lg btn-arrow" type="submit">See what you could save</button>
           </form>
         </div>
+        <ol className={s.finalList}>
+          <li><span>01</span><b>Every option for your roof</b><small>Solar alone, with each battery size, and battery only where your tariff suits it.</small></li>
+          <li><span>02</span><b>Savings, price and payback as ranges</b><small>With every assumption listed underneath.</small></li>
+          <li><span>03</span><b>Quotes only if you want them</b><small>From up to three installers you choose. Nobody calls first.</small></li>
+        </ol>
       </section>
     </>
   );

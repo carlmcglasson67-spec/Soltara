@@ -43,7 +43,7 @@ export default function InstallerApply() {
       <label className={s.field}><span>Email</span><input name="email" type="email" required autoComplete="email" /></label>
       <label className={s.field}><span>Phone</span><input name="phone" type="tel" required autoComplete="tel" /></label>
       <label className={s.field}><span>MCS certificate number</span><input name="mcs" required /></label>
-      <label className={s.field}><span>Areas you cover</span><input name="areas" required placeholder="For example: West Cumbria, Carlisle, South Lakes" /></label>
+      <label className={s.field}><span>Areas you cover</span><input name="areas" required placeholder="e.g. West Cumbria, Carlisle" /></label>
       <fieldset className={s.techs}>
         <legend>What you install</legend>
         {TECH.map((t) => (

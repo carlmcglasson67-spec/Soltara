@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { sampleAssessment, sampleOnFlat, SAMPLE_HOME } from '@/lib/sample';
-import { gbp, gbpRange, kwh, pct, years } from '@/lib/format';
+import { sampleAssessment, sampleOnFlat, SAMPLE_ASSUMPTIONS, SAMPLE_HOME } from '@/lib/sample';
+import { gbpRange, kwh, pct, years } from '@/lib/format';
 import Icon from '../Icon';
 import SunArc from '../SunArc';
 import s from '../system.module.css';
@@ -38,6 +38,7 @@ export default function SolarPanels() {
             <Link className="btn btn-sun btn-arrow" href="/assessment">Check my roof</Link>
             <Link className="btn btn-quiet" href="#with-battery">With or without a battery?</Link>
           </div>
+          <p className={s.note}>Example figures. {SAMPLE_ASSUMPTIONS}</p>
         </div>
         <div className={s.heroMedia} data-reveal-img>
           <Image src="/img/brick-gable-panels-1600.webp" alt="A red-brick house with black solar panels across its roof" fill priority sizes="(max-width: 900px) 100vw, 50vw" />
@@ -46,7 +47,7 @@ export default function SolarPanels() {
             <dl>
               <div><dt>System</dt><dd className="fig">{solar.kWp.toFixed(1)} kWp</dd></div>
               <div><dt>Makes</dt><dd className="fig">{kwh(solar.year.generationKwh)}</dd></div>
-              <div><dt>Saves</dt><dd className="fig">{gbpRange(solar.annualSavingGbp)}</dd></div>
+              <div><dt>Saves a year</dt><dd className="fig">{gbpRange(solar.annualSavingGbp)}</dd></div>
             </dl>
           </div>
         </div>
@@ -56,15 +57,15 @@ export default function SolarPanels() {
         <div className={s.split}>
           <div className={s.sticky}>
             <p className="kicker" data-reveal>What decides it</p>
-            <h2 className={s.h2} data-reveal style={{ ['--d' as string]: '80ms' }}>Four things set <span className="em">what your roof makes.</span></h2>
-            <p className={s.lead}>We ask about all four, then use satellite sun data for your exact location instead of a national average.</p>
+            <h2 className={s.h2} data-reveal style={{ ['--d' as string]: '80ms' }}>Four things set what your roof makes.</h2>
+            <p className={s.lead}>We ask about all four, then use satellite sun data for your area instead of a national average.</p>
           </div>
           <ul className={s.factors}>
             {[
-              { icon: 'sun', t: 'Direction', d: 'South is best, but east and west roofs still make most of the same energy, spread across the morning or evening.' },
-              { icon: 'home', t: 'Pitch', d: 'Most British roofs sit between 30° and 45°, close to ideal. Very shallow or steep roofs lose a little.' },
-              { icon: 'satellite', t: 'Where you live', d: 'Cornwall gets more sun than Caithness. We use measured sunlight for your postcode, not a guess.' },
-              { icon: 'scales', t: 'Shading', d: 'Chimneys, trees and neighbouring roofs. Even light shading is allowed for in your range.' },
+              { icon: 'compass', t: 'Direction', d: 'South is best, but east and west roofs still make most of the same energy, spread across the morning or evening.' },
+              { icon: 'pitch', t: 'Pitch', d: 'Most British roofs sit between 30° and 45°, close to ideal. Very shallow or steep roofs lose a little.' },
+              { icon: 'pin', t: 'Where you live', d: 'Cornwall gets more sun than Caithness. We use satellite sunlight records for your postcode area, not a guess.' },
+              { icon: 'shade', t: 'Shading', d: 'Chimneys, trees and neighbouring roofs. Even light shading is allowed for in your range.' },
             ].map((f, i) => (
               <li key={f.t} data-reveal style={{ ['--d' as string]: `${i * 80}ms` }}>
                 <span className={s.ico}><Icon name={f.icon} size={24} /></span>
@@ -80,7 +81,7 @@ export default function SolarPanels() {
         <div className={s.darkHead}>
           <div>
             <p className="kicker kicker-light" data-reveal>Month by month</p>
-            <h2 className={s.h2} data-reveal style={{ ['--d' as string]: '80ms' }}>Summer does the heavy lifting. <span className="em em-sun">Winter still counts.</span></h2>
+            <h2 className={s.h2} data-reveal style={{ ['--d' as string]: '80ms' }}>Summer does the heavy lifting. Winter still counts.</h2>
           </div>
           <p className={s.lead}>Generation for the example home’s {solar.kWp.toFixed(1)} kWp system, from the same engine that runs your assessment.</p>
         </div>
@@ -104,7 +105,7 @@ export default function SolarPanels() {
 
       <section className={s.section}>
         <p className="kicker" data-reveal>Where the saving comes from</p>
-        <h2 className={s.h2} data-reveal style={{ ['--d' as string]: '80ms' }}>Three ways panels <span className="em">pay you back.</span></h2>
+        <h2 className={s.h2} data-reveal style={{ ['--d' as string]: '80ms' }}>Three ways panels pay you back.</h2>
         <ul className={s.ways}>
           <li data-reveal><h3>Use it as it’s made</h3><p>Every unit you use straight from the roof is one you don’t buy. This is where most of the saving comes from.</p></li>
           <li data-reveal style={{ ['--d' as string]: '100ms' }}><h3>Sell what you don’t use</h3><p>Surplus goes to the grid. With an MCS-certified install, a supplier pays you for it under the Smart Export Guarantee.</p></li>
@@ -116,8 +117,8 @@ export default function SolarPanels() {
         <div className={s.split}>
           <div className={s.sticky}>
             <p className="kicker" data-reveal>With or without a battery?</p>
-            <h2 className={s.h2} data-reveal style={{ ['--d' as string]: '80ms' }}>The same roof, <span className="em">compared honestly.</span></h2>
-            <p className={s.lead}>On the example overnight tariff a battery comes out ahead over 20 years. On a single-rate tariff, the same home is better off with panels alone. That’s why we never answer with a yes before we’ve seen your tariff.</p>
+            <h2 className={s.h2} data-reveal style={{ ['--d' as string]: '80ms' }}>The same roof, compared honestly.</h2>
+            <p className={s.lead}>Both cards use the example overnight tariff. On it, a battery comes out ahead over 20 years. On a single-rate tariff, the same home is better off with panels alone. That’s why we never answer with a yes before we’ve seen your tariff.</p>
           </div>
           <div>
             <div className={s.duo} style={{ marginTop: 0 }}>
@@ -125,13 +126,13 @@ export default function SolarPanels() {
                 <article key={o.id} className={o.id === best ? `${s.card} ${s.cardBest}` : s.card} data-reveal>
                   <div className={s.cardHead}>
                     <h3>{o.label}</h3>
-                    {o.id === best ? <span className={s.tag}>Best over 20 years</span> : <span className={`${s.tag} ${s.tagQuiet}`}>Overnight tariff</span>}
+                    {o.id === best && <span className={s.tag}>Best over 20 years</span>}
                   </div>
                   <dl className={s.facts}>
                     <div><dt>Saving a year</dt><dd className="fig">{gbpRange(o.annualSavingGbp)}</dd></div>
                     <div><dt>Installed</dt><dd className="fig">{gbpRange(o.installedPriceGbp)}</dd></div>
                     <div><dt>Payback</dt><dd className="fig">{years(o.paybackYears)}</dd></div>
-                    <div><dt>Back over 20 yrs</dt><dd className="fig">{gbp(o.net20yrGbp)}</dd></div>
+                    <div><dt>Back over 20 yrs</dt><dd className="fig">{gbpRange(o.net20yrRangeGbp)}</dd></div>
                   </dl>
                 </article>
               ))}
@@ -148,12 +149,12 @@ export default function SolarPanels() {
         <div className={s.split}>
           <div className={s.sticky}>
             <p className="kicker" data-reveal>Is my home suitable?</p>
-            <h2 className={s.h2} data-reveal style={{ ['--d' as string]: '80ms' }}>Most are. <span className="em">Here’s what to check.</span></h2>
+            <h2 className={s.h2} data-reveal style={{ ['--d' as string]: '80ms' }}>Most are. Here’s what to check.</h2>
           </div>
           <ol className={s.check}>
             {[
               { t: 'A roof that faces anywhere but north', d: 'South is ideal. East and west work well. North-facing roofs rarely pay back, and we’ll say so.' },
-              { t: 'Room for at least six or so panels', d: 'Most semis and terraces have space for a useful system. The assessment works out how many fit.' },
+              { t: 'Room for six or more panels', d: 'Most semis and terraces have space for a useful system. The assessment works out how many fit.' },
               { t: 'A roof in decent condition', d: 'Panels last 25 years or more. If the roof needs work soon, do it first. The installer checks at survey.' },
               { t: 'Planning rules', d: 'Most roof panels on houses are permitted development. Listed buildings, flats and some conservation areas differ.' },
             ].map((c, i) => (

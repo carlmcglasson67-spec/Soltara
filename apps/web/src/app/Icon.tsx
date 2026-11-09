@@ -70,6 +70,32 @@ const PATHS: Record<string, React.ReactNode> = {
       <path d="M9 9l6 6M15 9l-6 6" className="accent" />
     </>
   ),
+  compass: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 3v2M12 19v2M3 12h2M19 12h2" />
+      <path d="M14.8 9.2l-1.6 4-4 1.6 1.6-4z" className="accent" />
+    </>
+  ),
+  pitch: (
+    <>
+      <path d="M3 18L13 6l8 12z" />
+      <path d="M17 18a4 4 0 0 0-1.6-3.2" className="accent" />
+    </>
+  ),
+  pin: (
+    <>
+      <path d="M12 21s-6.5-6.2-6.5-11a6.5 6.5 0 0 1 13 0c0 4.8-6.5 11-6.5 11z" />
+      <circle cx="12" cy="10" r="2.3" className="accent" />
+    </>
+  ),
+  shade: (
+    <>
+      <circle cx="8" cy="8" r="3" className="accent" />
+      <path d="M8 2v1.2M2 8h1.2M3.8 3.8l.8.8" className="accent" />
+      <path d="M8 18.5h10a3.5 3.5 0 0 0 0-7 5 5 0 0 0-9.6 1.2A3 3 0 0 0 8 18.5z" />
+    </>
+  ),
   panel: (
     <>
       <path d="M4.5 6h15l-2 10h-15z" />

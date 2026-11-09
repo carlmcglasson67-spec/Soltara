@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import '@fontsource-variable/bricolage-grotesque/standard.css';
+import '@fontsource-variable/familjen-grotesk';
 import '@fontsource-variable/geist';
 import '@fontsource-variable/geist-mono';
 import '@fontsource/instrument-serif/400-italic.css';
@@ -27,7 +27,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const year = new Date().getFullYear();
   return (
-    <html lang="en-GB">
+    <html lang="en-GB" suppressHydrationWarning>
+      <head>
+        {/* Marks JS as running before paint, so reveal animations only hide content when they can also show it. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
       <body>
         <header className="site-header">
           <Link href="/" className="brand" aria-label="Soltara Energy home">
@@ -55,7 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </p>
               <p className="footer-tag">
                 The UK Home Energy Marketplace. Independent assessments for homes across Great Britain, and comparable quotes
-                from vetted, MCS-certified installers.
+                from installers we have vetted and who are MCS-certified.
               </p>
               <p className="footer-cta"><Link className="btn btn-sun btn-arrow" href="/assessment">Check my home</Link></p>
             </div>

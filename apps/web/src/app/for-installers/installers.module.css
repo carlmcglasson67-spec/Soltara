@@ -5,8 +5,8 @@
 .heroActions { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: .4rem; }
 .heroMedia { position: relative; min-height: 420px; }
 .cover { object-fit: cover; }
-.title { font-size: var(--t-hero); font-variation-settings: 'wdth' 88; letter-spacing: -0.03em; line-height: .98; max-width: 14ch; }
-.h2 { font-size: var(--t-5); font-variation-settings: 'wdth' 88; letter-spacing: -0.025em; max-width: 18ch; }
+.title { font-size: var(--t-hero); line-height: .94; letter-spacing: -0.035em; font-weight: 600; max-width: 14ch; }
+.h2 { font-size: var(--t-5); letter-spacing: -0.03em; max-width: 18ch; }
 .lead { font-size: var(--t-2); color: var(--slate-2); line-height: 1.45; max-width: 46ch; margin-top: 1rem; }
 .heroText .lead { margin-top: 0; }
 
@@ -31,7 +31,7 @@
 .points li:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); }
 .points li :global(.icon) { color: var(--navy); }
 .points li :global(.icon .accent) { stroke: var(--sun); }
-.pointNum { position: absolute; top: 1.3rem; right: 1.4rem; font-family: var(--f-display); font-size: 2.4rem; font-weight: 600; font-variation-settings: 'opsz' 96, 'wdth' 80; color: var(--day-2); letter-spacing: -0.05em; line-height: 1; }
+.pointNum { position: absolute; top: 1.3rem; right: 1.4rem; font-family: var(--f-display); font-size: 2.4rem; font-weight: 600; color: var(--day-2); letter-spacing: -0.05em; line-height: 1; }
 .points h3 { font-size: var(--t-3); }
 .points p { color: var(--slate-2); }
 @media (max-width: 900px) { .split { grid-template-columns: 1fr; } }
@@ -45,7 +45,7 @@
   counter-increment: term; position: relative;
   padding: 1.3rem 1.4rem 1.3rem 5rem; border-radius: var(--radius-lg); background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); color: #dbe2e8;
 }
-.termList li::before { content: '0' counter(term); position: absolute; left: 1.4rem; top: 1.25rem; font-family: var(--f-display); font-size: 2.2rem; font-weight: 600; font-variation-settings: 'opsz' 96, 'wdth' 80; color: var(--sun); line-height: 1; letter-spacing: -0.03em; }
+.termList li::before { content: '0' counter(term); position: absolute; left: 1.4rem; top: 1.25rem; font-family: var(--f-display); font-size: 2.2rem; font-weight: 600; color: var(--sun); line-height: 1; letter-spacing: -0.03em; }
 .termList strong { color: var(--white); }
 @media (max-width: 900px) { .terms { grid-template-columns: 1fr; } }
 

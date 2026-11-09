@@ -2,9 +2,9 @@
    Soltara — design system (Pervonio build standard, Nov 2026)
 
    TYPE SYSTEM (audited, three families, each with one job)
-   - Display  : Bricolage Grotesque (variable: wght, wdth, opsz). Headlines and big figures.
-                Optical size pinned high and width narrowed at scale so headlines are dense and engineered.
-   - Accent   : Instrument Serif italic. Only ever for one emphasised phrase inside a headline.
+   - Display  : Familjen Grotesk (variable wght). Headlines and every figure. Chosen for its ink-trapped
+                detailing at scale and a clean, unambiguous £ — the brand lives in its numbers.
+   - Accent   : Instrument Serif italic. One phrase, in at most three headlines per page (hero, signature section, close).
    - Text / UI: Geist. Body copy, navigation, buttons, forms.
    - Data     : Geist Mono. Units, labels, table heads, "instrument" annotations. Never for prose.
 
@@ -32,7 +32,7 @@
   --blue-ink: #d7e0ff;
   --ok: #2c7a4d;
 
-  --f-display: 'Bricolage Grotesque Variable', 'Geist Variable', system-ui, sans-serif;
+  --f-display: 'Familjen Grotesk Variable', 'Geist Variable', system-ui, sans-serif;
   --f-serif: 'Instrument Serif', Georgia, serif;
   --f-text: 'Geist Variable', system-ui, sans-serif;
   --f-mono: 'Geist Mono Variable', ui-monospace, monospace;
@@ -71,23 +71,22 @@ body {
 img { display: block; max-width: 100%; }
 a { color: var(--navy); text-underline-offset: 3px; text-decoration-thickness: 1px; }
 h1, h2, h3, h4 {
-  margin: 0; font-family: var(--f-display); font-weight: 640; line-height: .98; letter-spacing: -0.03em;
-  font-variation-settings: 'opsz' 96, 'wdth' 92; text-wrap: balance;
+  margin: 0; font-family: var(--f-display); font-weight: 640; line-height: .98; letter-spacing: -0.03em; text-wrap: balance;
 }
-h3 { line-height: 1.12; letter-spacing: -0.02em; font-variation-settings: 'opsz' 32, 'wdth' 100; }
+h3 { line-height: 1.12; letter-spacing: -0.02em; }
 p { margin: 0; text-wrap: pretty; }
 ::selection { background: var(--sun); color: var(--white); }
 
 /* The one emphasised phrase in a headline */
-.em { font-family: var(--f-serif); font-style: italic; font-weight: 400; letter-spacing: -0.01em; font-variation-settings: normal; }
+.em { font-family: var(--f-serif); font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
 .em-sun { color: var(--sun); }
 
 /* Figures: display face, tabular, condensed — the numbers carry the brand */
 .fig {
   font-family: var(--f-display); font-feature-settings: 'tnum' 1, 'lnum' 1; font-weight: 600;
-  font-variation-settings: 'opsz' 48, 'wdth' 88; letter-spacing: -0.02em;
+  letter-spacing: -0.02em; white-space: nowrap;
 }
-.mono { font-family: var(--f-mono); font-size: .78rem; letter-spacing: .04em; text-transform: uppercase; }
+.mono { font-family: var(--f-mono); font-size: .8rem; letter-spacing: .04em; text-transform: uppercase; }
 
 :focus-visible { outline: 2px solid var(--sun); outline-offset: 3px; border-radius: 6px; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -95,7 +94,7 @@ p { margin: 0; text-wrap: pretty; }
 /* Kicker: an instrument label. Mono, with a sun tick. */
 .kicker {
   display: inline-flex; align-items: center; gap: .7rem;
-  font-family: var(--f-mono); font-size: .76rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
+  font-family: var(--f-mono); font-size: .8rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
   color: var(--slate-2); margin-bottom: 1.4rem;
 }
 .kicker::before {
@@ -225,7 +224,7 @@ p { margin: 0; text-wrap: pretty; }
 .mega-feature:hover img { transform: scale(1.05); }
 .mega-feature::before { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(20,22,28,0) 30%, rgba(20,22,28,.85)); }
 .mega-feature > :not(img) { position: relative; z-index: 2; }
-.mega-feature strong { font-family: var(--f-display); font-size: 1.9rem; font-weight: 620; line-height: 1.02; letter-spacing: -0.03em; font-variation-settings: 'opsz' 72, 'wdth' 92; margin-top: .4rem; }
+.mega-feature strong { font-family: var(--f-display); font-size: 1.9rem; font-weight: 620; line-height: 1.02; letter-spacing: -0.03em; margin-top: .4rem; }
 .mega-feature span { color: #e2e5ec; margin-top: .6rem; font-size: .95rem; }
 .mega-col { padding: 2rem 2rem 1.6rem; border-left: 1px solid var(--line); }
 .mega-col .mono { color: var(--slate-2); display: block; margin-bottom: 1rem; }
@@ -263,25 +262,24 @@ p { margin: 0; text-wrap: pretty; }
   }
   .nav-sheet .mono { color: var(--slate-2); margin-bottom: .2rem; }
   .nav-sheet ul { list-style: none; padding: 0; margin: 0; display: grid; }
-  .nav-sheet a { display: flex; justify-content: space-between; align-items: center; padding: .85rem 0; border-bottom: 1px solid var(--line); color: var(--slate); text-decoration: none; font-family: var(--f-display); font-size: 1.5rem; font-weight: 560; letter-spacing: -0.025em; font-variation-settings: 'opsz' 48, 'wdth' 95; }
+  .nav-sheet a { display: flex; justify-content: space-between; align-items: center; padding: .85rem 0; border-bottom: 1px solid var(--line); color: var(--slate); text-decoration: none; font-family: var(--f-display); font-size: 1.5rem; font-weight: 560; letter-spacing: -0.025em; }
   .nav-sheet .btn { font-family: var(--f-text); font-size: 1rem; border: 0; padding: 0 .45rem 0 1.6rem; justify-content: space-between; color: var(--white); letter-spacing: -0.01em; }
 }
 @keyframes sheet-in { from { opacity: 0; transform: translateY(-12px); } }
 @media (min-width: 1081px) { .nav-sheet { display: none; } }
-@media (max-width: 440px) { .brand-word { display: none; } .brand-emblem { height: 38px; } }
+@media (max-width: 440px) { .brand-emblem { height: 32px; } .brand-word { height: 15px; } }
 
 /* ---------------- Footer ---------------- */
 .site-footer { background: var(--ink); color: #bcc2cd; padding: var(--sect) var(--gut) 2rem; position: relative; overflow: hidden; }
 .footer-statement {
-  font-family: var(--f-display); color: var(--white); font-size: var(--t-5); line-height: .98; letter-spacing: -0.04em; font-weight: 620;
-  font-variation-settings: 'opsz' 96, 'wdth' 90; max-width: 16ch; margin-bottom: clamp(56px, 8vw, 112px);
+  font-family: var(--f-display); color: var(--white); font-size: var(--t-5); line-height: .98; letter-spacing: -0.04em; font-weight: 620; max-width: 16ch; margin-bottom: clamp(56px, 8vw, 112px);
 }
 .footer-statement .em { color: var(--sun); }
 .footer-arc { position: absolute; right: -8vw; top: -6vw; width: min(64vw, 880px); opacity: .5; pointer-events: none; }
 .footer-grid { position: relative; display: grid; grid-template-columns: 1.5fr repeat(4, 1fr); gap: 2.4rem; padding-top: 3rem; border-top: 1px solid var(--line-dark); }
 .site-footer a { color: var(--white); text-decoration: none; transition: color .2s; }
 .site-footer a:hover { color: var(--sun); }
-.footer-head { color: #8d94a3; font-family: var(--f-mono); font-weight: 500; font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; }
+.footer-head { color: #8d94a3; font-family: var(--f-mono); font-weight: 500; font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; }
 .site-footer ul { list-style: none; padding: 0; margin: 1.1rem 0 0; display: grid; gap: .7rem; }
 .footer-tag { margin-top: 1.1rem; max-width: 40ch; }
 .footer-cta { margin-top: 1.8rem; }
@@ -313,17 +311,18 @@ p { margin: 0; text-wrap: pretty; }
 
 /* ---------------- Motion ---------------- */
 /* Reveal: elements rise and un-blur into place as they enter. Set --d for stagger. */
-[data-reveal] { opacity: 0; transform: translateY(28px); filter: blur(6px); transition: opacity .9s var(--ease), transform 1.1s var(--ease), filter .9s var(--ease); transition-delay: var(--d, 0ms); }
-[data-reveal='in'] { opacity: 1; transform: none; filter: none; }
+/* Only hidden once JS has marked <html class="js">, so content is never lost if scripts fail. */
+.js [data-reveal] { opacity: 0; transform: translateY(32px); transition: opacity .9s var(--ease), transform 1.1s var(--ease); transition-delay: var(--d, 0ms); }
+.js [data-reveal='in'] { opacity: 1; transform: none; }
 /* Image reveal: a soft clip from the bottom edge */
-[data-reveal-img] { clip-path: inset(18% 0 0 0 round var(--radius-lg)); transform: scale(1.04); transition: clip-path 1.4s var(--ease), transform 1.8s var(--ease); }
-[data-reveal-img='in'] { clip-path: inset(0 0 0 0 round var(--radius-lg)); transform: none; }
-.no-js [data-reveal], .no-js [data-reveal-img] { opacity: 1; transform: none; filter: none; clip-path: none; }
+
+.js [data-reveal-img] { clip-path: inset(18% 0 0 0 round var(--radius-lg)); transform: scale(1.04); transition: clip-path 1.4s var(--ease), transform 1.8s var(--ease); }
+.js [data-reveal-img='in'] { clip-path: inset(0 0 0 0 round var(--radius-lg)); transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; transition-delay: 0ms !important; }
-  [data-reveal], [data-reveal-img] { opacity: 1; transform: none; filter: none; clip-path: none; }
+  .js [data-reveal], .js [data-reveal-img] { opacity: 1; transform: none; clip-path: none; }
 }
 
 /* Sun arc draw-in */
@@ -347,12 +346,8 @@ p { margin: 0; text-wrap: pretty; }
 @media (max-width: 640px) {
   .site-nav > .btn { display: none; }
 }
-@media (max-width: 440px) {
-  .site-header .brand-word, .site-header[data-over='true'] .brand-word-light { display: none; }
-}
 .site-header[data-sheet='true'] { background: var(--day); }
 .site-header[data-sheet='true'] .brand-word-light { display: none; }
 .site-header[data-sheet='true'] .nav-burger { background: var(--slate); }
 .site-header[data-sheet='true'] .brand-word-dark { display: block; }
 .site-header[data-sheet='true'] .nav-trigger, .site-header[data-sheet='true'] .nav-link { color: var(--slate); }
-@media (max-width: 440px) { .site-header[data-sheet='true'] .brand-word-dark { display: none; } }
